@@ -25,7 +25,7 @@ import java.util.HashMap;
 public class testDataManager<K,V> {
 
     private DataManager<K, V> manager;
-    private String query;
+    private K query;
     private V cacheResult;
     private V dbResult;
 
@@ -39,7 +39,7 @@ public class testDataManager<K,V> {
     public void setUp() {
         manager = new DataManager<>(mockDatabase, mockCache);
 
-        query = "famous five go to kirrin island";
+        query = (K) ("famous five go to kirrin island");
         cacheResult = (V) ("CACHE result famous five go to kirrin island.");
         dbResult = (V) ("DB result famous five go to kirrin island.");
     }
