@@ -41,15 +41,21 @@ public class Cache<K,V> implements CacheInterface<K,V> {
         cachedData.put(key, values);
     }
     
-    public ArrayList<K> invalidateKeys(V item) {
+    public void invalidateKeys(V item) {
         // item is one of the values to one or multiple keys
-        ArrayList<K> staleKeys = MapUtilities.getAllKeysForValue(cachedData, item);
+        ArrayList<K> staleKeys = findStaleKeys(item);
+        removeStaleKeys(staleKeys);
 
+    }
+
+    private ArrayList<K> findStaleKeys(V item){
+        return MapUtilities.getAllKeysForValue(cachedData, item);
+    }
+
+    private void removeStaleKeys(ArrayList<K> staleKeys){
         for (K key : staleKeys) {
-            System.out.println(key);
             cachedData.remove(key);
         }
-        return staleKeys;
     }
 
         

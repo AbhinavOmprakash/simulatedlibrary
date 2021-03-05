@@ -21,10 +21,15 @@ public class testCache<K, V> {
     V valA;
     V valB;
     V valC;
+
     ArrayList<V> values1;
     ArrayList<V> values2;
     ArrayList<V> values3;
     ArrayList<V> values4;
+
+    ArrayList<V> emptyListOfVitems;
+    ArrayList<K> emptyListOfKitems;
+
 
     @BeforeEach
     public void setUp() {
@@ -43,7 +48,8 @@ public class testCache<K, V> {
         values2 = new ArrayList<>(Arrays.asList(valA, valB, valC));
         values3 = new ArrayList<>(Arrays.asList(valA, valB, valC));
         values4 = new ArrayList<>(Arrays.asList(valA, valB, valC));
-
+        emptyListOfVitems = new ArrayList<>();
+        emptyListOfKitems = new ArrayList<>();
     }
 
     @Test
@@ -73,8 +79,7 @@ public class testCache<K, V> {
 
     @Test
     void testCacheSearchWhenDataNotInCache() {
-        ArrayList<V> expectedResults= new ArrayList<>();
-        assertEquals(expectedResults, dataCache.search(key2));
+        assertEquals(emptyListOfVitems, dataCache.search(key2));
     }
 
     @Test
@@ -95,24 +100,23 @@ public class testCache<K, V> {
 
     @Test
     void testInvalidateKeys() {
-        dataCache.insert(key1,values1);
-        dataCache.insert(key2,values2);
-
         V diffVal1 = (V) "diff1";
         V diffVal2 = (V) "diff2";
         // this should be unaffected after the invalidation
         ArrayList<V> differentValues = new ArrayList<>(Arrays.asList(diffVal1, diffVal2));
 
         dataCache.insert(key3, differentValues);
+        dataCache.insert(key1,values1);
+        dataCache.insert(key2,values2);
 
-        ArrayList<K> expectedStaleKeys = new ArrayList<>(Arrays.asList(key1,key2));
-
-        assertEquals(expectedStaleKeys, dataCache.invalidateKeys(valA));
+        // invalidate key1 and key2
+        dataCache.invalidateKeys(valA);
 
         // affected keys will be removed
-//        assertNotEquals(values1, dataCache.search(key1));
-//        assertNotEquals(values2, dataCache.search(key2));
-//        // unaffected key will stay
-//        assertEquals(differentValues, dataCache.search(key3));
+        assertEquals(emptyListOfVitems, dataCache.search(key1));
+        assertEquals(emptyListOfVitems, dataCache.search(key2));
+        // unaffected key will stay
+        assertEquals(differentValues, dataCache.search(key3));
     }
+
 }
