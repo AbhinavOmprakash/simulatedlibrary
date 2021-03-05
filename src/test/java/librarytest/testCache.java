@@ -60,8 +60,15 @@ public class testCache<K, V> {
 
         assertEquals(newCapacity, 5);
         assertNotEquals(newCapacity, oldCapacity);
-
     }
+
+    @Test
+    public void testCacheSearch(){
+        dataCache.insert(key1, values1);
+        ArrayList<V>  results= dataCache.search(key1);
+        assertEquals(values1, results);
+    }
+
 
 
 }
