@@ -12,7 +12,7 @@ public class Cache<K,V> implements CacheInterface<K,V> {
     
     public Cache(int capacity) {
         this.capacity = capacity;
-        this.cachedData = new LinkedHashMap<K, ArrayList<V>>(capacity, 1.0f, true) {
+        this.cachedData = new LinkedHashMap<>(capacity, 1.0f, true) {
             @Override
             protected boolean removeEldestEntry(Map.Entry<K,ArrayList<V>>e)
             {
@@ -30,8 +30,7 @@ public class Cache<K,V> implements CacheInterface<K,V> {
     }
      
     public ArrayList<V> search(String query) {
-        ArrayList<V> results = cachedData.get(query);
-        return results;
+        return cachedData.get(query);
     }
 
     public void insert(K key, ArrayList<V> values) {
