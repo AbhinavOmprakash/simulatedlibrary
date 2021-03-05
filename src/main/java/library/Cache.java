@@ -29,20 +29,27 @@ public class Cache<K,V> implements CacheInterface<K,V> {
         return capacity;
     }
      
-    public ArrayList<V> search(String query) {
-        return cachedData.get(query);
+    public ArrayList<V> search(K query) {
+        ArrayList<V> results = cachedData.get(query);
+        if (results==null){
+            return new ArrayList<>();
+        }
+        return results;
     }
 
     public void insert(K key, ArrayList<V> values) {
         cachedData.put(key, values);
     }
     
-    public void invalidateKeys(V item) {
-        // item is one of the va
+    public ArrayList<K> invalidateKeys(V item) {
+        // item is one of the values to one or multiple keys
         ArrayList<K> staleKeys = MapUtilities.getAllKeysForValue(cachedData, item);
+
         for (K key : staleKeys) {
+            System.out.println(key);
             cachedData.remove(key);
         }
+        return staleKeys;
     }
 
         

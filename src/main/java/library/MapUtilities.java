@@ -6,16 +6,14 @@ import java.util.Map;
 
 public class MapUtilities {
 
-    static <K, V, T> ArrayList<K> getAllKeysForValue(Map<K, V> mapData, T value) {
+    public static <K, V> ArrayList<K> getAllKeysForValue(Map<K, ArrayList<V>> mapData, V value) {
         ArrayList<K> listOfKeys = new ArrayList<>();
 
-        if (mapData.containsValue(value)) {
-            for(Map.Entry<K, V> entry : mapData.entrySet()){
-                if (entry.getKey().equals(value)) {
-                    listOfKeys.add(entry.getKey());
-                }
-
+        for(Map.Entry<K, ArrayList<V>> entry : mapData.entrySet()){
+            if (entry.getValue().contains(value)) {
+                listOfKeys.add(entry.getKey());
             }
+
         }
         return listOfKeys;
     }

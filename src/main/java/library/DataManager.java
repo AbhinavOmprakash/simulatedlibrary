@@ -18,7 +18,7 @@ public class DataManager<K,V>{
         this.cache = cache;
     }
 
-    public ArrayList<V> search(String query) {
+    public ArrayList<V> search(K query) {
         ArrayList<V> results = cache.search(query);
         if (results.isEmpty()) {
             results = database.search(query);
