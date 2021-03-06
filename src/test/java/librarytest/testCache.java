@@ -1,55 +1,46 @@
 package librarytest;
 
 import library.Cache;
+import library.DataStoreInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class testCache<K, V> {
     private Cache<K,V> dataCache;
 
-    K key1;
-    K key2;
-    K key3;
-    K key4;
-     
-    V valA;
-    V valB;
-    V valC;
+    K key1 = (K) ("key1");
+    K key2 = (K) ("key2");
+    K key3 = (K) ("key3");
+    K key4 = (K) ("key4");
 
-    ArrayList<V> values1;
-    ArrayList<V> values2;
-    ArrayList<V> values3;
-    ArrayList<V> values4;
+    V valA = (V) ("val A");
+    V valB = (V) ("val B");
+    V valC = (V) ("val C");
 
-    ArrayList<V> emptyListOfVitems;
-    ArrayList<K> emptyListOfKitems;
+    ArrayList<V> values1 = new ArrayList<>(Arrays.asList(valA, valB, valC));
+    ArrayList<V> values2 = new ArrayList<>(Arrays.asList(valA, valB, valC));
+    ArrayList<V> values3 = new ArrayList<>(Arrays.asList(valA, valB, valC));
+    ArrayList<V> values4 = new ArrayList<>(Arrays.asList(valA, valB, valC));
 
+    ArrayList<V> emptyListOfVitems = new ArrayList<>();
+
+    @Mock
+    DataStoreInterface<K,V> mockDatabase;
 
     @BeforeEach
     public void setUp() {
-        dataCache = new Cache<>(3);
-
-        key1 = (K) ("key1");
-        key2 = (K) ("key2");
-        key3 = (K) ("key3");
-        key4 = (K) ("key4");
-
-        valA = (V) ("val A");
-        valB = (V) ("val B");
-        valC = (V) ("val C");
-
-        values1 = new ArrayList<>(Arrays.asList(valA, valB, valC));
-        values2 = new ArrayList<>(Arrays.asList(valA, valB, valC));
-        values3 = new ArrayList<>(Arrays.asList(valA, valB, valC));
-        values4 = new ArrayList<>(Arrays.asList(valA, valB, valC));
-        emptyListOfVitems = new ArrayList<>();
-        emptyListOfKitems = new ArrayList<>();
+        dataCache = new Cache<>(mockDatabase, 3);
     }
 
     @Test
@@ -71,25 +62,36 @@ public class testCache<K, V> {
     }
 
     @Test
-    public void testCacheInsertAndSearch(){
-        dataCache.insert(key1, values1);
-        ArrayList<V>  results= dataCache.search(key1);
+    public void testDataCanBeAddedToCache(){
+        dataCache.updateCache(key1, values1);
+        ArrayList<V>  results = dataCache.search(key1);
         assertEquals(values1, results);
     }
 
     @Test
-    void testCacheSearchWhenDataNotInCache() {
-        assertEquals(emptyListOfVitems, dataCache.search(key2));
+    void testCacheUpdatesItselfWhenValueIsNotInCache() {
+        //setup
+        when(mockDatabase.search(key1)).thenReturn(values1);
+
+        assertEquals(values1, dataCache.search(key1));
     }
 
     @Test
+    void testCacheAddNewItem(){
+        dataCache.addNewItem(valA);
+
+        verify(mockDatabase, times(1)).addNewItem(valA);
+    }
+
+
+    @Test
     void testCacheEvictsEntryWhenSizeIsReached() {
-        dataCache.insert(key1, values1);
-        dataCache.insert(key2, values2);
-        dataCache.insert(key3, values3);
+        dataCache.updateCache(key1, values1);
+        dataCache.updateCache(key2, values2);
+        dataCache.updateCache(key3, values3);
 
         // insert another key
-        dataCache.insert(key4, values4);
+        dataCache.updateCache(key4, values4);
 
         //check if key1 is evicted
         assertNotEquals(values1,dataCache.search(key1));
@@ -105,9 +107,9 @@ public class testCache<K, V> {
         // this should be unaffected after the invalidation
         ArrayList<V> differentValues = new ArrayList<>(Arrays.asList(diffVal1, diffVal2));
 
-        dataCache.insert(key3, differentValues);
-        dataCache.insert(key1,values1);
-        dataCache.insert(key2,values2);
+        dataCache.updateCache(key3, differentValues);
+        dataCache.updateCache(key1,values1);
+        dataCache.updateCache(key2,values2);
 
         // invalidate key1 and key2
         dataCache.invalidateKeys(valA);
