@@ -28,11 +28,7 @@ public class DataManager<K,V>{
         dataStore = newDataStore;
     }
 
-    public void getDataStore(){
+    public DataStoreInterface<K, V> getDataStore() {
         return dataStore;
     }
-
-
-
-
 }

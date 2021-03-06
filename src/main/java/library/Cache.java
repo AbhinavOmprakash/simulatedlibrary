@@ -24,6 +24,8 @@ public class Cache<K,V> implements CacheInterface<K,V>{
         };
     }
 
+    //to do find better name for search.
+    // function has side-effect
     public ArrayList<V> search(K query) {
         ArrayList<V> results = cachedData.get(query);
         if (results==null){
@@ -38,9 +40,6 @@ public class Cache<K,V> implements CacheInterface<K,V>{
         dataStore.updateItem(item);
     }
 
-    public void addNewItem(V item) {
-        dataStore.addNewItem(item);
-    }
 
     public void invalidateKeys(V item) {
         // item is one of the values to one or multiple keys
@@ -62,6 +61,12 @@ public class Cache<K,V> implements CacheInterface<K,V>{
     public void updateCache(K key, ArrayList<V> values) {
         cachedData.put(key, values);
     }
+
+    public void addNewItem(V item) {
+        dataStore.addNewItem(item);
+    }
+
+    // getters and setters
 
     public DataStoreInterface<K, V> getDataStore() {
         return dataStore;
