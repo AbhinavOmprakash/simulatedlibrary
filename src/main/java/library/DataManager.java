@@ -10,28 +10,30 @@ import java.util.HashMap;
  */
 
 public class DataManager<K,V>{
-    private DatabaseInterface<K,V> database;
-    private CacheInterface<K,V> cache;
+    private DataStoreInterface<K,V> dataStore;
 
-    public DataManager(DatabaseInterface<K,V> database, CacheInterface<K,V> cache) {
-        this.database = database;
-        this.cache = cache;
+    public DataManager(DataStoreInterface<K,V> dataStore) {
+        this.dataStore = dataStore;
     }
 
     public ArrayList<V> search(K query) {
-        ArrayList<V> results = cache.search(query);
-        if (results.isEmpty()) {
-            results = database.search(query);
-        }
-        return results;
+       return dataStore.search(query);
     }
     
     public void updateData(V item, 
             HashMap<K, ArrayList<V>> newData) {
-
-        database.update(item, newData);
-        V updatedItem = database.getItem(item);
-        cache.invalidateKeys(updatedItem);
+        dataStore.update(item, newData);
     }
+
+    public void setDataStore(DataStoreInterface<K,V> newDataStore){
+        dataStore = newDataStore;
+    }
+
+    public void getDataStore(){
+        return dataStore
+    }
+
+
+
 
 }
