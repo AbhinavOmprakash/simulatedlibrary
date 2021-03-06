@@ -20,9 +20,8 @@ public class DataManager<K,V>{
        return dataStore.search(query);
     }
     
-    public void updateData(V item, 
-            HashMap<K, ArrayList<V>> newData) {
-        dataStore.update(item, newData);
+    public void updateData(V item) {
+        dataStore.updateItem(item);
     }
 
     public void setDataStore(DataStoreInterface<K,V> newDataStore){

@@ -1,16 +1,19 @@
 package library;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import library.MapUtilities;
 
 @SuppressWarnings("serial")
-public class Cache<K,V> implements CacheInterface<K,V> {
+public class Cache<K,V> implements CacheInterface<K,V>{
+
     private LinkedHashMap<K, ArrayList<V>> cachedData;
+    private DataStoreInterface<K,V> dataStore;
     int capacity;
     
-    public Cache(int capacity) {
+    public Cache(DataStoreInterface<K, V> dataStore, int capacity) {
+        this.dataStore = dataStore;
         this.capacity = capacity;
         this.cachedData = new LinkedHashMap<>(capacity, 1.0f, true) {
             @Override
@@ -21,26 +24,24 @@ public class Cache<K,V> implements CacheInterface<K,V> {
         };
     }
 
-    public void setCapacity(int newCapacity){
-        capacity = newCapacity;
-    }
-
-    public int getCapacity(){
-        return capacity;
-    }
-     
     public ArrayList<V> search(K query) {
         ArrayList<V> results = cachedData.get(query);
         if (results==null){
-            return new ArrayList<>();
+            results = dataStore.search(query);
+            updateCache(query, results);
         }
         return results;
     }
 
-    public void insert(K key, ArrayList<V> values) {
-        cachedData.put(key, values);
+    public void updateItem(V item){
+        invalidateKeys(item);
+        dataStore.updateItem(item);
     }
-    
+
+    public void addNewItem(V item) {
+        dataStore.addNewItem(item);
+    }
+
     public void invalidateKeys(V item) {
         // item is one of the values to one or multiple keys
         ArrayList<K> staleKeys = findStaleKeys(item);
@@ -58,5 +59,23 @@ public class Cache<K,V> implements CacheInterface<K,V> {
         }
     }
 
-        
+    public void updateCache(K key, ArrayList<V> values) {
+        cachedData.put(key, values);
+    }
+
+    public DataStoreInterface<K, V> getDataStore() {
+        return dataStore;
+    }
+
+    public void setDataStore(DataStoreInterface<K, V> dataStore) {
+        this.dataStore = dataStore;
+    }
+
+    public void setCapacity(int newCapacity){
+        capacity = newCapacity;
+    }
+
+    public int getCapacity(){
+        return capacity;
+    }
 }
