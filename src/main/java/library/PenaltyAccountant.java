@@ -5,12 +5,10 @@ import externalservices.PaymentGateway;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class PenaltyAccountant implements Accountant{
-
-    private DataManager<String, User> dataManager;
+public class PenaltyAccountant extends Accountant{
 
     public PenaltyAccountant(DataManager<String, User> dataManager) {
-        this.dataManager = dataManager;
+        super(dataManager);
     }
 
     public Double chargePenalty(User user, int overdueDays){
@@ -47,11 +45,4 @@ public class PenaltyAccountant implements Accountant{
 
     }
 
-    public DataManager<String, User> getDataManager() {
-        return dataManager;
-    }
-
-    public void setDataManager(DataManager<String, User> dataManager) {
-        this.dataManager = dataManager;
-    }
 }
