@@ -1,14 +1,16 @@
 package libraryitems;
 
+import libraryitems.contributors.Contributor;
+
 import java.util.ArrayList;
 
 public abstract class LibraryItem {
-    private String title;
-    private String subject;
-    private int UPC;
-    private ArrayList<Contributor> contributors;
-    private boolean isBorrowable;
-    private boolean isCheckedOut;
+    protected String title;
+    protected String subject;
+    protected int UPC;
+    protected ArrayList<Contributor> contributors;
+    protected boolean isBorrowable;
+    protected boolean isCheckedOut;
 
 
     public LibraryItem(String title,
@@ -22,6 +24,32 @@ public abstract class LibraryItem {
         this.contributors = contributors;
         this.isBorrowable = isBorrowable;
         this.isCheckedOut = false;
+    }
+
+    public LibraryItem borrowItem()throws UnsupportedOperationException{
+        if(isBorrowable && !isCheckedOut) {
+            checkOut();
+            return this;
+        } else if(!isCheckedOut) {
+            throw new UnsupportedOperationException(
+                    String.format("Sorry this %s is already checked Out",getClass()));
+        } else if(!isBorrowable) {
+            throw new UnsupportedOperationException(
+                    String.format("Sorry this %s is not borrowable", getClass()));
+        }
+        return null;
+    }
+
+    public void returnItem(){
+        checkIn();
+    }
+
+    public void checkOut(){
+        isCheckedOut = true;
+    }
+
+    public void checkIn(){
+        isCheckedOut = false;
     }
 
     //getters and setters
@@ -68,14 +96,6 @@ public abstract class LibraryItem {
 
     public boolean isCheckedOut() {
         return isCheckedOut;
-    }
-
-    public void checkOut(){
-        isCheckedOut = true;
-    }
-
-    public void checkIn(){
-        isCheckedOut = false;
     }
 
 
