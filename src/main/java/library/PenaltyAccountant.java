@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class PenaltyAccountant implements Accountant{
-    DataManager<String, User> dataManager;
 
+    private DataManager<String, User> dataManager;
 
-    public PenaltyAccountant(DataManager<String, User> dataManager, PaymentGateway paymentGateway) {
+    public PenaltyAccountant(DataManager<String, User> dataManager) {
         this.dataManager = dataManager;
     }
 
@@ -45,5 +45,13 @@ public class PenaltyAccountant implements Accountant{
         Double overduePerDay = necessaryDetails.get("overduePerDay");
         return previousPenalties + (overdueDays)*overduePerDay;
 
+    }
+
+    public DataManager<String, User> getDataManager() {
+        return dataManager;
+    }
+
+    public void setDataManager(DataManager<String, User> dataManager) {
+        this.dataManager = dataManager;
     }
 }
