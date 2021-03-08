@@ -29,7 +29,7 @@ public class TestBook {
     @BeforeEach
     public void setup() {
         book = new Book(title,
-                subject, UPC, contributors, isBorrowable);
+                subject, UPC, contributors, isBorrowable, 123456789);
     }
 
     @Test
