@@ -30,7 +30,7 @@ public abstract class LibraryItem {
         if(isBorrowable && !isCheckedOut) {
             checkOut();
             return this;
-        } else if(!isCheckedOut) {
+        } else if(isCheckedOut) {
             throw new UnsupportedOperationException(
                     String.format("Sorry this %s is already checked Out",getClass()));
         } else if(!isBorrowable) {
