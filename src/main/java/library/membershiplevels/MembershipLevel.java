@@ -8,7 +8,20 @@ public interface MembershipLevel {
 
     static Double getOverdueFeesPerDay(){
         return null;
+
     }
+    default Calendar calculateMembershipExpiry(int membershipPeriodInMonths ){
+        Calendar expiryOn = Calendar.getInstance();
+        expiryOn.add(Calendar.MONTH, membershipPeriodInMonths);
+        return expiryOn;
+    }
+
+    static Double getMembershipFees(){
+        return 0.0;
+    }
+
+    static void setMembershipFees(Double membershipFees){};
+
 
     static void setOverdueFeesPerDay(Double overdueFeesPerDay){}
 
@@ -31,7 +44,6 @@ public interface MembershipLevel {
     static void setMembershipPeriodInMonths(int membershipPeriodInMonths){}
 
     Calendar getExpiringOn();
-
 }
 
 
