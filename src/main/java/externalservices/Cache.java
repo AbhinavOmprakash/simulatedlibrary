@@ -1,12 +1,11 @@
-package library;
+package externalservices;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 @SuppressWarnings("serial")
-public class Cache<K,V> implements CacheInterface<K,V>{
+public class Cache<K,V> implements CacheInterface<K,V> {
 
     private LinkedHashMap<K, ArrayList<V>> cachedData;
     private DataStoreInterface<K,V> dataStore;
