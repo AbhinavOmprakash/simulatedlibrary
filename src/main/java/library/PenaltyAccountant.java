@@ -29,9 +29,11 @@ public class PenaltyAccountant extends Accountant{
     private Map<String,Double> getRelevantPenaltyDetails(User user){
         Double previousPenalties = user.getPenaltyDue();
         Double overduePerDay = user.getOverdueFeesPerDay();
+        Double discounts = user.getDiscounts();
         Map<String,Double> details = Map.of(
                         "previousPenalties", previousPenalties,
-                        "overduePerDay",overduePerDay
+                        "overduePerDay",overduePerDay,
+                        "discounts", discounts
         );
         return details;
     }
@@ -41,8 +43,10 @@ public class PenaltyAccountant extends Accountant{
 
         Double previousPenalties = necessaryDetails.get("previousPenalties");
         Double overduePerDay = necessaryDetails.get("overduePerDay");
-        return previousPenalties + (overdueDays)*overduePerDay;
+        Double discounts =  necessaryDetails.get("discounts");
 
+        // do some quick mafs
+        return previousPenalties + (overdueDays)*overduePerDay*(1-discounts);
     }
 
 }
