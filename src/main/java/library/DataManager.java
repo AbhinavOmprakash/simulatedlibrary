@@ -1,7 +1,8 @@
 package library;
 
+import externalservices.DataStoreInterface;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /** responsible for querying the database and cache
  * updating the db and cache 
@@ -15,6 +16,7 @@ public class DataManager<K,V>{
     public DataManager(DataStoreInterface<K,V> dataStore) {
         this.dataStore = dataStore;
     }
+
 
     public ArrayList<V> search(K query) {
        return dataStore.search(query);
