@@ -22,7 +22,7 @@ public class User {
     }
 
     public Double getOverdueFeesPerDay(){
-        return membershipLevel.getOverdueFeesPerDay();
+        return MembershipLevel.getOverdueFeesPerDay();
     }
 
 
