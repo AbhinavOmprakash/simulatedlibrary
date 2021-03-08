@@ -1,6 +1,6 @@
 package librarytest;
 
-import library.MapUtilities;
+import externalservices.MapUtilities;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import static library.MapUtilities.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class MapUtilitiesTest<K,V> {
