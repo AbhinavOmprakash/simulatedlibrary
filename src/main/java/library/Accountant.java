@@ -15,5 +15,4 @@ public abstract class Accountant {
         this.dataManager = dataManager;
     }
 
-
 }
