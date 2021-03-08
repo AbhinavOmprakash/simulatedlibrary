@@ -9,6 +9,7 @@ public abstract class LibraryItem {
     protected String subject;
     protected int UPC;
     protected ArrayList<Contributor> contributors;
+    protected int borrowPeriodInDays;
     protected boolean isBorrowable;
     protected boolean isCheckedOut;
 
@@ -17,12 +18,13 @@ public abstract class LibraryItem {
                        String subject,
                        int UPC,
                        ArrayList<Contributor> contributors,
-                       boolean isBorrowable) {
+                       boolean isBorrowable, int borrowPeriodInDays) {
         this.title = title;
         this.subject = subject;
         this.UPC = UPC;
         this.contributors = contributors;
         this.isBorrowable = isBorrowable;
+        this.borrowPeriodInDays = borrowPeriodInDays;
         this.isCheckedOut = false;
     }
 

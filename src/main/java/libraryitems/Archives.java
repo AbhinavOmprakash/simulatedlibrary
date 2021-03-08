@@ -10,7 +10,7 @@ public class Archives extends LibraryItem{
                      String subject,
                      int UPC,
                     ArrayList<Contributor> contributors) {
-        super(title, subject, UPC, contributors, false);
+        super(title, subject, UPC, contributors, false, 0);
 
     }
 }
