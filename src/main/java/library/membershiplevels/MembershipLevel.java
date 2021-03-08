@@ -3,61 +3,36 @@ package library.membershiplevels;
 
 import java.util.Calendar;
 
-public abstract class MembershipLevel {
+public interface MembershipLevel {
 
-    protected static Double overdueFeesPerDay = 10.0;
-    protected static int borrowLimit = 1;
-    protected static Double discounts = 0.0; // value must be between 0.0 to 1.0
-    protected static int membershipPeriodInMonths = 12;
-    protected Calendar expiringOn;
 
-    public MembershipLevel(){
-        calculateMembershipExpiry();
+    static Double getOverdueFeesPerDay(){
+        return null;
     }
 
-    private void calculateMembershipExpiry(){
-        expiringOn = Calendar.getInstance();
-        expiringOn.add(Calendar.MONTH, membershipPeriodInMonths);
+    static void setOverdueFeesPerDay(Double overdueFeesPerDay){}
+
+    static int getBorrowLimit(){
+        return 0;
     }
 
-    public static Double getOverdueFeesPerDay() {
-        return overdueFeesPerDay;
+    static void setBorrowLimit(int borrowLimit){}
+
+    static Double getDiscounts(){
+        return null;
     }
 
-    public static void setOverdueFeesPerDay(Double overdueFeesPerDay) {
-        MembershipLevel.overdueFeesPerDay = overdueFeesPerDay;
+    static void setDiscounts(Double discounts){}
+
+    static int getMembershipPeriodInMonths(){
+        return 0;
     }
 
-    public static int getBorrowLimit() {
-        return borrowLimit;
-    }
+    static void setMembershipPeriodInMonths(int membershipPeriodInMonths){}
 
-    public static void setBorrowLimit(int borrowLimit) {
-        MembershipLevel.borrowLimit = borrowLimit;
-    }
-
-    public static Double getDiscounts() {
-        return discounts;
-    }
-
-    public static void setDiscounts(Double discounts) throws IllegalArgumentException {
-        if (0<= discounts && discounts <=1.0) {
-            MembershipLevel.discounts = discounts;
-        } else {
-            throw new IllegalArgumentException("Discount can't be more than 1");
-        }
-    }
-
-    public static int getMembershipPeriodInMonths() {
-        return membershipPeriodInMonths;
-    }
-
-    public static void setMembershipPeriodInMonths(int membershipPeriodInMonths) {
-        MembershipLevel.membershipPeriodInMonths = membershipPeriodInMonths;
-    }
-
-    public Calendar getExpiringOn() {
-        return expiringOn;
-    }
+    Calendar getExpiringOn();
 
 }
+
+
+
