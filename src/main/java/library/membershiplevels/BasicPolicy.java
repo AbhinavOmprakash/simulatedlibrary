@@ -1,11 +1,13 @@
 package library.membershiplevels;
 
-public class basicPolicy implements MembershipPolicy {
+public class BasicPolicy implements MembershipPolicy {
     Double membershipFees;
     Double overdueFeesPerDay;
     int borrowLimit;
     Double discountPercentage; // value must be between 0.0 to 100.0
     int membershipPeriodInMonths = 12;
+
+    public BasicPolicy(){}
 
     @Override
     public String toString(){

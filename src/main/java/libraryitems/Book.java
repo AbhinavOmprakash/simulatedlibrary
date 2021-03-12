@@ -2,13 +2,20 @@ package libraryitems;
 
 import libraryitems.contributors.Contributor;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.ArrayList;
 
+@Entity
 public class Book extends LibraryItem{
 
     private static int defaultBorrowPeriod=30;
 
     int ISBN;
+
+    public Book(){
+        // for hibernate
+    }
 
     public Book(String title,
                 String subject,

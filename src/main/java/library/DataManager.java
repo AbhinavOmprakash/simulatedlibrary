@@ -2,6 +2,8 @@ package library;
 
 import externalservices.DataStoreInterface;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /** responsible for querying the database and cache
@@ -26,6 +28,10 @@ public class DataManager<K,V>{
         dataStore.updateItem(item);
     }
 
+    public void deleteItem(V item){
+        dataStore.deleteItem(item);
+    }
+
     public void setDataStore(DataStoreInterface<K,V> newDataStore){
         dataStore = newDataStore;
     }
@@ -33,4 +39,7 @@ public class DataManager<K,V>{
     public DataStoreInterface<K, V> getDataStore() {
         return dataStore;
     }
+
+
+
 }

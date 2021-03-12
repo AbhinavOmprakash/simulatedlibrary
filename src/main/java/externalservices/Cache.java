@@ -65,6 +65,11 @@ public class Cache<K,V> implements CacheInterface<K,V> {
         dataStore.addNewItem(item);
     }
 
+    public void deleteItem(V item) {
+        dataStore.deleteItem(item);
+        invalidateKeys(item);
+    }
+
     // getters and setters
 
     public DataStoreInterface<K, V> getDataStore() {

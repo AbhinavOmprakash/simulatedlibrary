@@ -2,12 +2,18 @@ package libraryitems;
 
 import libraryitems.contributors.Contributor;
 
+import javax.persistence.Entity;
 import java.util.ArrayList;
 
+@Entity
 public class DVD extends LibraryItem{
 
     private static int defaultBorrowPeriod=10;
 
+
+    public DVD(){
+        // for hibernate
+    }
 
     public DVD(String title,
                String subject,

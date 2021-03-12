@@ -1,10 +1,20 @@
 package libraryitems;
 
 import libraryitems.contributors.Contributor;
+import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 
+@Entity
+@Table( name = "LibraryItem")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class LibraryItem {
+
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name="increment", strategy = "increment")
+    protected long id;
     protected String title;
     protected String subject;
     protected int UPC;
@@ -12,6 +22,10 @@ public abstract class LibraryItem {
     protected int borrowPeriodInDays;
     protected boolean isBorrowable;
     protected boolean isCheckedOut;
+
+    public LibraryItem(){
+        // for hibernate's use
+    }
 
 
     public LibraryItem(String title,
@@ -100,5 +114,27 @@ public abstract class LibraryItem {
         return isCheckedOut;
     }
 
+
+    public Long getId(){
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getBorrowPeriodInDays() {
+        return borrowPeriodInDays;
+    }
+
+    public void setBorrowPeriodInDays(int borrowPeriodInDays) {
+        this.borrowPeriodInDays = borrowPeriodInDays;
+    }
+
+    public void setCheckedOut(boolean checkedOut) {
+        isCheckedOut = checkedOut;
+    }   public void setID(long id){
+        this.id = id;
+    }
 
 }
