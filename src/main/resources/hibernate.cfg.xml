@@ -32,6 +32,7 @@
         <!-- Names the annotated entity class -->
     <mapping class="library.User"/>
     <mapping class="library.membershiplevels.MembershipLevel"/>
+    <mapping class="libraryitems.LibraryItem"/>
 
     </session-factory>
 </hibernate-configuration>
