@@ -64,17 +64,6 @@ public class HibernateUtils{
         return new ArrayList<>(result);
     }
 
-    public void allItems(){
-        Session session = getSession();
-        List result = session.createQuery("from User")
-                .list();
-        System.out.println("printing users");
-        for ( User user : (List<User>) result ) {
-            System.out.println( "User -" + user.getFullName());
-        }
-        stopSession(session);
-    }
-
 
     public void addNewItem(Object item){
         Session session = getSession();
