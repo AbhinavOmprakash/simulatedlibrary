@@ -1,5 +1,6 @@
 package externalservices;
 
+import library.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -8,6 +9,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class HibernateUtils{
@@ -53,17 +55,26 @@ public class HibernateUtils{
     public ArrayList search(String query, String table, String attribute ){
         Session session = getSession();
 
-        String hqlQuery = "from "+table+" where :attribute =:query";
-
+        String hqlQuery = "from "+table+ " where "+attribute+" =:query";
         List result = session.createQuery(hqlQuery)
-                .setParameter("attribute",attribute)
-                .setParameter("query", query)
-                .list();
+                .setParameter("query",query).list();
 
         stopSession(session);
 
-        return new ArrayList<>(Arrays.asList(result));
+        return new ArrayList<>(result);
     }
+
+    public void allItems(){
+        Session session = getSession();
+        List result = session.createQuery("from User")
+                .list();
+        System.out.println("printing users");
+        for ( User user : (List<User>) result ) {
+            System.out.println( "User -" + user.getFullName());
+        }
+        stopSession(session);
+    }
+
 
     public void addNewItem(Object item){
         Session session = getSession();
