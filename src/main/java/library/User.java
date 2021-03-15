@@ -7,15 +7,21 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table( name = "User")
 public class User {
     private String fullName;
+    @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name="increment", strategy = "increment")
     protected int ID;
     @Embedded
     MembershipLevel membershipLevel;
-    protected ArrayList<LibraryItem> borrowedItems = new ArrayList<>();
+
+    @ElementCollection
+    private List<LibraryItem> borrowedItems = new ArrayList<>();
     public double PenaltyDue;
 
     public User() {
@@ -44,9 +50,6 @@ public class User {
         this.fullName = fullName;
     }
 
-    @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name="increment", strategy = "increment")
     public int getID() {
         return ID;
     }
@@ -63,11 +66,15 @@ public class User {
         this.membershipLevel = membershipLevel;
     }
 
-    public ArrayList<LibraryItem> getBorrowedItems() {
-        return borrowedItems;
+    public void borrowItem(LibraryItem item){
+        borrowedItems.add(item);
     }
 
-    public void setBorrowedItems(ArrayList<LibraryItem> borrowedItems) {
+    public List<LibraryItem> getBorrowedItems() {
+        return  borrowedItems;
+    }
+
+    public void setBorrowedItems(List<LibraryItem> borrowedItems) {
         this.borrowedItems = borrowedItems;
     }
 
