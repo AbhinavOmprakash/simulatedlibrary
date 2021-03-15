@@ -1,9 +1,8 @@
 package libraryitemstest;
 
-import libraryitems.Book;
-import libraryitems.LibraryItem;
-import libraryitems.contributors.Contributor;
-import org.junit.jupiter.api.BeforeAll;
+import backend.libraryitems.Book;
+import backend.libraryitems.LibraryItem;
+import backend.libraryitems.contributors.Contributor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

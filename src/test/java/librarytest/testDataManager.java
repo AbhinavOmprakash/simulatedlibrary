@@ -1,7 +1,7 @@
 package librarytest;
 
-import library.DataManager;
-import externalservices.DataStoreInterface;
+import backend.library.DataManager;
+import backend.externalservices.DataStoreInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,7 +1,7 @@
 package librarytest;
 
-import externalservices.Cache;
-import externalservices.DataStoreInterface;
+import backend.externalservices.Cache;
+import backend.externalservices.DataStoreInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

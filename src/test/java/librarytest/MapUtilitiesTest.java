@@ -1,6 +1,6 @@
 package librarytest;
 
-import externalservices.MapUtilities;
+import backend.externalservices.MapUtilities;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

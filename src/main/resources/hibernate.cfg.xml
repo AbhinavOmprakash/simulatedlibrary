@@ -30,22 +30,22 @@
     <property name="hbm2ddl.auto">create</property>
 
         <!-- Names the annotated entity class -->
-    <mapping class="library.User"/>
-    <mapping class="library.membershiplevels.MembershipLevel"/>
+    <mapping class="backend.library.User"/>
+    <mapping class="backend.library.membershiplevels.MembershipLevel"/>
 
-    <mapping class="libraryitems.LibraryItem"/>
-    <mapping class="libraryitems.Archives"/>
-    <mapping class="libraryitems.AudioBook"/>
-    <mapping class="libraryitems.Book"/>
-    <mapping class="libraryitems.DVD"/>
+    <mapping class="backend.libraryitems.LibraryItem"/>
+    <mapping class="backend.libraryitems.Archives"/>
+    <mapping class="backend.libraryitems.AudioBook"/>
+    <mapping class="backend.libraryitems.Book"/>
+    <mapping class="backend.libraryitems.DVD"/>
 
-    <mapping class="libraryitems.contributors.Contributor"/>
-    <mapping class="libraryitems.contributors.Actor"/>
-    <mapping class="libraryitems.contributors.Author"/>
-    <mapping class="libraryitems.contributors.Director"/>
-    <mapping class="libraryitems.contributors.Poet"/>
-    <mapping class="libraryitems.contributors.ScreenWriter"/>
-    <mapping class="libraryitems.contributors.Singer"/>
+    <mapping class="backend.libraryitems.contributors.Contributor"/>
+    <mapping class="backend.libraryitems.contributors.Actor"/>
+    <mapping class="backend.libraryitems.contributors.Author"/>
+    <mapping class="backend.libraryitems.contributors.Director"/>
+    <mapping class="backend.libraryitems.contributors.Poet"/>
+    <mapping class="backend.libraryitems.contributors.ScreenWriter"/>
+    <mapping class="backend.libraryitems.contributors.Singer"/>
 
     </session-factory>
 </hibernate-configuration>
