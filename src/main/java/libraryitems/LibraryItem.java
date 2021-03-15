@@ -5,6 +5,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table( name = "LibraryItem")
@@ -18,7 +19,9 @@ public abstract class LibraryItem {
     protected String title;
     protected String subject;
     protected int UPC;
-    protected ArrayList<Contributor> contributors;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    protected List<Contributor> contributors;
     protected int borrowPeriodInDays;
     protected boolean isBorrowable;
     protected boolean isCheckedOut;
@@ -31,7 +34,7 @@ public abstract class LibraryItem {
     public LibraryItem(String title,
                        String subject,
                        int UPC,
-                       ArrayList<Contributor> contributors,
+                       List<Contributor> contributors,
                        boolean isBorrowable, int borrowPeriodInDays) {
         this.title = title;
         this.subject = subject;
@@ -94,11 +97,11 @@ public abstract class LibraryItem {
         this.UPC = UPC;
     }
 
-    public ArrayList<Contributor> getContributors() {
+    public List<Contributor> getContributors() {
         return contributors;
     }
 
-    public void setContributors(ArrayList<Contributor> contributors) {
+    public void setContributors(List<Contributor> contributors) {
         this.contributors = contributors;
     }
 

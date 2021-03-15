@@ -2,6 +2,8 @@ package libraryitems;
 
 import libraryitems.contributors.Contributor;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.ArrayList;

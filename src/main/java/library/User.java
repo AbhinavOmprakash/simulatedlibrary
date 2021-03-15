@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @Entity
 @Table( name = "User")
 public class User {
-    String fullName;
+    private String fullName;
     protected int ID;
     @Embedded
     MembershipLevel membershipLevel;

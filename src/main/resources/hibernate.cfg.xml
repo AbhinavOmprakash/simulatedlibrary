@@ -32,7 +32,20 @@
         <!-- Names the annotated entity class -->
     <mapping class="library.User"/>
     <mapping class="library.membershiplevels.MembershipLevel"/>
+
     <mapping class="libraryitems.LibraryItem"/>
+    <mapping class="libraryitems.Archives"/>
+    <mapping class="libraryitems.AudioBook"/>
+    <mapping class="libraryitems.Book"/>
+    <mapping class="libraryitems.DVD"/>
+
+    <mapping class="libraryitems.contributors.Contributor"/>
+    <mapping class="libraryitems.contributors.Actor"/>
+    <mapping class="libraryitems.contributors.Author"/>
+    <mapping class="libraryitems.contributors.Director"/>
+    <mapping class="libraryitems.contributors.Poet"/>
+    <mapping class="libraryitems.contributors.ScreenWriter"/>
+    <mapping class="libraryitems.contributors.Singer"/>
 
     </session-factory>
 </hibernate-configuration>
