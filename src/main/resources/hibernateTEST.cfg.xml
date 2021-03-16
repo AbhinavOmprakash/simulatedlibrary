@@ -6,7 +6,7 @@
     <session-factory>
         <!-- Database connection settings -->
     <property name="connection.driver_class">org.h2.Driver</property>
-    <property name="connection.url">jdbc:h2:C:\\Users\\abhin\\IdeaProjects\\simulatedlibrary\\src\\main\\databaseFiles\\libsimDB;create=true;DB_CLOSE_DELAY=-1;MVCC=TRUE</property>
+    <property name="connection.url">jdbc:h2:C:\\Users\\abhin\\IdeaProjects\\simulatedlibrary\\src\\main\\databaseFiles\\testDB;create=true;DB_CLOSE_DELAY=-1;MVCC=TRUE</property>
 
     <property name="connection.username">sa</property>
     <property name="connection.password"></property>
@@ -19,6 +19,15 @@
 
     <!-- Disable the second-level cache  -->
     <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+
+<!--        delete in production-->
+    <!-- Echo all executed SQL to stdout -->
+    <property name="show_sql">true</property>
+
+
+<!--        delete in prod-->
+    <!-- Drop and re-create the database schema on startup -->
+    <property name="hbm2ddl.auto">create</property>
 
         <!-- Names the annotated entity class -->
     <mapping class="backend.library.User"/>
