@@ -9,17 +9,24 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HibernateUtils{
+public class HibernateDB<V> implements DataStoreInterface<V>{
     SessionFactory sessionFactory;
 
-    public HibernateUtils() {
+    public HibernateDB() {
         this.sessionFactory=setUpFactory();
 
+    }
+    public HibernateDB(boolean test) {
+        if (test) {
+            this.sessionFactory = setUpTestFactory();
+        } else{
+            this.sessionFactory=setUpFactory();
+        }
     }
 
     private SessionFactory setUpFactory(){
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure() // configures settings from hibernate.cfg.xml
+                .configure() // configures settings from hibernateTEST.cfg.xml
                 .build();
         try {
             sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
@@ -33,7 +40,22 @@ public class HibernateUtils{
             return null;
         }
     }
-
+    private SessionFactory setUpTestFactory(){
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure("hibernateTEST.cfg.xml") // configures settings from hibernateTEST.cfg.xml
+                .build();
+        try {
+            sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+            return sessionFactory;
+        }
+        catch (Exception e) {
+            // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
+            // so destroy it manually.
+            System.out.println("we got a problem "+e.toString());
+            StandardServiceRegistryBuilder.destroy(registry);
+            return null;
+        }
+    }
     public Session getSession(){
         if (sessionFactory==null){
             sessionFactory=setUpFactory();
@@ -61,20 +83,19 @@ public class HibernateUtils{
         return new ArrayList<>(result);
     }
 
-
-    public void addNewItem(Object item){
+    public void addNewItem(V item){
         Session session = getSession();
         session.save(item);
         stopSession(session);
     }
 
-    public void updateItem(Object item){
+    public void updateItem(V item){
         Session session = getSession();
         session.update(item);
         stopSession(session);
     }
 
-    public void deleteItem(Object item){
+    public void deleteItem(V item){
         Session session = getSession();
         session.remove(item);
         stopSession(session);
