@@ -1,18 +1,20 @@
 package backend.library;
 
+import backend.controllers.DataController;
+
 public abstract class Accountant {
-    protected DataManager<String, User> dataManager;
+    protected DataController< User> dataController;
 
-    public Accountant(DataManager<String, User> dataManager) {
-        this.dataManager = dataManager;
+    public Accountant(DataController< User> controller) {
+        this.dataController= controller;
     }
 
-    public DataManager<String, User> getDataManager() {
-        return dataManager;
+    public DataController<User> getDataManager() {
+        return dataController;
     }
 
-    public void setDataManager(DataManager<String, User> dataManager) {
-        this.dataManager = dataManager;
+    public void setDataManager(DataController<User> newController) {
+        this.dataController = newController;
     }
 
 }
