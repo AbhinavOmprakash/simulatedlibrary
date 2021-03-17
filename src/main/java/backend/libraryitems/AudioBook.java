@@ -26,7 +26,7 @@ public class AudioBook extends LibraryItem{
                 ArrayList<Contributor> contributors,
                 boolean isBorrowable, int borrowPeriod,
                 int ISBN) {
-        super(title, subject, UPC, contributors, isBorrowable, borrowPeriod);
+        super(title, subject, UPC, contributors, isBorrowable, borrowPeriod, "Audio Book");
         this.ISBN = ISBN;
     }
 }

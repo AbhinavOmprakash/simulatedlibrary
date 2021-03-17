@@ -27,7 +27,7 @@ public class Book extends LibraryItem{
     public Book(String title, String subject,
                 int UPC, ArrayList<Contributor> contributors,
                 boolean isBorrowable, int borrowPeriodInDays, int ISBN) {
-        super(title, subject, UPC, contributors, isBorrowable, borrowPeriodInDays);
+        super(title, subject, UPC, contributors, isBorrowable, borrowPeriodInDays, "Book");
         this.ISBN = ISBN;
     }
 
