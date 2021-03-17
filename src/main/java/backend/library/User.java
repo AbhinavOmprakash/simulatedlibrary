@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Table( name = "User")
 public class User {
-    private String fullName;
+    private String name;
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name="increment", strategy = "increment")
@@ -27,8 +27,8 @@ public class User {
         // for hibernate
     }
 
-    public User(String fullName, MembershipLevel memberShipLevel, double penaltyDue) {
-        this.fullName = fullName;
+    public User(String name, MembershipLevel memberShipLevel, double penaltyDue) {
+        this.name = name;
         this.membershipLevel = memberShipLevel;
         PenaltyDue = penaltyDue;
     }
@@ -41,12 +41,12 @@ public class User {
         return membershipLevel.getOverdueFeesPerDay();
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getID() {

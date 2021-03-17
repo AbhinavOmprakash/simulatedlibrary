@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Contributor {
     private String name;
+    private String contributorType;
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -18,8 +19,9 @@ public abstract class Contributor {
         // for hibernate
     }
 
-    public Contributor(String name) {
+    public Contributor(String name, String ContributorType) {
         this.name = name;
+        this.contributorType = ContributorType;
     }
 
     public String getName() {
@@ -36,5 +38,13 @@ public abstract class Contributor {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getContributorType() {
+        return contributorType;
+    }
+
+    public void setContributorType(String contributorType) {
+        this.contributorType = contributorType;
     }
 }

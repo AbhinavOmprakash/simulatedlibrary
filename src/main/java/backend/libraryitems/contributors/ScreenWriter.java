@@ -5,6 +5,6 @@ import javax.persistence.Entity;
 public class ScreenWriter extends Contributor{
     public ScreenWriter(){}
     public ScreenWriter(String name) {
-        super(name);
+        super(name, "Screen writer");
     }
 }

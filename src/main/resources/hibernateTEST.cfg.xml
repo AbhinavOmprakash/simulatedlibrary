@@ -34,7 +34,7 @@
     <mapping class="backend.library.membershiplevels.MembershipLevel"/>
 
     <mapping class="backend.libraryitems.LibraryItem"/>
-    <mapping class="backend.libraryitems.Archives"/>
+    <mapping class="backend.libraryitems.Archive"/>
     <mapping class="backend.libraryitems.AudioBook"/>
     <mapping class="backend.libraryitems.Book"/>
     <mapping class="backend.libraryitems.DVD"/>

@@ -25,7 +25,7 @@ public class DVD extends LibraryItem{
     public DVD(String title, String subject,
                int UPC, ArrayList<Contributor> contributors,
                boolean isBorrowable, int borrowPeriodInDays) {
-        super(title, subject, UPC, contributors, isBorrowable, borrowPeriodInDays);
+        super(title, subject, UPC, contributors, isBorrowable, borrowPeriodInDays, "DVD");
     }
 
     public static void setDefaultBorrowPeriod(int defaultBorrowPeriod) {

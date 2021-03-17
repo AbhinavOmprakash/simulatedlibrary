@@ -7,6 +7,6 @@ public class Director extends Contributor{
     public Director(){}
 
     public Director(String name) {
-        super(name);
+        super(name, "Director");
     }
 }

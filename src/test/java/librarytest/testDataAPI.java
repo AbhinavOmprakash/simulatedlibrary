@@ -1,6 +1,7 @@
 package librarytest;
 
-import backend.library.DataManager;
+import backend.controllers.DataController;
+import backend.controllers.LibraryItemController;
 import backend.externalservices.DataStoreInterface;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,30 +15,24 @@ import static org.mockito.Mockito.verify;
 
 
 @ExtendWith(MockitoExtension.class)
-public class testDataManager<K,V> {
+public class testDataAPI<K,V> {
 
-    private DataManager<K, V> manager;
+    private DataController<V> manager;
     private K query;
 
     @Mock
-    DataStoreInterface<K,V> dataStore;
+    DataStoreInterface<V> dataStore;
 
     @Mock
-    DataStoreInterface<K,V> newDataStore;
+    DataStoreInterface<V> newDataStore;
 
 
     @BeforeEach
     public void setUp() {
-        manager = new DataManager<>(dataStore);
-
+        manager = new LibraryItemController(dataStore);
         query = (K) ("famous five go to kirrin island");
     }
 
-    @Test
-    public void TestSearch() {
-        manager.search(query);
-        verify(dataStore, times(1)).search(query);
-    }
 
     @Test
     public void TestUpdate() {
@@ -49,8 +44,8 @@ public class testDataManager<K,V> {
     }
 
     @Test
-    public void TestSetDataStory(){
-        DataStoreInterface<K,V> oldDataStore = manager.getDataStore();
+    public void TestSetDataStore(){
+        DataStoreInterface<V> oldDataStore = manager.getDataStore();
         manager.setDataStore(newDataStore);
         assertNotEquals(oldDataStore, newDataStore);
 

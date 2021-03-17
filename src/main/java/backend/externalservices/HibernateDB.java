@@ -1,5 +1,10 @@
 package backend.externalservices;
 
+import backend.libraryitems.AudioBook;
+import backend.libraryitems.Book;
+import backend.libraryitems.LibraryItem;
+import backend.libraryitems.contributors.Author;
+import backend.libraryitems.contributors.Contributor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -7,6 +12,8 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class HibernateDB<V> implements DataStoreInterface<V>{
@@ -19,6 +26,8 @@ public class HibernateDB<V> implements DataStoreInterface<V>{
     public HibernateDB(boolean test) {
         if (test) {
             this.sessionFactory = setUpTestFactory();
+            createTestObjects();
+
         } else{
             this.sessionFactory=setUpFactory();
         }
@@ -101,7 +110,44 @@ public class HibernateDB<V> implements DataStoreInterface<V>{
         stopSession(session);
     }
 
+    private void createTestObjects(){
+        // objects created for trial runs and testing etc.
 
+        // book 1
+        Contributor writer1 = new Author("John Green");
+        Contributor writer2 = new Author("David Levithan");
+        ArrayList<Contributor> contributors1 = new ArrayList<>(Arrays.asList(writer1, writer2));
+        LibraryItem book1 = new Book("Will Greyson,Will Greyson",
+                "YA",
+                123456789,
+                contributors1,
+                true,
+                999999999);
+
+        addNewItem((V) writer1);
+        addNewItem((V) writer2);
+        addNewItem((V) book1);
+
+        // audio book 1
+        LibraryItem audioBook1 = new AudioBook("Will Greyson,Will Greyson",
+                "YA",
+                123456789,
+                contributors1,
+                true,
+                999999999);
+
+        // audio book 2
+        ArrayList<Contributor> contributor2 = new ArrayList<>(Collections.singletonList(writer1));
+        LibraryItem audioBook2 = new AudioBook("The fault in our stars",
+                "Yound Adult, Romance",
+                13427890,
+                contributor2,
+                true,
+                91234821);
+
+        addNewItem((V) audioBook1);
+        addNewItem((V) audioBook2);
+    }
 
 
 

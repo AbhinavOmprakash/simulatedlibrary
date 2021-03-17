@@ -7,6 +7,6 @@ public class Poet extends Contributor{
     public Poet(){}
 
     public Poet(String name) {
-        super(name);
+        super(name, "Poet");
     }
 }
