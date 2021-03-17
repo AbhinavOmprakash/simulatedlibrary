@@ -19,24 +19,25 @@ public class LibItemDataFormatter {
 
     private static String constructContributorString(List<Contributor> contributors){
         Map<String, String> typeWithNames = getContributorTypeWithNames(contributors);
-        StringBuffer contributorsWithNames =parseContributorWithNames(typeWithNames);
-        StringBuffer formattedString = contributorsWithNames.insert(0,"By - ");
-        return formattedString.toString();
+        return parseContributorWithNames(typeWithNames).toString();
     }
 
     private static Map<String, String> getContributorTypeWithNames(List<Contributor> contributors){
         Map<String, String> typeWithNames = new HashMap<>();
         for (Contributor contributor: contributors){
-            typeWithNames.put(contributor.getContributorType(), contributor.getName());
+            typeWithNames.put(contributor.getName(), contributor.getContributorType());
         }
         return typeWithNames;
     }
 
     private static StringBuffer parseContributorWithNames(Map<String, String> typeWithNames ){
-        StringBuffer contributorString = new StringBuffer();
+
+        StringBuffer contributorString = new StringBuffer("By - ");
+        String spacer = "     "; //length of the By - string. required for proper alignment
         for(Map.Entry<String, String> entry: typeWithNames.entrySet()){
-            contributorString.append(entry.getKey()+" : ");
-            contributorString.append(entry.getValue()+"\n");
+            contributorString.append(entry.getValue()+" : ");
+            contributorString.append(entry.getKey()+"\n");
+            contributorString.append(spacer);
         }
         return contributorString;
     }
