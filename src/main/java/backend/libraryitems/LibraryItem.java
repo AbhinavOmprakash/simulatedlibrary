@@ -4,7 +4,9 @@ import backend.libraryitems.contributors.Contributor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Entity
 @Table( name = "LibraryItem")
@@ -25,6 +27,9 @@ public abstract class LibraryItem{
     protected boolean isBorrowable;
     protected boolean isCheckedOut;
 
+
+    protected String type;
+
     public LibraryItem(){
         // for hibernate's use
     }
@@ -34,7 +39,9 @@ public abstract class LibraryItem{
                        String subject,
                        int UPC,
                        List<Contributor> contributors,
-                       boolean isBorrowable, int borrowPeriodInDays) {
+                       boolean isBorrowable,
+                       int borrowPeriodInDays,
+                       String type) {
         this.title = title;
         this.subject = subject;
         this.UPC = UPC;
@@ -42,6 +49,7 @@ public abstract class LibraryItem{
         this.isBorrowable = isBorrowable;
         this.borrowPeriodInDays = borrowPeriodInDays;
         this.isCheckedOut = false;
+        this.type = type;
     }
 
     public LibraryItem borrowItem()throws UnsupportedOperationException{
@@ -139,4 +147,11 @@ public abstract class LibraryItem{
         this.id = id;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }
