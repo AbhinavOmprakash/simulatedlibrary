@@ -12,6 +12,9 @@ import java.util.List;
 @Table( name = "User")
 public class User {
     private String name;
+
+
+    private String userName;
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name="increment", strategy = "increment")
@@ -19,8 +22,6 @@ public class User {
     @Embedded
     MembershipLevel membershipLevel;
 
-    @ElementCollection
-    private List<LibraryItem> borrowedItems = new ArrayList<>();
     public double PenaltyDue;
 
     public User() {
@@ -31,6 +32,21 @@ public class User {
         this.name = name;
         this.membershipLevel = memberShipLevel;
         PenaltyDue = penaltyDue;
+    }
+
+    @Override
+    public boolean equals(Object o ){
+        if (o == this){
+            return true;
+        }
+
+        if (!(o instanceof User)){
+            return false;
+        }
+        User givenUser = (User) o;
+
+        return this.getUserName().equals(givenUser.getUserName());
+
     }
 
     public Double discountPercentForUser(){
@@ -65,18 +81,6 @@ public class User {
         this.membershipLevel = membershipLevel;
     }
 
-    public void borrowItem(LibraryItem item){
-        borrowedItems.add(item);
-    }
-
-    public List<LibraryItem> getBorrowedItems() {
-        return  borrowedItems;
-    }
-
-    public void setBorrowedItems(List<LibraryItem> borrowedItems) {
-        this.borrowedItems = borrowedItems;
-    }
-
     public double getPenaltyDue() {
         return PenaltyDue;
     }
@@ -85,5 +89,12 @@ public class User {
         PenaltyDue = penaltyDue;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
 }
