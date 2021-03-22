@@ -1,19 +1,17 @@
 package backend.library;
 
 import backend.library.membershiplevels.MembershipLevel;
+import backend.library.records.BorrowedItems;
 import backend.libraryitems.LibraryItem;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table( name = "User")
 public class User {
     private String name;
-
-
     private String userName;
     @Id
     @GeneratedValue(generator = "increment")
@@ -22,16 +20,13 @@ public class User {
     @Embedded
     MembershipLevel membershipLevel;
 
-    public double PenaltyDue;
-
     public User() {
         // for hibernate
     }
 
-    public User(String name, MembershipLevel memberShipLevel, double penaltyDue) {
+    public User(String name, MembershipLevel memberShipLevel) {
         this.name = name;
         this.membershipLevel = memberShipLevel;
-        PenaltyDue = penaltyDue;
     }
 
     @Override
@@ -44,25 +39,24 @@ public class User {
             return false;
         }
         User givenUser = (User) o;
-
         return this.getUserName().equals(givenUser.getUserName());
-
     }
 
-    public Double discountPercentForUser(){
-        return membershipLevel.getDiscountPercentage();
-    }
-
-    public Double overdueFeesForUser(){
-        return membershipLevel.getOverdueFeesPerDay();
-    }
-
+    // getters and setters
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public int getID() {
@@ -79,22 +73,6 @@ public class User {
 
     public void setMembershipLevel(MembershipLevel membershipLevel) {
         this.membershipLevel = membershipLevel;
-    }
-
-    public double getPenaltyDue() {
-        return PenaltyDue;
-    }
-
-    public void setPenaltyDue(double penaltyDue) {
-        PenaltyDue = penaltyDue;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
 }
