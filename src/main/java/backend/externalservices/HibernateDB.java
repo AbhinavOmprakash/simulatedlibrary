@@ -16,14 +16,30 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+@SuppressWarnings({"rawtypes","unchecked"})
 public class HibernateDB<V> implements DataStoreInterface<V>{
     SessionFactory sessionFactory;
+    private static HibernateDB uniqueInstance;
+    private static HibernateDB testUniqueInstance;
 
-    public HibernateDB() {
+    public static HibernateDB getInstance(){
+        if (uniqueInstance==null){
+            uniqueInstance = new HibernateDB();
+        }
+        return uniqueInstance;
+    }
+    public static HibernateDB getTestInstance(){
+        if (testUniqueInstance==null){
+            testUniqueInstance = new HibernateDB(true);
+        }
+        return testUniqueInstance;
+    }
+
+    private HibernateDB() {
         this.sessionFactory=setUpFactory();
 
     }
-    public HibernateDB(boolean test) {
+    private HibernateDB(boolean test) {
         if (test) {
             this.sessionFactory = setUpTestFactory();
             createTestObjects();
