@@ -1,6 +1,7 @@
 package backend.controllers;
 
 import backend.externalservices.DataStoreInterface;
+import backend.externalservices.HibernateDB;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,13 +12,13 @@ import java.util.ArrayList;
  * @param <V>
  */
 
-public abstract class DataController<V> {
-    private DataStoreInterface<V> dataStore;
+@SuppressWarnings({"unchecked","rawtypes"})
+public abstract class DataManager<V> {
+    public HibernateDB dataStore = HibernateDB.getTestInstance();
     private String inchargeOfTable;
     private String searchableAttribute;
 
-    public DataController(DataStoreInterface<V> dataStore, String inchargeOfTable, String searchableAttribute) {
-        this.dataStore = dataStore;
+    public DataManager(String inchargeOfTable, String searchableAttribute) {
         this.inchargeOfTable = inchargeOfTable;
         this.searchableAttribute = searchableAttribute;
     }
@@ -40,7 +41,7 @@ public abstract class DataController<V> {
 
     // getters and setters
     public void setDataStore(DataStoreInterface<V> newDataStore){
-        dataStore = newDataStore;
+        dataStore = (HibernateDB) newDataStore;
     }
 
     public DataStoreInterface<V> getDataStore() {
