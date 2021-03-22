@@ -31,6 +31,9 @@
 
         <!-- Names the annotated entity class -->
     <mapping class="backend.library.User"/>
+    <mapping class="backend.library.records.BorrowedItems"/>
+    <mapping class="backend.library.records.LoginData"/>
+    <mapping class="backend.library.records.Accounts"/>
     <mapping class="backend.library.membershiplevels.MembershipLevel"/>
 
     <mapping class="backend.libraryitems.LibraryItem"/>
