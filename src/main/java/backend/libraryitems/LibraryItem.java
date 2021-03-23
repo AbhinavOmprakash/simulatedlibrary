@@ -34,14 +34,9 @@ public abstract class LibraryItem{
         // for hibernate's use
     }
 
-
-    public LibraryItem(String title,
-                       String subject,
-                       int UPC,
-                       List<Contributor> contributors,
-                       boolean isBorrowable,
-                       int borrowPeriodInDays,
-                       String type) {
+    public LibraryItem(String title, String subject, int UPC,
+                       List<Contributor> contributors, boolean isBorrowable,
+                       int borrowPeriodInDays, String type) {
         this.title = title;
         this.subject = subject;
         this.UPC = UPC;
@@ -153,5 +148,9 @@ public abstract class LibraryItem{
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String toString(){
+        return title;
     }
 }
