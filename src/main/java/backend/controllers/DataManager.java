@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"unchecked","rawtypes"})
 public abstract class DataManager<V> {
-    public HibernateDB dataStore = HibernateDB.getTestInstance();
+    public DataStoreInterface dataStore = HibernateDB.getTestInstance();
     private String inchargeOfTable;
     private String searchableAttribute;
 
@@ -39,29 +39,8 @@ public abstract class DataManager<V> {
         dataStore.deleteItem(item);
     }
 
-    // getters and setters
-    public void setDataStore(DataStoreInterface<V> newDataStore){
-        dataStore = (HibernateDB) newDataStore;
-    }
-
-    public DataStoreInterface<V> getDataStore() {
-        return dataStore;
-    }
-
-    public String getInchargeOfTable() {
-        return inchargeOfTable;
-    }
-
-    public void setInchargeOfTable(String inchargeOfTable) {
-        this.inchargeOfTable = inchargeOfTable;
-    }
-
-    public String getSearchableAttribute() {
-        return searchableAttribute;
-    }
-
-    public void setSearchableAttribute(String searchableAttribute) {
-        this.searchableAttribute = searchableAttribute;
+    public ArrayList<V> fetchAll(){
+        return dataStore.fetchAll(inchargeOfTable);
     }
 
 }
