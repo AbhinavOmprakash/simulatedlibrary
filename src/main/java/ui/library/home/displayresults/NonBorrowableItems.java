@@ -1,4 +1,4 @@
-package ui.library;
+package ui.library.home.displayresults;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -8,15 +8,9 @@ public class NonBorrowableItems extends JDialog {
     private JButton buttonOK;
     private JButton buttonCancel;
 
-    public JLabel getDetails() {
-        return details;
-    }
 
-    public void setDetails(String text) {
-        details.setText(text);
-    }
+    private JTextArea details;
 
-    private JLabel details;
 
     public NonBorrowableItems() {
         setContentPane(contentPane);
@@ -61,12 +55,19 @@ public class NonBorrowableItems extends JDialog {
         dispose();
     }
 
+    public JTextArea getDetails() {
+        return details;
+    }
+
+    public void setDetails(String text) {
+        details.setText(text);
+    }
+
     public static void main(String[] args) {
         NonBorrowableItems dialog = new NonBorrowableItems();
         dialog.setDetails("some items are not allowed to be borrowed. \n " +
                 "this is either because the item is extremely valuable,\n" +
-                " contains sensitive information" +
-                "or it requires a climate controlled environment ");
+                "contains sensitive information or it requires a climate controlled environment ");
 
         dialog.pack();
         dialog.setVisible(true);
