@@ -1,32 +1,30 @@
 package backend.library;
 
 import backend.library.membershiplevels.MembershipLevel;
-import backend.library.records.BorrowedItems;
-import backend.libraryitems.LibraryItem;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.*;
 
 @Entity
 @Table( name = "User")
-public class User {
-    private String name;
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class User {
+    private String firstName;
+    private String lastName;
     private String userName;
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name="increment", strategy = "increment")
     protected int ID;
-    @Embedded
-    MembershipLevel membershipLevel;
 
     public User() {
         // for hibernate
     }
 
-    public User(String name, MembershipLevel memberShipLevel) {
-        this.name = name;
-        this.membershipLevel = memberShipLevel;
+    public User(String firstName, String lastName, String userName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
     }
 
     @Override
@@ -43,12 +41,20 @@ public class User {
     }
 
     // getters and setters
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUserName() {
@@ -65,14 +71,6 @@ public class User {
 
     public void setID(int ID) {
         this.ID = ID;
-    }
-
-    public MembershipLevel getMembershipLevel() {
-        return membershipLevel;
-    }
-
-    public void setMembershipLevel(MembershipLevel membershipLevel) {
-        this.membershipLevel = membershipLevel;
     }
 
 }
