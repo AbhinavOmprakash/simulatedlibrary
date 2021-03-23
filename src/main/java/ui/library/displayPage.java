@@ -1,5 +1,7 @@
 package ui.library;
 
+import javax.swing.*;
+
 public interface displayPage {
-    public getPanel();
+    JPanel getPanel();
 }
