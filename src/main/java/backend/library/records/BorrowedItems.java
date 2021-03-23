@@ -1,10 +1,10 @@
 package backend.library.records;
 
-import backend.library.User;
 import backend.libraryitems.LibraryItem;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import java.time.LocalDateTime;
@@ -13,28 +13,24 @@ import java.util.*;
 
 @Entity
 public class BorrowedItems{
+    private String itemTitle;
+    private LocalDateTime borrowedOn;
+
     @Id
-    private int userID;
-    @ElementCollection
-    private Map<LibraryItem, LocalDateTime> items = new HashMap<>();
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name="increment", strategy = "increment")
+    private int ID;
 
     public BorrowedItems(){
         // for hibernate
     }
 
-    public BorrowedItems(User user){
-        userID = user.getID();
+    public BorrowedItems(LibraryItem item){
+        this.itemTitle = item.getTitle();
+        this.borrowedOn = LocalDateTime.now();
     }
 
-    public void addLibraryItem(LibraryItem item){
-        items.put(item, LocalDateTime.now());
-    }
-
-    public void removeLibraryItem(LibraryItem item){
-        items.remove(item);
-    }
-    public String getBorrowedDateFor(LibraryItem item){
-        LocalDateTime borrowedOn = items.get(item);
+    public String getBorrowedDate(){
         DateTimeFormatter formatter = getFormatter();
         return formatter.format(borrowedOn);
     }
@@ -43,19 +39,27 @@ public class BorrowedItems{
         return DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
     }
 
-    public int getUserID() {
-        return userID;
+    public String getItemTitle() {
+        return itemTitle;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setItemTitle(String itemTitle) {
+        this.itemTitle = itemTitle;
     }
 
-    public Map<LibraryItem, LocalDateTime> getItems() {
-        return items;
+    public LocalDateTime getBorrowedOn() {
+        return borrowedOn;
     }
 
-    public void setItems(Map<LibraryItem, LocalDateTime> items) {
-        this.items = items;
+    public void setBorrowedOn(LocalDateTime borrowedOn) {
+        this.borrowedOn = borrowedOn;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }
