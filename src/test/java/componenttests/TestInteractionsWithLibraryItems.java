@@ -1,7 +1,7 @@
 package componenttests;
 
-import backend.controllers.DataController;
-import backend.controllers.LibraryItemController;
+import backend.controllers.DataManager;
+import backend.controllers.LibraryItemManager;
 import backend.externalservices.DataStoreInterface;
 import backend.externalservices.HibernateDB;
 import backend.libraryitems.Book;
@@ -19,8 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class TestInteractionsWithLibraryItems<V> {
-    DataStoreInterface hibernateDB = new HibernateDB<>(true);
-    DataController libraryItemController = new LibraryItemController(hibernateDB);
+    DataStoreInterface hibernateDB = HibernateDB.getTestInstance();
+    DataManager libraryItemController = new LibraryItemManager();
 
     Contributor author;
     LibraryItem book;
