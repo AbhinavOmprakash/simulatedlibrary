@@ -1,9 +1,9 @@
 package ui.library.home;
 
-import backend.controllers.DataController;
-import backend.controllers.LibraryItemController;
+import backend.controllers.DataManager;
+import backend.controllers.LibraryItemManager;
 import backend.libraryitems.LibraryItem;
-import com.sun.istack.NotNull;
+import ui.library.MainPage;
 import ui.library.displayPage;
 import ui.library.home.displayresults.LibraryItemDisplay;
 
@@ -11,7 +11,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Stack;
 
 @SuppressWarnings({"rawtypes","unchecked"})
 public class HomeScreen<V> implements ActionListener, displayPage {
@@ -21,12 +20,16 @@ public class HomeScreen<V> implements ActionListener, displayPage {
     private JScrollPane searchResults;
     private JPanel searchBox;
     private JButton myAccountButton;
-    private JButton logoutButton1;
-    private LibraryItemController libraryItemDataController;
+    private JButton logoutButton;
+    private DataManager libraryItemManager = new LibraryItemManager();
 
-    public HomeScreen(LibraryItemController controller) {
-        libraryItemDataController = controller;
+    MainPage parent;
+
+    public HomeScreen(MainPage parent) {
+        this.parent = parent;
         searchButton.addActionListener(this);
+        logoutButton.addActionListener(this);
+        myAccountButton.addActionListener(this);
     }
 
     @Override
@@ -36,26 +39,30 @@ public class HomeScreen<V> implements ActionListener, displayPage {
         if (actionSource == searchButton) {
             searchAndDisplayResults();
         }
+        else if (actionSource == logoutButton) {
+            parent.changeToLogin();
+        } else if (actionSource == myAccountButton){
+            parent.changeToMyAccount();
+        }
     }
 
     private void searchAndDisplayResults(){
-        ArrayList<V> results = performSearch();
+        // TO DO uncomment in production
+//        ArrayList<V> results = performSearch();
+        ArrayList<V> results = libraryItemManager.fetchAll();
         displaySearchResults(results);
     }
 
     private ArrayList<V> performSearch(){
         String query = searchField.getText();
-        return libraryItemDataController.search(query);
+        return libraryItemManager.search(query);
     }
 
     private void displaySearchResults(ArrayList<V> results){
 
-        for (Object result: results ){
+        for (Object result: results){
             System.out.println(result.toString());
-
         }
-
-
         LibraryItemDisplay display = new LibraryItemDisplay(results);
         searchResults.setViewportView(display.getPanel());
     }
