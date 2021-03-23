@@ -1,6 +1,7 @@
 package backend.library.membershiplevels;
 
 
+
 import javax.persistence.*;
 import java.util.Calendar;
 
@@ -26,12 +27,12 @@ public class MembershipLevel {
     }
 
     public MembershipLevel(MembershipPolicy policy){
-        this.policy = policy.toString();
-        this.membershipFees = policy.getMembershipFees();
-        this.overdueFeesPerDay = policy.getOverdueFeesPerDay();
-        this.borrowLimit = policy.getBorrowLimit();
-        this.discountPercentage = policy.getDiscountPercentage();
-        this.membershipPeriodInMonths = policy.getMembershipPeriodInMonths();
+        this.policy = policy.name;
+        this.membershipFees = policy.membershipFees;
+        this.overdueFeesPerDay = policy.overdueFeesPerDay;
+        this.borrowLimit = policy.borrowLimit;
+        this.discountPercentage = policy.discountPercentage;
+        this.membershipPeriodInMonths = policy.membershipPeriodInMonths;
         this.expiringOn = calculateMembershipExpiry();
     }
 
@@ -96,4 +97,5 @@ public class MembershipLevel {
     public void setExpiringOn(Calendar expiringOn) {
         this.expiringOn = expiringOn;
     }
+
 }
