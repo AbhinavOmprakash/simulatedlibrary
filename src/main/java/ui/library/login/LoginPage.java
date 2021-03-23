@@ -1,47 +1,88 @@
 package ui.library.login;
 
-import backend.controllers.UiObserverable;
-import ui.library.MainPage;
-import ui.library.UiObserver;
+import backend.controllers.LoginManager;
+import backend.library.records.LoginData;
 import ui.library.displayPage;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginPage implements ActionListener, displayPage {
 
     private JPanel panel1;
-    private JTextField textField1;
-    private JPasswordField passwordField1;
+
+    private JTextField usernameField;
+    private JPasswordField passwordField;
     private JPanel LoginPanel;
+
+
     private JButton loginButton;
     private JButton forgottenPassword;
+    private JButton signUpButton;
 
-    private ActionListener loginController;
 
-    public LoginPage( ActionListener loginController){
+    LoginManager loginManager = new LoginManager();
+
+    private EntryPage parent;
+
+    LoginPage(EntryPage parent){
+        this.parent = parent;
+
         forgottenPassword.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
-        forgottenPassword.setContentAreaFilled(false);
 
-        this.loginController = loginController;
-        loginButton.addActionListener(loginController);
+        forgottenPassword.addActionListener(this);
+        loginButton.addActionListener(this);
+        signUpButton.addActionListener(this);
     }
 
-    public JPanel getPanel1() {
+
+    @Override
+    public JPanel getPanel() {
         return panel1;
     }
 
     @Override
-    public JPanel getPanel() {
-        return getPanel1();
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == loginButton){
+            performLogin();
+        }else if(e.getSource()==signUpButton){
+            parent.changeToSignUpForm();
+        } else if(e.getSource()==forgottenPassword){
+            System.out.println("forgotten shit");
+            parent.changeToForgottenPassword();
+        }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginButton){
-            loginController.actionPerformed(e);
+    private void performLogin(){
+        if (tryLoggingIn()) {
+            parent.loginSuccessful();
         }
+    }
 
+    private boolean tryLoggingIn() {
+        LoginData enteredData = fetchLoginDetails();
+        return loginManager.login(enteredData);
+    }
+
+    private LoginData fetchLoginDetails(){
+        return new LoginData(usernameField.getText(),passwordField.getPassword());
+    }
+
+     public JTextField getUsernameField() {
+        return usernameField;
+    }
+
+    public JPasswordField getPasswordField() {
+        return passwordField;
+    }
+
+    public JButton getLoginButton() {
+        return loginButton;
+    }
+
+    public JButton getSignUpButton() {
+        return signUpButton;
     }
 }
