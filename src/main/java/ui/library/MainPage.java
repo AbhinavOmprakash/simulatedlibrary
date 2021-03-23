@@ -3,55 +3,64 @@ package ui.library;
 import backend.controllers.*;
 import backend.externalservices.DataStoreInterface;
 import backend.externalservices.HibernateDB;
-import ui.library.login.LoginPage;
-import ui.library.login.SignUpPage;
+import ui.library.home.HomeScreen;
+import ui.library.login.EntryPage;
+import ui.library.myaccount.MyAccount;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class MainPage implements ActionListener, displayPage, UiObserver{
+@SuppressWarnings({"rawtypes"})
+public class MainPage extends JPanel{
 
     private JPanel mainPanel;
-    DataStoreInterface dataBase = new HibernateDB(true);
-    DataController libraryItemData = new LibraryItemController(dataBase);
-    DataController userData = new UserDataController(dataBase);
-    DataController contributorData = new ContributorController(dataBase);
+    DataManager contributorData = new ContributorManager();
 
-    UiObserverable loginController = new LoginController();
+    JPanel entryPage;
 
-    displayPage homeScreen = new HomeScreen((LibraryItemController) libraryItemData);
-    displayPage loginPage = new LoginPage((ActionListener) loginController);
-    displayPage signUpPage = new SignUpPage();
+    displayPage homeScreen;
+
+    JPanel currentPage;
 
     MainJFrame parentFrame;
     public MainPage(MainJFrame parentFrame){
+        super(new GridLayout(1,1));
+        this.entryPage = new EntryPage(this);
+        this.homeScreen = new HomeScreen(this);
         this.parentFrame = parentFrame;
-        mainPanel = loginPage.getPanel();
-        this.loginController.registerUiObserver(this);
+        add(entryPage);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
+    private void refresh(){
+        repaint();
+        revalidate();
     }
+
+    public void changeToHome(){
+        removeAll();
+        add(homeScreen.getPanel());
+        refresh();
+    }
+
+    public void changeToLogin(){
+        removeAll();
+        add(entryPage);
+        refresh();
+    }
+
+    public void changeToMyAccount() {
+        removeAll();
+        add(new MyAccount(this).getPanel());
+        refresh();
+    }
+
 
     public JPanel getMainPanel() {
         return mainPanel;
     }
 
-    @Override
-    public JPanel getPanel() {
-        return getMainPanel();
-    }
-
-    @Override
-    public void performAction(Object source) {
-        if (source== loginController){
-            System.out.println("logging in yo!");
-            mainPanel = homeScreen.getPanel();
-            parentFrame.performAction( source);
-        }
-
-    }
 }
