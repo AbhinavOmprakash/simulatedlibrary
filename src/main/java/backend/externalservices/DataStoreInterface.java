@@ -8,4 +8,5 @@ public interface DataStoreInterface<V> {
     void updateItem(V item);
     void addNewItem(V item);
     void deleteItem(V item);
+    ArrayList<V> fetchAll(String table);
 }
