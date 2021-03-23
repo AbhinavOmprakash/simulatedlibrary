@@ -1,5 +1,8 @@
 package backend.externalservices;
 
+import backend.library.Member;
+import backend.library.membershiplevels.MembershipLevel;
+import backend.library.membershiplevels.MembershipPolicy;
 import backend.libraryitems.AudioBook;
 import backend.libraryitems.Book;
 import backend.libraryitems.LibraryItem;
@@ -108,6 +111,16 @@ public class HibernateDB<V> implements DataStoreInterface<V>{
         return new ArrayList<>(result);
     }
 
+    public ArrayList fetchAll(String table){
+        Session session = getSession();
+
+        String hqlQuery = "from "+table;
+        List result = session.createQuery(hqlQuery).list();
+
+        stopSession(session);
+        return new ArrayList<>(result);
+    }
+
     public void addNewItem(V item){
         Session session = getSession();
         session.save(item);
@@ -163,6 +176,14 @@ public class HibernateDB<V> implements DataStoreInterface<V>{
 
         addNewItem((V) audioBook1);
         addNewItem((V) audioBook2);
+
+        MembershipPolicy basicPolicy = new MembershipPolicy("Basic",10.0,
+                1.0 ,1,
+                0.0, 12);
+
+        addNewItem((V) basicPolicy);
+        Member user = new Member("Abhinav", "Omprakash", "abhi", new MembershipLevel(basicPolicy));
+        addNewItem((V) user);
     }
 
 
