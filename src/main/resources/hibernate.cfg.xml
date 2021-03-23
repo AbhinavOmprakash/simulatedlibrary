@@ -24,10 +24,13 @@
 
         <!-- Names the annotated entity class -->
     <mapping class="backend.library.User"/>
+    <mapping class="backend.library.Member"/>
+    <mapping class="backend.library.Admin"/>
     <mapping class="backend.library.records.BorrowedItems"/>
     <mapping class="backend.library.records.Accounts"/>
     <mapping class="backend.library.records.LoginData"/>
     <mapping class="backend.library.membershiplevels.MembershipLevel"/>
+    <mapping class="backend.library.membershiplevels.MembershipPolicy"/>
 
     <mapping class="backend.libraryitems.LibraryItem"/>
     <mapping class="backend.libraryitems.Archive"/>
