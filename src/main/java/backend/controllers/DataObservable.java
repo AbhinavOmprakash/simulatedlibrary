@@ -1,6 +1,6 @@
 package backend.controllers;
 
-import ui.library.DataObserver;
+import views.DataObserver;
 
 public interface DataObservable {
     void registerListener(DataObserver listener);

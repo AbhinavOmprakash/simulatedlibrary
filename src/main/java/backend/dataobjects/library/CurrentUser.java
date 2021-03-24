@@ -1,8 +1,7 @@
 package backend.dataobjects.library;
 
-import backend.controllers.DataObservable;
 import backend.controllers.UserDataManager;
-import ui.library.DataObserver;
+import views.DataObserver;
 
 import java.util.ArrayList;
 

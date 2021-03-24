@@ -2,10 +2,8 @@ package backend.controllers;
 
 import backend.externalservices.DataStoreInterface;
 import backend.externalservices.HibernateDB;
-import ui.library.DataObserver;
+import views.DataObserver;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /** responsible for querying the database and cache

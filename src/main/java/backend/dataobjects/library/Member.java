@@ -3,7 +3,7 @@ package backend.dataobjects.library;
 import backend.controllers.DataObservable;
 import backend.dataobjects.library.membershiplevels.MembershipLevel;
 import backend.dataobjects.libraryitems.LibraryItem;
-import ui.library.DataObserver;
+import views.DataObserver;
 
 import javax.persistence.*;
 import java.util.ArrayList;

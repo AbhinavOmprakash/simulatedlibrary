@@ -1,9 +1,5 @@
 package backend.controllers;
 
-import ui.library.DataObserver;
-
-import java.util.ArrayList;
-
 public class BorrowedItemsDataManager extends DataManager{
     private static BorrowedItemsDataManager instance;
     private BorrowedItemsDataManager() {
