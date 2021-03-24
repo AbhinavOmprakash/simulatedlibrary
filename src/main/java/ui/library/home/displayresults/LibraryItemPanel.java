@@ -1,5 +1,6 @@
 package ui.library.home.displayresults;
 
+import backend.controllers.BorrowIncharge;
 import backend.controllers.BorrowedItemsDataManager;
 import backend.dataobjects.library.CurrentUser;
 import backend.controllers.Librarian;
@@ -24,6 +25,7 @@ public class LibraryItemPanel implements displayPage, ActionListener, DataObserv
     private JButton infoButton;
 
     private final Librarian librarian = new Librarian();
+    private final BorrowIncharge borrowIncharge = new BorrowIncharge();
     private final LibraryItem item;
 
     public LibraryItemPanel(LibraryItem item){
@@ -44,8 +46,6 @@ public class LibraryItemPanel implements displayPage, ActionListener, DataObserv
         return panel1;
     }
 
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==borrowButton){
@@ -56,15 +56,23 @@ public class LibraryItemPanel implements displayPage, ActionListener, DataObserv
 
     private void initiateBorrow() {
         Member currentUser = (Member) CurrentUser.getCurrentUser();
-        librarian.letUserBorrow(currentUser, item);
+        borrowIncharge.letUserBorrow(currentUser, item);
     }
-    @Override
 
+    @Override
     public void performAction() {
         refreshCheckedOutStatus();
     }
 
     private void refreshCheckedOutStatus() {
         this.checkedOut.setText(LibItemDataFormatter.constructCheckoutString(librarian.isBorrowed(item)));
+    }
+
+    public void disableBorrowButton(){
+        borrowButton.setEnabled(false);
+    }
+
+    public void enableBorrowButton(){
+        borrowButton.setEnabled(true);
     }
 }
