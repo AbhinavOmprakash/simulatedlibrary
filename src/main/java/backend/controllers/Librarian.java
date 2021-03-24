@@ -35,7 +35,7 @@ public class Librarian {
 
     private void removeFromBorrowedItems(LibraryItem item) {
         BorrowedItems borrowed = new BorrowedItems(item);
-        borrowedItems.deleteItem(item);
+        borrowedItems.deleteItem(borrowed);
     }
 
     public boolean isBorrowed(LibraryItem item){

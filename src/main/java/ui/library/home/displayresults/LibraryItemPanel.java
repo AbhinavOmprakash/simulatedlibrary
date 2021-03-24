@@ -30,7 +30,6 @@ public class LibraryItemPanel implements displayPage, ActionListener {
         this.contributors.setText(LibItemDataFormatter.getFormattedContributors(item));
         this.libItemType.setText(item.getType());
         this.checkedOut.setText(LibItemDataFormatter.constructCheckoutString(librarian.isBorrowed(item)));
-
         this.borrowButton.addActionListener(this);
     }
 
@@ -50,10 +49,22 @@ public class LibraryItemPanel implements displayPage, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==borrowButton){
             System.out.println("borrowed");
-            Member currentUser = (Member) CurrentUser.getCurrentUser();
-            librarian.letUserBorrow(currentUser, item);
+            initiateBorrow();
         }
+    }
 
+    private void initiateBorrow() {
+        informLibrarian();
+        refreshCheckedOutStatus();
+    }
+
+    private void informLibrarian() {
+        Member currentUser = (Member) CurrentUser.getCurrentUser();
+        librarian.letUserBorrow(currentUser, item);
+    }
+
+    private void refreshCheckedOutStatus() {
+        this.checkedOut.setText(LibItemDataFormatter.constructCheckoutString(librarian.isBorrowed(item)));
     }
 
 }
