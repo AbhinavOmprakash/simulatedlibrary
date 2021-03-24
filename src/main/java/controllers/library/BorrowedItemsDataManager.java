@@ -1,6 +1,8 @@
-package controllers;
+package controllers.library;
 
-public class BorrowedItemsDataManager extends DataManager{
+import controllers.DataManager;
+
+public class BorrowedItemsDataManager extends DataManager {
     private static BorrowedItemsDataManager instance;
     private BorrowedItemsDataManager() {
         super("BorrowedItems","ID");

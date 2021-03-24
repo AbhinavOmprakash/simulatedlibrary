@@ -1,7 +1,7 @@
 package externalservices;
 
 
-import controllers.Accountant;
+import controllers.financials.Accountant;
 import models.dataobjects.library.User;
 
 public interface PaymentGateway{

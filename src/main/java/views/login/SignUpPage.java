@@ -1,7 +1,7 @@
 package views.login;
 
-import controllers.MembershipPolicyManager;
-import controllers.SignUpManager;
+import controllers.useraccounts.MembershipPolicyManager;
+import controllers.useraccounts.SignUpManager;
 import models.dataobjects.library.records.SignUpData;
 import views.displayPage;
 

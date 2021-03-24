@@ -1,6 +1,6 @@
 package views.myaccount;
 
-import controllers.BorrowedItemsDataManager;
+import controllers.library.BorrowedItemsDataManager;
 import models.dataobjects.library.CurrentUser;
 import models.dataobjects.library.Member;
 import views.DataObserver;

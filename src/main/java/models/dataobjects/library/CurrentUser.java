@@ -1,6 +1,6 @@
 package models.dataobjects.library;
 
-import controllers.UserDataManager;
+import controllers.useraccounts.UserDataManager;
 import views.DataObserver;
 
 import java.util.ArrayList;

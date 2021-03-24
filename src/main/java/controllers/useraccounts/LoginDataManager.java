@@ -1,4 +1,6 @@
-package controllers;
+package controllers.useraccounts;
+
+import controllers.DataManager;
 
 public class LoginDataManager extends DataManager {
     public LoginDataManager() {

@@ -1,6 +1,7 @@
 package views;
 
 import controllers.*;
+import controllers.library.ContributorManager;
 import views.home.HomeScreen;
 import views.login.EntryPage;
 import views.myaccount.MyAccount;

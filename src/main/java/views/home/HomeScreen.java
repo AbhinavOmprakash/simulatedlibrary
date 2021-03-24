@@ -1,7 +1,7 @@
 package views.home;
 
 import controllers.DataManager;
-import controllers.LibraryItemManager;
+import controllers.library.LibraryItemManager;
 import views.MainPage;
 import views.displayPage;
 import views.home.displayresults.LibraryItemDisplay;

@@ -1,4 +1,6 @@
-package controllers;
+package controllers.useraccounts;
+
+import controllers.DataManager;
 
 @SuppressWarnings({"unchecked"})
 public class UserDataManager extends DataManager {

@@ -1,4 +1,4 @@
-package controllers;
+package controllers.useraccounts;
 
 import models.dataobjects.library.CurrentUser;
 import models.dataobjects.library.User;

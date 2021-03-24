@@ -1,6 +1,6 @@
 package views.home.displayresults;
 
-import controllers.BorrowIncharge;
+import controllers.library.BorrowIncharge;
 import models.dataobjects.library.CurrentUser;
 import models.dataobjects.library.Member;
 import models.dataobjects.libraryitems.LibraryItem;

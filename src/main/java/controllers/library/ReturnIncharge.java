@@ -1,5 +1,8 @@
-package controllers;
+package controllers.library;
 
+import controllers.financials.Accountant;
+import controllers.DataManager;
+import controllers.financials.PenaltyAccountant;
 import models.dataobjects.library.Member;
 import models.dataobjects.library.records.BorrowedItems;
 import models.dataobjects.libraryitems.LibraryItem;

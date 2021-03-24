@@ -1,5 +1,6 @@
-package controllers;
+package controllers.useraccounts;
 
+import controllers.DataManager;
 import models.dataobjects.library.records.SignUpData;
 
 public class SignUpManager{

@@ -1,6 +1,6 @@
 package views.login;
 
-import controllers.LoginManager;
+import controllers.useraccounts.LoginManager;
 import models.dataobjects.library.records.LoginData;
 import views.displayPage;
 

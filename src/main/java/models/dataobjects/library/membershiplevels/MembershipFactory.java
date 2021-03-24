@@ -1,7 +1,7 @@
 package models.dataobjects.library.membershiplevels;
 
 import controllers.DataManager;
-import controllers.MembershipPolicyManager;
+import controllers.useraccounts.MembershipPolicyManager;
 
 public class MembershipFactory {
     static DataManager allPolicies = new MembershipPolicyManager();

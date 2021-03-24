@@ -1,8 +1,8 @@
 package externalservices;
 
-import controllers.AccountsDataManager;
+import controllers.financials.AccountsDataManager;
 import controllers.DataManager;
-import controllers.Accountant;
+import controllers.financials.Accountant;
 import models.dataobjects.library.User;
 
 public class DummyPayment implements PaymentGateway{

@@ -1,7 +1,7 @@
 package componenttests;
 
 import controllers.DataManager;
-import controllers.LibraryItemManager;
+import controllers.library.LibraryItemManager;
 import externalservices.DataStoreInterface;
 import externalservices.HibernateDB;
 import models.dataobjects.libraryitems.Book;

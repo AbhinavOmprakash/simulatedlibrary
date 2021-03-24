@@ -1,5 +1,6 @@
-package controllers;
+package controllers.library;
 
+import controllers.DataManager;
 import models.dataobjects.library.Member;
 import models.dataobjects.library.membershiplevels.MembershipLevel;
 import models.dataobjects.library.records.BorrowedItems;

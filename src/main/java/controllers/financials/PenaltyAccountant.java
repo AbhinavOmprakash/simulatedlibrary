@@ -1,4 +1,4 @@
-package controllers;
+package controllers.financials;
 
 
 import models.dataobjects.library.User;

@@ -1,9 +1,9 @@
 package views.home.displayresults;
 
-import controllers.BorrowIncharge;
-import controllers.BorrowedItemsDataManager;
+import controllers.library.BorrowIncharge;
+import controllers.library.BorrowedItemsDataManager;
 import models.dataobjects.library.CurrentUser;
-import controllers.Librarian;
+import controllers.library.Librarian;
 import models.dataobjects.library.Member;
 import models.dataobjects.libraryitems.LibraryItem;
 import views.DataObserver;

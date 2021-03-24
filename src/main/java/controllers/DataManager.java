@@ -2,7 +2,7 @@ package controllers;
 
 import externalservices.DataStoreInterface;
 import externalservices.HibernateDB;
-import models.dataobjects.DataObservable;
+import models.DataObservable;
 import views.DataObserver;
 
 import java.util.ArrayList;

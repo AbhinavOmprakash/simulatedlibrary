@@ -1,4 +1,6 @@
-package controllers;
+package controllers.financials;
+
+import controllers.DataManager;
 
 public abstract class Accountant {
     protected DataManager accounts;
