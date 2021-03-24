@@ -2,6 +2,7 @@ package ui.library.myaccount;
 
 import backend.controllers.BorrowedItemsDataManager;
 import backend.controllers.Librarian;
+import backend.controllers.ReturnIncharge;
 import backend.dataobjects.library.CurrentUser;
 import backend.dataobjects.library.Member;
 import backend.dataobjects.libraryitems.LibraryItem;
@@ -19,7 +20,7 @@ public class BorrowedItemPanel implements ActionListener, displayPage{
     private JButton returnButton;
     private JPanel panel;
 
-    private Librarian librarian = new Librarian();
+    private ReturnIncharge returnIncharge = new ReturnIncharge();
     private final LibraryItem item;
 
     public BorrowedItemPanel(LibraryItem item) {
@@ -36,7 +37,7 @@ public class BorrowedItemPanel implements ActionListener, displayPage{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==returnButton){
-            librarian.letUserReturn((Member) CurrentUser.getCurrentUser(), item);
+            returnIncharge.letUserReturn((Member) CurrentUser.getCurrentUser(), item);
             System.out.println("returned");
         }
     }
