@@ -1,16 +1,12 @@
-import backend.libraryitems.Book;
-import backend.libraryitems.LibraryItem;
-import backend.libraryitems.contributors.Author;
-import backend.libraryitems.contributors.Contributor;
+import backend.dataobjects.libraryitems.Book;
+import backend.dataobjects.libraryitems.LibraryItem;
+import backend.dataobjects.libraryitems.contributors.Author;
+import backend.dataobjects.libraryitems.contributors.Contributor;
 import org.junit.jupiter.api.Test;
 import ui.library.LibItemDataFormatter;
 
-import javax.swing.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -42,9 +38,4 @@ public class TestLibItemDataFormatter {
         assertEquals(expected, LibItemDataFormatter.getFormattedContributors(book));
     }
 
-    @Test
-    void testGetFormattedCheckOutString() {
-        String expected = "Checked out - No"; // library items when created are not checked out
-        assertEquals(expected, LibItemDataFormatter.getFormattedCheckedOutStatus(book));
-    }
 }
