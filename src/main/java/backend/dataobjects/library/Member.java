@@ -1,18 +1,23 @@
 package backend.dataobjects.library;
 
+import backend.controllers.DataObservable;
 import backend.dataobjects.library.membershiplevels.MembershipLevel;
 import backend.dataobjects.libraryitems.LibraryItem;
+import ui.library.DataObserver;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Member extends User{
+public class Member extends User implements DataObservable {
     @Embedded
     private MembershipLevel membershipLevel;
     @ElementCollection(fetch = FetchType.EAGER)
     private List<LibraryItem> borrowedItems = new ArrayList<>();
+
+    @Transient
+    ArrayList<DataObserver> observers = new ArrayList<>();
 
     public Member(){
         // for hibernate
@@ -25,10 +30,27 @@ public class Member extends User{
 
     public void addBorrowedItem(LibraryItem item){
         borrowedItems.add(item);
+        notifyObservers();
     }
 
     public void returnBorrowedItem(LibraryItem item){
         borrowedItems.remove(item);
+        notifyObservers();
+    }
+
+    public void registerListener(DataObserver listener){
+        observers.add(listener);
+
+    }
+    public void removeListener(DataObserver listener){
+        observers.remove(listener);
+
+    }
+    public void notifyObservers(){
+        for(DataObserver o:observers){
+            o.performAction();
+        }
+
     }
 
     public MembershipLevel getMembershipLevel() {
