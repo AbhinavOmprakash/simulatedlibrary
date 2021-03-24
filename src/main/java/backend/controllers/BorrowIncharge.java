@@ -13,17 +13,8 @@ public class BorrowIncharge {
 
     public void letUserBorrow(Member user, LibraryItem item){
         if(isNotBorrowed(item) && userCanBorrow(user)){
-            /* this is a hacky solution for a bug arising from concurrent access of data
-            * the item must be first added to the user's borrowed items
-            * and then to the main borrowed items list
-            * because a function in LibraryItem display is called when
-            * the BorrowedItems table is modified.
-            * this function gets the user instance which has old data
-            * and works with that. hence updating the user data first
-            * is an easy solution (for now).
-            * */
-            user.addBorrowedItem(item);
             addToBorrowedItems(item);
+            user.addBorrowedItem(item);
         }
     }
 
