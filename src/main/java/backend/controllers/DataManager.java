@@ -15,8 +15,8 @@ import java.util.ArrayList;
 @SuppressWarnings({"unchecked","rawtypes"})
 public abstract class DataManager<V> {
     public DataStoreInterface dataStore = HibernateDB.getTestInstance();
-    private String inchargeOfTable;
-    private String searchableAttribute;
+    private final String inchargeOfTable;
+    private final String searchableAttribute;
 
     public DataManager(String inchargeOfTable, String searchableAttribute) {
         this.inchargeOfTable = inchargeOfTable;
