@@ -1,9 +1,7 @@
 package ui.library.myaccount;
 
-import backend.library.CurrentUser;
-import backend.library.Librarian;
-import backend.library.Member;
-import backend.libraryitems.LibraryItem;
+import backend.controllers.Librarian;
+import backend.dataobjects.libraryitems.LibraryItem;
 import ui.library.LibItemDataFormatter;
 import ui.library.displayPage;
 

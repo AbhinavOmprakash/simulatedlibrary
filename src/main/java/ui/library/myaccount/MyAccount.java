@@ -2,16 +2,12 @@ package ui.library.myaccount;
 
 import backend.library.CurrentUser;
 import backend.library.Member;
-import backend.libraryitems.LibraryItem;
 import ui.library.MainPage;
 import ui.library.displayPage;
-import ui.library.home.displayresults.LibraryItemDisplay;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 @SuppressWarnings({"rawtypes","unchecked"})
 public class MyAccount implements displayPage, ActionListener {

@@ -1,9 +1,9 @@
 package ui.library.home.displayresults;
 
 import backend.library.CurrentUser;
-import backend.library.Librarian;
+import backend.controllers.Librarian;
 import backend.library.Member;
-import backend.libraryitems.LibraryItem;
+import backend.dataobjects.libraryitems.LibraryItem;
 import ui.library.LibItemDataFormatter;
 import ui.library.displayPage;
 
@@ -29,7 +29,7 @@ public class LibraryItemPanel implements displayPage, ActionListener {
         this.title.setText(LibItemDataFormatter.getFormattedTitle(item));
         this.contributors.setText(LibItemDataFormatter.getFormattedContributors(item));
         this.libItemType.setText(item.getType());
-        this.checkedOut.setText(LibItemDataFormatter.getFormattedCheckedOutStatus(item));
+        this.checkedOut.setText(LibItemDataFormatter.constructCheckoutString(librarian.isBorrowed(item)));
 
         this.borrowButton.addActionListener(this);
     }

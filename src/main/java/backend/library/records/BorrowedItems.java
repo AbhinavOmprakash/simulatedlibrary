@@ -1,11 +1,8 @@
 package backend.library.records;
 
-import backend.libraryitems.LibraryItem;
-import org.hibernate.annotations.GenericGenerator;
+import backend.dataobjects.libraryitems.LibraryItem;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,20 +10,17 @@ import java.util.*;
 
 @Entity
 public class BorrowedItems{
-    private String itemTitle;
+    @Id
+    private long ID;
     private LocalDateTime borrowedOn;
 
-    @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name="increment", strategy = "increment")
-    private int ID;
 
     public BorrowedItems(){
         // for hibernate
     }
 
     public BorrowedItems(LibraryItem item){
-        this.itemTitle = item.getTitle();
+        this.ID = item.getId();
         this.borrowedOn = LocalDateTime.now();
     }
 
@@ -39,13 +33,6 @@ public class BorrowedItems{
         return DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH);
     }
 
-    public String getItemTitle() {
-        return itemTitle;
-    }
-
-    public void setItemTitle(String itemTitle) {
-        this.itemTitle = itemTitle;
-    }
 
     public LocalDateTime getBorrowedOn() {
         return borrowedOn;
@@ -55,11 +42,11 @@ public class BorrowedItems{
         this.borrowedOn = borrowedOn;
     }
 
-    public int getID() {
+    public long getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(long ID) {
         this.ID = ID;
     }
 }

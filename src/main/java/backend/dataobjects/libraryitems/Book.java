@@ -1,6 +1,6 @@
-package backend.libraryitems;
+package backend.dataobjects.libraryitems;
 
-import backend.libraryitems.contributors.Contributor;
+import backend.dataobjects.libraryitems.contributors.Contributor;
 
 import javax.persistence.Entity;
 import java.util.ArrayList;

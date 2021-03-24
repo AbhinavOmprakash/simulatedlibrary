@@ -1,7 +1,7 @@
 package ui.library;
 
-import backend.libraryitems.LibraryItem;
-import backend.libraryitems.contributors.Contributor;
+import backend.dataobjects.libraryitems.LibraryItem;
+import backend.dataobjects.libraryitems.contributors.Contributor;
 
 import java.util.HashMap;
 import java.util.List;
@@ -42,11 +42,7 @@ public class LibItemDataFormatter {
         return contributorString;
     }
 
-    public static String getFormattedCheckedOutStatus(LibraryItem item) {
-        return constructCheckoutString(item.isCheckedOut());
-    }
-
-    private static String constructCheckoutString(Boolean checkedOutStatus){
+    public static String constructCheckoutString(Boolean checkedOutStatus){
         StringBuilder str = new StringBuilder("Checked out - ");
         if (checkedOutStatus){
             str.append("Yes");

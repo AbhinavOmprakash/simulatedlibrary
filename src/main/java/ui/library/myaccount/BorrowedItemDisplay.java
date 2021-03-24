@@ -1,14 +1,10 @@
 package ui.library.myaccount;
 
-import backend.libraryitems.LibraryItem;
+import backend.dataobjects.libraryitems.LibraryItem;
 import ui.library.displayPage;
-import ui.library.home.displayresults.LibraryItemPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 public class BorrowedItemDisplay<V> implements displayPage {

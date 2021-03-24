@@ -39,19 +39,19 @@
     <mapping class="backend.library.membershiplevels.MembershipLevel"/>
     <mapping class="backend.library.membershiplevels.MembershipPolicy"/>
 
-    <mapping class="backend.libraryitems.LibraryItem"/>
-    <mapping class="backend.libraryitems.Archive"/>
-    <mapping class="backend.libraryitems.AudioBook"/>
-    <mapping class="backend.libraryitems.Book"/>
-    <mapping class="backend.libraryitems.DVD"/>
+    <mapping class="backend.dataobjects.libraryitems.LibraryItem"/>
+    <mapping class="backend.dataobjects.libraryitems.Archive"/>
+    <mapping class="backend.dataobjects.libraryitems.AudioBook"/>
+    <mapping class="backend.dataobjects.libraryitems.Book"/>
+    <mapping class="backend.dataobjects.libraryitems.DVD"/>
 
-    <mapping class="backend.libraryitems.contributors.Contributor"/>
-    <mapping class="backend.libraryitems.contributors.Actor"/>
-    <mapping class="backend.libraryitems.contributors.Author"/>
-    <mapping class="backend.libraryitems.contributors.Director"/>
-    <mapping class="backend.libraryitems.contributors.Poet"/>
-    <mapping class="backend.libraryitems.contributors.ScreenWriter"/>
-    <mapping class="backend.libraryitems.contributors.Singer"/>
+    <mapping class="backend.dataobjects.libraryitems.contributors.Contributor"/>
+    <mapping class="backend.dataobjects.libraryitems.contributors.Actor"/>
+    <mapping class="backend.dataobjects.libraryitems.contributors.Author"/>
+    <mapping class="backend.dataobjects.libraryitems.contributors.Director"/>
+    <mapping class="backend.dataobjects.libraryitems.contributors.Poet"/>
+    <mapping class="backend.dataobjects.libraryitems.contributors.ScreenWriter"/>
+    <mapping class="backend.dataobjects.libraryitems.contributors.Singer"/>
 
     </session-factory>
 </hibernate-configuration>

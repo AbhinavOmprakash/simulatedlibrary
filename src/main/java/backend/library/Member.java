@@ -1,9 +1,7 @@
 package backend.library;
 
 import backend.library.membershiplevels.MembershipLevel;
-import backend.libraryitems.LibraryItem;
-import net.bytebuddy.build.Plugin;
-import org.hibernate.annotations.Fetch;
+import backend.dataobjects.libraryitems.LibraryItem;
 
 import javax.persistence.*;
 import java.util.ArrayList;

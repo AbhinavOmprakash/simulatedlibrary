@@ -1,4 +1,4 @@
-package backend.libraryitems.contributors;
+package backend.dataobjects.libraryitems.contributors;
 
 
 import javax.persistence.Entity;

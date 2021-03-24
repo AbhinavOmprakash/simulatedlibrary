@@ -1,6 +1,6 @@
 package ui.library.home.displayresults;
 
-import backend.libraryitems.LibraryItem;
+import backend.dataobjects.libraryitems.LibraryItem;
 import ui.library.displayPage;
 
 import javax.swing.*;

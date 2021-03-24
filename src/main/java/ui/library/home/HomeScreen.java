@@ -2,7 +2,6 @@ package ui.library.home;
 
 import backend.controllers.DataManager;
 import backend.controllers.LibraryItemManager;
-import backend.libraryitems.LibraryItem;
 import ui.library.MainPage;
 import ui.library.displayPage;
 import ui.library.home.displayresults.LibraryItemDisplay;

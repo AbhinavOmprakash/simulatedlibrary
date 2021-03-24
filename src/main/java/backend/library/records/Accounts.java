@@ -1,14 +1,9 @@
 package backend.library.records;
 
 import backend.library.User;
-import backend.libraryitems.LibraryItem;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
 
 @Entity
 public class Accounts{
