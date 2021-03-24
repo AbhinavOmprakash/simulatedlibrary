@@ -3,7 +3,7 @@ import backend.dataobjects.libraryitems.LibraryItem;
 import backend.dataobjects.libraryitems.contributors.Author;
 import backend.dataobjects.libraryitems.contributors.Contributor;
 import org.junit.jupiter.api.Test;
-import ui.library.LibItemDataFormatter;
+import views.LibItemDataFormatter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
