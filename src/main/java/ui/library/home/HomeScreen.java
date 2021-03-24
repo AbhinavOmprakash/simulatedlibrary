@@ -22,6 +22,7 @@ public class HomeScreen<V> implements ActionListener, displayPage {
     private JButton logoutButton;
     private DataManager libraryItemManager = new LibraryItemManager();
 
+    LibraryItemDisplay currentDisplay;
     MainPage parent;
 
     public HomeScreen(MainPage parent) {
@@ -62,13 +63,20 @@ public class HomeScreen<V> implements ActionListener, displayPage {
         for (Object result: results){
             System.out.println(result.toString());
         }
-        LibraryItemDisplay display = new LibraryItemDisplay(results);
-        searchResults.setViewportView(display.getPanel());
+        cleanUpCurrentDisplay();
+        currentDisplay = new LibraryItemDisplay(results);
+        searchResults.setViewportView(currentDisplay.getPanel());
     }
 
+    private void cleanUpCurrentDisplay(){
+        if(currentDisplay != null){
+            currentDisplay.cleanup();
+        }
+    }
 
     @Override
     public JPanel getPanel() {
+        // hack to refresh the screen
         return panel;
     }
 }

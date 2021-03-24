@@ -8,8 +8,9 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class Librarian {
-    DataManager borrowedItems = new BorrowedItemsDataManager();
+    DataManager borrowedItems = BorrowedItemsDataManager.getInstanceOf();
     Accountant penaltyAccountant = new PenaltyAccountant();
+
 
     public void letUserBorrow(Member user, LibraryItem item){
         if(isNotBorrowed(item)){
@@ -42,5 +43,6 @@ public class Librarian {
         ArrayList results = borrowedItems.search(item.getId());
         return !results.isEmpty();
     }
+
 
 }

@@ -6,7 +6,7 @@ import backend.dataobjects.library.records.LoginData;
 
 public class LoginManager {
     LoginDataManager loginData = new LoginDataManager();
-    UserDataManager userdata = new UserDataManager();
+    UserDataManager userdata = UserDataManager.getInstanceOf();
 
     public boolean login(LoginData enteredData){
         if(true){

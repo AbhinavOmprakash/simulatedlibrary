@@ -1,9 +1,11 @@
 package ui.library.home.displayresults;
 
+import backend.controllers.BorrowedItemsDataManager;
 import backend.dataobjects.library.CurrentUser;
 import backend.controllers.Librarian;
 import backend.dataobjects.library.Member;
 import backend.dataobjects.libraryitems.LibraryItem;
+import ui.library.DataObserver;
 import ui.library.LibItemDataFormatter;
 import ui.library.displayPage;
 
@@ -11,7 +13,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LibraryItemPanel implements displayPage, ActionListener {
+public class LibraryItemPanel implements displayPage, ActionListener, DataObserver {
 
     private JPanel panel1;
     private JButton borrowButton;
@@ -31,16 +33,15 @@ public class LibraryItemPanel implements displayPage, ActionListener {
         this.libItemType.setText(item.getType());
         this.checkedOut.setText(LibItemDataFormatter.constructCheckoutString(librarian.isBorrowed(item)));
         this.borrowButton.addActionListener(this);
+        BorrowedItemsDataManager.getInstanceOf().registerListener(this);
     }
 
-    public JPanel getPanel1() {
-        return panel1;
+    public void unregisterSelf(){
+        BorrowedItemsDataManager.getInstanceOf().removeListener(this);
     }
-
-
     @Override
     public JPanel getPanel() {
-        return getPanel1();
+        return panel1;
     }
 
 
@@ -54,17 +55,16 @@ public class LibraryItemPanel implements displayPage, ActionListener {
     }
 
     private void initiateBorrow() {
-        informLibrarian();
-        refreshCheckedOutStatus();
-    }
-
-    private void informLibrarian() {
         Member currentUser = (Member) CurrentUser.getCurrentUser();
         librarian.letUserBorrow(currentUser, item);
+    }
+    @Override
+
+    public void performAction() {
+        refreshCheckedOutStatus();
     }
 
     private void refreshCheckedOutStatus() {
         this.checkedOut.setText(LibItemDataFormatter.constructCheckoutString(librarian.isBorrowed(item)));
     }
-
 }

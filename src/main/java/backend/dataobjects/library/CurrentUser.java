@@ -1,15 +1,26 @@
 package backend.dataobjects.library;
 
+import backend.controllers.DataObservable;
+import backend.controllers.UserDataManager;
+import ui.library.DataObserver;
+
+import java.util.ArrayList;
+
+@SuppressWarnings({"unchecked,rawtypes"})
 public class CurrentUser{
     private static User currentUser;
     private static CurrentUser instance = new CurrentUser();
 
+    private static ArrayList<DataObserver> observers = new ArrayList<>();
+
     private CurrentUser(){}
 
     public static void changeUser(User user){
+        saveUserData();
         currentUser = user;
     }
     public static void removeUser(){
+        saveUserData();
         currentUser = null;
     }
 
@@ -19,4 +30,12 @@ public class CurrentUser{
         }
         return currentUser;
     }
+
+    public static void saveUserData(){
+        if(currentUser!=null){
+            UserDataManager.getInstanceOf().updateData(currentUser);
+        }
+
+    }
+
 }
