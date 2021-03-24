@@ -23,28 +23,28 @@
     <property name="hbm2ddl.auto">create</property>
 
         <!-- Names the annotated entity class -->
-    <mapping class="backend.dataobjects.library.User"/>
-    <mapping class="backend.dataobjects.library.Member"/>
-    <mapping class="backend.dataobjects.library.Admin"/>
-    <mapping class="backend.dataobjects.library.records.BorrowedItems"/>
-    <mapping class="backend.dataobjects.library.records.Accounts"/>
-    <mapping class="backend.dataobjects.library.records.LoginData"/>
-    <mapping class="backend.dataobjects.library.membershiplevels.MembershipLevel"/>
-    <mapping class="backend.dataobjects.library.membershiplevels.MembershipPolicy"/>
+    <mapping class="models.dataobjects.library.User"/>
+    <mapping class="models.dataobjects.library.Member"/>
+    <mapping class="models.dataobjects.library.Admin"/>
+    <mapping class="models.dataobjects.library.records.BorrowedItems"/>
+    <mapping class="models.dataobjects.library.records.Accounts"/>
+    <mapping class="models.dataobjects.library.records.LoginData"/>
+    <mapping class="models.dataobjects.library.membershiplevels.MembershipLevel"/>
+    <mapping class="models.dataobjects.library.membershiplevels.MembershipPolicy"/>
 
-    <mapping class="backend.dataobjects.libraryitems.LibraryItem"/>
-    <mapping class="backend.dataobjects.libraryitems.Archive"/>
-    <mapping class="backend.dataobjects.libraryitems.AudioBook"/>
-    <mapping class="backend.dataobjects.libraryitems.Book"/>
-    <mapping class="backend.dataobjects.libraryitems.DVD"/>
+    <mapping class="models.dataobjects.libraryitems.LibraryItem"/>
+    <mapping class="models.dataobjects.libraryitems.Archive"/>
+    <mapping class="models.dataobjects.libraryitems.AudioBook"/>
+    <mapping class="models.dataobjects.libraryitems.Book"/>
+    <mapping class="models.dataobjects.libraryitems.DVD"/>
 
-    <mapping class="backend.dataobjects.libraryitems.contributors.Contributor"/>
-    <mapping class="backend.dataobjects.libraryitems.contributors.Actor"/>
-    <mapping class="backend.dataobjects.libraryitems.contributors.Author"/>
-    <mapping class="backend.dataobjects.libraryitems.contributors.Director"/>
-    <mapping class="backend.dataobjects.libraryitems.contributors.Poet"/>
-    <mapping class="backend.dataobjects.libraryitems.contributors.ScreenWriter"/>
-    <mapping class="backend.dataobjects.libraryitems.contributors.Singer"/>
+    <mapping class="models.dataobjects.libraryitems.contributors.Contributor"/>
+    <mapping class="models.dataobjects.libraryitems.contributors.Actor"/>
+    <mapping class="models.dataobjects.libraryitems.contributors.Author"/>
+    <mapping class="models.dataobjects.libraryitems.contributors.Director"/>
+    <mapping class="models.dataobjects.libraryitems.contributors.Poet"/>
+    <mapping class="models.dataobjects.libraryitems.contributors.ScreenWriter"/>
+    <mapping class="models.dataobjects.libraryitems.contributors.Singer"/>
 
     </session-factory>
 </hibernate-configuration>

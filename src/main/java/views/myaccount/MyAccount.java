@@ -1,8 +1,8 @@
 package views.myaccount;
 
-import backend.controllers.BorrowedItemsDataManager;
-import backend.dataobjects.library.CurrentUser;
-import backend.dataobjects.library.Member;
+import controllers.BorrowedItemsDataManager;
+import models.dataobjects.library.CurrentUser;
+import models.dataobjects.library.Member;
 import views.DataObserver;
 import views.MainPage;
 import views.displayPage;

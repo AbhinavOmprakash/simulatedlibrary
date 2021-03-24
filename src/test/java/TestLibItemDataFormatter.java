@@ -1,7 +1,7 @@
-import backend.dataobjects.libraryitems.Book;
-import backend.dataobjects.libraryitems.LibraryItem;
-import backend.dataobjects.libraryitems.contributors.Author;
-import backend.dataobjects.libraryitems.contributors.Contributor;
+import models.dataobjects.libraryitems.Book;
+import models.dataobjects.libraryitems.LibraryItem;
+import models.dataobjects.libraryitems.contributors.Author;
+import models.dataobjects.libraryitems.contributors.Contributor;
 import org.junit.jupiter.api.Test;
 import views.LibItemDataFormatter;
 

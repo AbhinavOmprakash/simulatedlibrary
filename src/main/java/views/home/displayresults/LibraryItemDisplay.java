@@ -1,9 +1,9 @@
 package views.home.displayresults;
 
-import backend.controllers.BorrowIncharge;
-import backend.dataobjects.library.CurrentUser;
-import backend.dataobjects.library.Member;
-import backend.dataobjects.libraryitems.LibraryItem;
+import controllers.BorrowIncharge;
+import models.dataobjects.library.CurrentUser;
+import models.dataobjects.library.Member;
+import models.dataobjects.libraryitems.LibraryItem;
 import views.DataObserver;
 import views.displayPage;
 

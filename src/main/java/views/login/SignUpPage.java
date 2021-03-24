@@ -1,8 +1,8 @@
 package views.login;
 
-import backend.controllers.MembershipPolicyManager;
-import backend.controllers.SignUpManager;
-import backend.dataobjects.library.records.SignUpData;
+import controllers.MembershipPolicyManager;
+import controllers.SignUpManager;
+import models.dataobjects.library.records.SignUpData;
 import views.displayPage;
 
 import javax.swing.*;

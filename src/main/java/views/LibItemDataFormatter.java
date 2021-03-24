@@ -1,7 +1,7 @@
 package views;
 
-import backend.dataobjects.libraryitems.LibraryItem;
-import backend.dataobjects.libraryitems.contributors.Contributor;
+import models.dataobjects.libraryitems.LibraryItem;
+import models.dataobjects.libraryitems.contributors.Contributor;
 
 import java.util.HashMap;
 import java.util.List;

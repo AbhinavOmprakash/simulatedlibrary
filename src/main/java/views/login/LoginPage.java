@@ -1,7 +1,7 @@
 package views.login;
 
-import backend.controllers.LoginManager;
-import backend.dataobjects.library.records.LoginData;
+import controllers.LoginManager;
+import models.dataobjects.library.records.LoginData;
 import views.displayPage;
 
 import javax.swing.*;

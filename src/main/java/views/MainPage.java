@@ -1,6 +1,6 @@
 package views;
 
-import backend.controllers.*;
+import controllers.*;
 import views.home.HomeScreen;
 import views.login.EntryPage;
 import views.myaccount.MyAccount;

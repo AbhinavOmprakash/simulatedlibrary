@@ -1,9 +1,9 @@
 package views.myaccount;
 
-import backend.controllers.ReturnIncharge;
-import backend.dataobjects.library.CurrentUser;
-import backend.dataobjects.library.Member;
-import backend.dataobjects.libraryitems.LibraryItem;
+import controllers.ReturnIncharge;
+import models.dataobjects.library.CurrentUser;
+import models.dataobjects.library.Member;
+import models.dataobjects.libraryitems.LibraryItem;
 import views.LibItemDataFormatter;
 import views.displayPage;
 

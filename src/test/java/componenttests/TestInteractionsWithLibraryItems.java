@@ -1,13 +1,13 @@
 package componenttests;
 
-import backend.controllers.DataManager;
-import backend.controllers.LibraryItemManager;
-import backend.externalservices.DataStoreInterface;
-import backend.externalservices.HibernateDB;
-import backend.dataobjects.libraryitems.Book;
-import backend.dataobjects.libraryitems.LibraryItem;
-import backend.dataobjects.libraryitems.contributors.Author;
-import backend.dataobjects.libraryitems.contributors.Contributor;
+import controllers.DataManager;
+import controllers.LibraryItemManager;
+import externalservices.DataStoreInterface;
+import externalservices.HibernateDB;
+import models.dataobjects.libraryitems.Book;
+import models.dataobjects.libraryitems.LibraryItem;
+import models.dataobjects.libraryitems.contributors.Author;
+import models.dataobjects.libraryitems.contributors.Contributor;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

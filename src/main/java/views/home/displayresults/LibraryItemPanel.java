@@ -1,11 +1,11 @@
 package views.home.displayresults;
 
-import backend.controllers.BorrowIncharge;
-import backend.controllers.BorrowedItemsDataManager;
-import backend.dataobjects.library.CurrentUser;
-import backend.controllers.Librarian;
-import backend.dataobjects.library.Member;
-import backend.dataobjects.libraryitems.LibraryItem;
+import controllers.BorrowIncharge;
+import controllers.BorrowedItemsDataManager;
+import models.dataobjects.library.CurrentUser;
+import controllers.Librarian;
+import models.dataobjects.library.Member;
+import models.dataobjects.libraryitems.LibraryItem;
 import views.DataObserver;
 import views.LibItemDataFormatter;
 import views.displayPage;

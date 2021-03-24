@@ -1,7 +1,7 @@
 package views.home;
 
-import backend.controllers.DataManager;
-import backend.controllers.LibraryItemManager;
+import controllers.DataManager;
+import controllers.LibraryItemManager;
 import views.MainPage;
 import views.displayPage;
 import views.home.displayresults.LibraryItemDisplay;

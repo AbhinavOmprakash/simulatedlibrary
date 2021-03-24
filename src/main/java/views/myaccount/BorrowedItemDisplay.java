@@ -1,6 +1,6 @@
 package views.myaccount;
 
-import backend.dataobjects.libraryitems.LibraryItem;
+import models.dataobjects.libraryitems.LibraryItem;
 import views.displayPage;
 
 import javax.swing.*;
