@@ -22,7 +22,9 @@ public class LibraryItemDisplay<V> implements displayPage, DataObserver {
         displayPanel.setLayout(new BoxLayout(displayPanel, BoxLayout.PAGE_AXIS));
         displayPanel.add(Box.createRigidArea(new Dimension(0, 5)));
 
-        BorrowedItemsDataManager.getInstanceOf().registerListener(this);
+        Member currentMember = (Member) CurrentUser.getCurrentUser();
+        currentMember.registerListener(this);
+
         for (V libItem : libraryItems) {
             LibraryItemPanel item = new LibraryItemPanel((LibraryItem) libItem);
             displayPanel.add(item.getPanel());
@@ -44,6 +46,7 @@ public class LibraryItemDisplay<V> implements displayPage, DataObserver {
 
     @Override
     public void performAction() {
+        // observers changes to Member
         updateBorrowButtons();
     }
 
