@@ -1,6 +1,6 @@
-package backend.library;
+package backend.dataobjects.library;
 
-import backend.library.membershiplevels.MembershipLevel;
+import backend.dataobjects.library.membershiplevels.MembershipLevel;
 import backend.dataobjects.libraryitems.LibraryItem;
 
 import javax.persistence.*;

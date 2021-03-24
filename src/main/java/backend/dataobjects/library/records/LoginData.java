@@ -1,4 +1,4 @@
-package backend.library.records;
+package backend.dataobjects.library.records;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 

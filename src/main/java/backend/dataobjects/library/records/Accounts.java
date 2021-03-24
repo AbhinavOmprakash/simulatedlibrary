@@ -1,6 +1,6 @@
-package backend.library.records;
+package backend.dataobjects.library.records;
 
-import backend.library.User;
+import backend.dataobjects.library.User;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

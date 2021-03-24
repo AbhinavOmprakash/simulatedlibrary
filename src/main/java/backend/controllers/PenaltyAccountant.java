@@ -1,11 +1,7 @@
-package backend.library;
+package backend.controllers;
 
 
-import backend.controllers.AccountsDataManager;
-import backend.controllers.DataManager;
-
-import java.util.ArrayList;
-import java.util.Map;
+import backend.dataobjects.library.User;
 
 public class PenaltyAccountant extends Accountant {
 

@@ -1,4 +1,4 @@
-package backend.library;
+package backend.dataobjects.library;
 
 public class CurrentUser{
     private static User currentUser;

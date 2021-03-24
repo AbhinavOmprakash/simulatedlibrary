@@ -1,8 +1,8 @@
 package backend.externalservices;
 
 
-import backend.library.Accountant;
-import backend.library.User;
+import backend.controllers.Accountant;
+import backend.dataobjects.library.User;
 
 public interface PaymentGateway{
     void acceptPayment(User user, double targetAmount);

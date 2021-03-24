@@ -2,14 +2,13 @@ package ui.library.login;
 
 import backend.controllers.MembershipPolicyManager;
 import backend.controllers.SignUpManager;
-import backend.library.records.SignUpData;
+import backend.dataobjects.library.records.SignUpData;
 import ui.library.displayPage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Collections;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class SignUpPage implements displayPage, ActionListener {

@@ -1,7 +1,7 @@
 package ui.library.myaccount;
 
-import backend.library.CurrentUser;
-import backend.library.Member;
+import backend.dataobjects.library.CurrentUser;
+import backend.dataobjects.library.Member;
 import ui.library.MainPage;
 import ui.library.displayPage;
 

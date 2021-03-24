@@ -1,4 +1,4 @@
-package backend.library.records;
+package backend.dataobjects.library.records;
 
 public class SignUpData {
     public String firstName;

@@ -1,11 +1,10 @@
 package ui.library.login;
 
 import backend.controllers.LoginManager;
-import backend.library.records.LoginData;
+import backend.dataobjects.library.records.LoginData;
 import ui.library.displayPage;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

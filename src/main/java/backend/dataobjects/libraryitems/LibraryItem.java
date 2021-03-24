@@ -10,7 +10,7 @@ import java.util.Objects;
 @Entity
 @Table( name = "LibraryItem")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class LibraryItem{
+public abstract class LibraryItem {
 
     @Id
     @GeneratedValue(generator = "increment")

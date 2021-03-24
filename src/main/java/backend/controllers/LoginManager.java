@@ -1,8 +1,8 @@
 package backend.controllers;
 
-import backend.library.CurrentUser;
-import backend.library.User;
-import backend.library.records.LoginData;
+import backend.dataobjects.library.CurrentUser;
+import backend.dataobjects.library.User;
+import backend.dataobjects.library.records.LoginData;
 
 public class LoginManager {
     LoginDataManager loginData = new LoginDataManager();

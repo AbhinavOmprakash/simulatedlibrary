@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Contributor {
+public abstract class Contributor{
     private String name;
     private String contributorType;
 

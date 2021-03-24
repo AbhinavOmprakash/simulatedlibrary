@@ -1,6 +1,5 @@
-package backend.library;
+package backend.dataobjects.library;
 
-import backend.library.membershiplevels.MembershipLevel;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -8,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table( name = "User")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class User {
+public abstract class User{
     private String firstName;
     private String lastName;
     private String userName;

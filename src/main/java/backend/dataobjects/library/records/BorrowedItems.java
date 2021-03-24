@@ -1,4 +1,4 @@
-package backend.library.records;
+package backend.dataobjects.library.records;
 
 import backend.dataobjects.libraryitems.LibraryItem;
 

@@ -4,7 +4,7 @@ import java.util.Map;
 
 public interface DataStoreInterface<V> {
 
-    ArrayList<V> search(String query, String table, String attribute);
+    ArrayList<V> search(Object query, String table, String attribute);
     void updateItem(V item);
     void addNewItem(V item);
     void deleteItem(V item);

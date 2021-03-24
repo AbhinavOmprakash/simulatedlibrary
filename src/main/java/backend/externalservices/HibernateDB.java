@@ -1,8 +1,8 @@
 package backend.externalservices;
 
-import backend.library.Member;
-import backend.library.membershiplevels.MembershipLevel;
-import backend.library.membershiplevels.MembershipPolicy;
+import backend.dataobjects.library.Member;
+import backend.dataobjects.library.membershiplevels.MembershipLevel;
+import backend.dataobjects.library.membershiplevels.MembershipPolicy;
 import backend.dataobjects.libraryitems.AudioBook;
 import backend.dataobjects.libraryitems.Book;
 import backend.dataobjects.libraryitems.LibraryItem;
@@ -99,7 +99,7 @@ public class HibernateDB<V> implements DataStoreInterface<V>{
         openSession.close();
     }
 
-    public ArrayList search(String query, String table, String attribute ){
+    public ArrayList search(Object query, String table, String attribute ){
         Session session = getSession();
 
         String hqlQuery = "from "+table+ " where "+attribute+" =:query";

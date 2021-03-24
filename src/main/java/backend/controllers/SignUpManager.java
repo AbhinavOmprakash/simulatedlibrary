@@ -1,6 +1,6 @@
 package backend.controllers;
 
-import backend.library.records.SignUpData;
+import backend.dataobjects.library.records.SignUpData;
 
 public class SignUpManager{
     DataManager userDataManager = new UserDataManager();

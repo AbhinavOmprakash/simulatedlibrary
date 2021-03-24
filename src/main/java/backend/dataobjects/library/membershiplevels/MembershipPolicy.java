@@ -1,4 +1,4 @@
-package backend.library.membershiplevels;
+package backend.dataobjects.library.membershiplevels;
 
 import org.hibernate.annotations.GenericGenerator;
 

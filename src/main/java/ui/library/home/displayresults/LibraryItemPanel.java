@@ -1,8 +1,8 @@
 package ui.library.home.displayresults;
 
-import backend.library.CurrentUser;
+import backend.dataobjects.library.CurrentUser;
 import backend.controllers.Librarian;
-import backend.library.Member;
+import backend.dataobjects.library.Member;
 import backend.dataobjects.libraryitems.LibraryItem;
 import ui.library.LibItemDataFormatter;
 import ui.library.displayPage;

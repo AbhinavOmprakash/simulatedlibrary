@@ -1,6 +1,4 @@
-package backend.library;
-
-import backend.library.User;
+package backend.dataobjects.library;
 
 import javax.persistence.Entity;
 

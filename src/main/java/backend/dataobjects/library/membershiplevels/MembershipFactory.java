@@ -1,4 +1,4 @@
-package backend.library.membershiplevels;
+package backend.dataobjects.library.membershiplevels;
 
 import backend.controllers.DataManager;
 import backend.controllers.MembershipPolicyManager;

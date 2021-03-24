@@ -23,7 +23,7 @@ public abstract class DataManager<V> {
         this.searchableAttribute = searchableAttribute;
     }
 
-    public ArrayList<V> search(String query) {
+    public ArrayList<V> search(Object query) {
        return dataStore.search(query, inchargeOfTable,searchableAttribute);
     }
 

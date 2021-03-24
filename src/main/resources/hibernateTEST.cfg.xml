@@ -30,14 +30,14 @@
     <property name="hbm2ddl.auto">create</property>
 
         <!-- Names the annotated entity class -->
-    <mapping class="backend.library.User"/>
-    <mapping class="backend.library.Member"/>
-    <mapping class="backend.library.Admin"/>
-    <mapping class="backend.library.records.BorrowedItems"/>
-    <mapping class="backend.library.records.LoginData"/>
-    <mapping class="backend.library.records.Accounts"/>
-    <mapping class="backend.library.membershiplevels.MembershipLevel"/>
-    <mapping class="backend.library.membershiplevels.MembershipPolicy"/>
+    <mapping class="backend.dataobjects.library.User"/>
+    <mapping class="backend.dataobjects.library.Member"/>
+    <mapping class="backend.dataobjects.library.Admin"/>
+    <mapping class="backend.dataobjects.library.records.BorrowedItems"/>
+    <mapping class="backend.dataobjects.library.records.LoginData"/>
+    <mapping class="backend.dataobjects.library.records.Accounts"/>
+    <mapping class="backend.dataobjects.library.membershiplevels.MembershipLevel"/>
+    <mapping class="backend.dataobjects.library.membershiplevels.MembershipPolicy"/>
 
     <mapping class="backend.dataobjects.libraryitems.LibraryItem"/>
     <mapping class="backend.dataobjects.libraryitems.Archive"/>
