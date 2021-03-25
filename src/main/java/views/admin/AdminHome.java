@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 
 public class AdminHome implements displayPage {
     private JPanel panel;
-    private JButton addNewLibraryItemButton;
-    private JButton addNewPolicyButton;
-    private JButton viewAllLibraryItemsButton;
-    private JButton viewAllPoliciesButton;
+    public JButton addNewLibraryItemButton;
+    public JButton addNewPolicyButton;
+    public JButton viewAllLibraryItemsButton;
+    public JButton viewAllPoliciesButton;
 
     public AdminHome(ActionListener guicontroller) {
         addNewLibraryItemButton.addActionListener(guicontroller);
