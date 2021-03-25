@@ -24,6 +24,15 @@ public abstract class Contributor{
         this.contributorType = ContributorType;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Contributor)) return false;
+        Contributor that = (Contributor) o;
+        return getName().equals(that.getName()) && getContributorType().equals(that.getContributorType());
+    }
+
+
     public String getName() {
         return name;
     }
