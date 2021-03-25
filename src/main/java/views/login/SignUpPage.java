@@ -2,6 +2,7 @@ package views.login;
 
 import controllers.useraccounts.MembershipPolicyManager;
 import controllers.useraccounts.SignUpManager;
+import models.dataobjects.library.membershiplevels.MembershipPolicy;
 import models.dataobjects.library.records.SignUpData;
 import views.displayPage;
 
@@ -22,7 +23,7 @@ public class SignUpPage implements displayPage {
     private JPasswordField passwordField2;
     private JSpinner membershipSpinner;
     private JLabel membershipPolicy;
-    private JComboBox comboBox1;
+    private JComboBox membershipPolicies;
 
     public JButton signUpButton;
     public JButton haveAnAccountButton;
@@ -36,17 +37,19 @@ public class SignUpPage implements displayPage {
 
         signUpButton.addActionListener(guicontroller);
         haveAnAccountButton.addActionListener(guicontroller);
-//        populateSpinner();
+        populateMembershipPolicies();
     }
 
-    private void populateSpinner(){
-        SpinnerListModel policies = new SpinnerListModel(getAllPolicies());
-        membershipSpinner.setValue((Object) policies);
-        System.out.println("populated");
+    private void populateMembershipPolicies() {
+        Object[] allPolicies = getAllPolicies();
+        for (Object p : allPolicies){
+            MembershipPolicy policy = (MembershipPolicy) p;
+            membershipPolicies.addItem(policy.getName());
+        }
     }
 
     private Object[] getAllPolicies(){
-        ArrayList  policies = policyManager.fetchAll();
+        ArrayList policies = policyManager.fetchAll();
         // for dev
         if (policies.isEmpty()) {
             return new Object[]{"basic"};
