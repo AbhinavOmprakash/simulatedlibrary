@@ -18,13 +18,17 @@ public class MyAccount implements displayPage, ActionListener, DataObserver {
     private JPanel info;
     private JScrollPane borrowedItemspane;
     public JButton homeButton;
+    public JButton upgradeMembershipButton;
 
     BorrowedItemDisplay currentDisplay;
     private Member user;
 
     public MyAccount(ActionListener guiController){
         this.user = (Member) CurrentUser.getCurrentUser();
-        this.homeButton.addActionListener(guiController);
+
+        homeButton.addActionListener(guiController);
+        upgradeMembershipButton.addActionListener(guiController);
+
         BorrowedItemsDataManager.getInstanceOf().registerListener(this);
         displayBorrowedItems();
     }
