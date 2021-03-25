@@ -21,6 +21,10 @@ public class MembershipPolicy {
     @GenericGenerator(name="increment", strategy = "increment")
     public int Id;
 
+    public MembershipPolicy(){
+        // for hibernate
+    }
+
     public MembershipPolicy(String name, Double membershipFees,
                             Double overdueFeesPerDay, int borrowLimit,
                             Double discountPercentage,
