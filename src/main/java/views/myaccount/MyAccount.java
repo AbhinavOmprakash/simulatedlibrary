@@ -36,6 +36,8 @@ public class MyAccount implements displayPage, ActionListener, DataObserver {
     private void displayBorrowedItems() {
         if(userHasBorrowedItems()){
             populateDisplay();
+        } else {
+            cleanDisplay();
         }
     }
     private boolean userHasBorrowedItems() {
@@ -48,6 +50,14 @@ public class MyAccount implements displayPage, ActionListener, DataObserver {
         currentDisplay = new BorrowedItemDisplay(user.getBorrowedItems());
         borrowedItemspane.setViewportView(currentDisplay.getPanel());
     }
+
+    private void cleanDisplay() {
+        System.out.println("cleaning items");
+        borrowedItemspane.removeAll();
+        borrowedItemspane.repaint();
+        borrowedItemspane.revalidate();
+    }
+
 
     @Override
     public JPanel getPanel() {
