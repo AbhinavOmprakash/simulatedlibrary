@@ -15,6 +15,11 @@ public class AdminHomeController extends GuiController implements ActionListener
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==adminHome.addNewLibraryItemButton){
+            parentController.switchToNewLibraryItem();
+        } else if(e.getSource()==adminHome.addNewPolicyButton){
+            parentController.switchToNewMembershipPolicy();
+        }
 
     }
 }
