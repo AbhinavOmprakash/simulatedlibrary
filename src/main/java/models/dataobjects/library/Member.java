@@ -1,6 +1,6 @@
 package models.dataobjects.library;
 
-import models.dataobjects.DataObservable;
+import models.DataObservable;
 import models.dataobjects.library.membershiplevels.MembershipLevel;
 import models.dataobjects.libraryitems.LibraryItem;
 import views.DataObserver;
