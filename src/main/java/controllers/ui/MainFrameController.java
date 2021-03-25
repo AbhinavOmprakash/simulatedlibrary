@@ -4,10 +4,6 @@ import models.dataobjects.library.CurrentUser;
 import models.dataobjects.library.Member;
 import views.MainJFrame;
 
-import javax.swing.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
 public class MainFrameController{
     MainJFrame mainFrame;
     LoginController loginController;
@@ -15,6 +11,9 @@ public class MainFrameController{
     UserHomeController userHomeController;
     UserAccountController userAccountController;
     AdminHomeController adminHomeController;
+    NewLibraryItemController newLibraryItemController;
+    NewMembershipPolicyController newMembershipPolicyController;
+    UpgradeMembershipController upgradeMembershipController;
 
     public MainFrameController(MainJFrame mainFrame){
         this.mainFrame = mainFrame;
@@ -22,6 +21,8 @@ public class MainFrameController{
         signUpController = new SignUpController(this, mainFrame);
         userHomeController = new UserHomeController(this, mainFrame);
         adminHomeController = new AdminHomeController(this, mainFrame);
+        newLibraryItemController = new NewLibraryItemController(this, mainFrame);
+        newMembershipPolicyController = new NewMembershipPolicyController(this, mainFrame);
     }
 
     public void switchToSignUp() {
@@ -31,6 +32,18 @@ public class MainFrameController{
         loginController.showPanel();
     }
 
+    public void switchToNewLibraryItem(){
+        newLibraryItemController.showPanel();
+    }
+
+    public void switchToNewMembershipPolicy(){
+        newMembershipPolicyController.showPanel();
+    }
+
+    public void switchToUpgradeMembership(){
+        upgradeMembershipController = new UpgradeMembershipController(this, mainFrame);
+        upgradeMembershipController.showPanel();
+    }
     public void switchToMyAccount() {
         // todo correct hacky solution. initializig userAccount here because it can't be initialized before
         //  the user logs in.
@@ -43,14 +56,14 @@ public class MainFrameController{
     }
 
     private void getCorrectHomePage() {
-//        if(userIsMember()){
-//            System.out.println("user is member");
-//            userHomeController.showPanel();
-//
-//        } else {
-//            System.out.println("user is an admin");
-//        }
-        adminHomeController.showPanel();
+        if(userIsMember()){
+            System.out.println("user is member");
+            userHomeController.showPanel();
+
+        } else {
+            System.out.println("user is an admin");
+            adminHomeController.showPanel();
+        }
     }
 
     private boolean userIsMember() {
