@@ -44,6 +44,11 @@ public class LibraryItemDisplay<V> implements displayPage, DataObserver {
     }
 
     @Override
+    public String getIdentifier() {
+        return "LibraryItemDisplay";
+    }
+
+    @Override
     public void performAction() {
         // observers changes to Member
         updateBorrowButtons();

@@ -17,4 +17,9 @@ public class LIbraryItemDetailedView implements displayPage {
         return getPanel1();
 
     }
+
+    @Override
+    public String getIdentifier() {
+        return "LibraryItemDetailedView";
+    }
 }

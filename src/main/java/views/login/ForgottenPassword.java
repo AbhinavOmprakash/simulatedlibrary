@@ -12,10 +12,8 @@ public class ForgottenPassword extends JDialog implements displayPage {
     private JTextArea textArea1;
     private JPanel textPanel;
 
-    private EntryPage parent;
 
-    public ForgottenPassword(EntryPage parent) {
-        this.parent = parent;
+    public ForgottenPassword() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -64,17 +62,22 @@ public class ForgottenPassword extends JDialog implements displayPage {
     private void onOK() {
         // add your code here
         dispose();
-        parent.changeToLoginPage();
+//        parent.changeToLoginPage();
     }
 
     private void onCancel() {
         // add your code here if necessary
         dispose();
-        parent.changeToLoginPage();
+//        parent.changeToLoginPage();
     }
 
     @Override
     public JPanel getPanel() {
         return contentPane;
+    }
+
+    @Override
+    public String getIdentifier() {
+        return "ForgottenPassword";
     }
 }

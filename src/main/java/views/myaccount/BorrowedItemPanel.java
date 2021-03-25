@@ -32,6 +32,11 @@ public class BorrowedItemPanel implements ActionListener, displayPage{
     }
 
     @Override
+    public String getIdentifier() {
+        return "BorrowedItemPanel";
+    }
+
+    @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==returnButton){
             returnIncharge.letUserReturn((Member) CurrentUser.getCurrentUser(), item);

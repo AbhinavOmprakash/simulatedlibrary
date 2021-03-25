@@ -30,4 +30,9 @@ public class BorrowedItemDisplay<V> implements displayPage {
         return displayPanel;
     }
 
+    @Override
+    public String getIdentifier() {
+        return "BorrowedItemDisplay";
+    }
+
 }

@@ -2,7 +2,6 @@ package views.home;
 
 import controllers.DataManager;
 import controllers.library.LibraryItemManager;
-import views.MainPage;
 import views.displayPage;
 import views.home.displayresults.LibraryItemDisplay;
 
@@ -12,71 +11,44 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 @SuppressWarnings({"rawtypes","unchecked"})
-public class HomeScreen<V> implements ActionListener, displayPage {
+public class HomeScreen implements displayPage {
     private JPanel panel;
-    private JButton searchButton;
     private JTextField searchField;
     private JScrollPane searchResults;
     private JPanel searchBox;
-    private JButton myAccountButton;
-    private JButton logoutButton;
-    private DataManager libraryItemManager = new LibraryItemManager();
+
+    public JButton logoutButton;
+    public JButton searchButton;
+    public JButton myAccountButton;
 
     LibraryItemDisplay currentDisplay;
-    MainPage parent;
 
-    public HomeScreen(MainPage parent) {
-        this.parent = parent;
-        searchButton.addActionListener(this);
-        logoutButton.addActionListener(this);
-        myAccountButton.addActionListener(this);
+    public HomeScreen(ActionListener guiController) {
+        searchButton.addActionListener(guiController);
+        logoutButton.addActionListener(guiController);
+        myAccountButton.addActionListener(guiController);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Object actionSource = e.getSource();
-
-        if (actionSource == searchButton) {
-            searchAndDisplayResults();
-        }
-        else if (actionSource == logoutButton) {
-            parent.changeToLogin();
-        } else if (actionSource == myAccountButton){
-            parent.changeToMyAccount();
-        }
-    }
-
-    private void searchAndDisplayResults(){
-        // TO DO uncomment in production
-//        ArrayList<V> results = performSearch();
-        ArrayList<V> results = libraryItemManager.fetchAll();
-        displaySearchResults(results);
-    }
-
-    private ArrayList<V> performSearch(){
-        String query = searchField.getText();
-        return libraryItemManager.search(query);
-    }
-
-    private void displaySearchResults(ArrayList<V> results){
+    public void displaySearchResults(ArrayList results){
 
         for (Object result: results){
             System.out.println(result.toString());
         }
-        cleanUpCurrentDisplay();
         currentDisplay = new LibraryItemDisplay(results);
         searchResults.setViewportView(currentDisplay.getPanel());
     }
 
-    private void cleanUpCurrentDisplay(){
-        if(currentDisplay != null){
-            currentDisplay.cleanup();
-        }
+    @Override
+    public JPanel getPanel() {
+        return panel;
     }
 
     @Override
-    public JPanel getPanel() {
-        // hack to refresh the screen
-        return panel;
+    public String getIdentifier() {
+        return "HomeScreen";
+    }
+
+    public JTextField getSearchField() {
+        return searchField;
     }
 }

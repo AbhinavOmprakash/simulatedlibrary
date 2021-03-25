@@ -4,7 +4,6 @@ import controllers.library.BorrowedItemsDataManager;
 import models.dataobjects.library.CurrentUser;
 import models.dataobjects.library.Member;
 import views.DataObserver;
-import views.MainPage;
 import views.displayPage;
 
 import javax.swing.*;
@@ -18,17 +17,14 @@ public class MyAccount implements displayPage, ActionListener, DataObserver {
     private JPanel panel1;
     private JPanel info;
     private JScrollPane borrowedItemspane;
-    private JButton homeButton;
-
-    private MainPage parent;
+    public JButton homeButton;
 
     BorrowedItemDisplay currentDisplay;
-
     private Member user;
-    public MyAccount(MainPage parent){
-        this.parent = parent;
+
+    public MyAccount(ActionListener guiController){
         this.user = (Member) CurrentUser.getCurrentUser();
-        this.homeButton.addActionListener(this);
+        this.homeButton.addActionListener(guiController);
         BorrowedItemsDataManager.getInstanceOf().registerListener(this);
         displayBorrowedItems();
     }
@@ -65,10 +61,13 @@ public class MyAccount implements displayPage, ActionListener, DataObserver {
     }
 
     @Override
+    public String getIdentifier() {
+        return "MyAccount";
+    }
+
+    @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==homeButton){
-            parent.changeToHome();
-        }
+
     }
 
     @Override

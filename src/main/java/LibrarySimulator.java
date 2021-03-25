@@ -1,4 +1,5 @@
 import com.formdev.flatlaf.FlatDarkLaf;
+import controllers.ui.MainFrameController;
 import views.MainJFrame;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ public class LibrarySimulator {
         }
 
         MainJFrame frame = new MainJFrame("HomeScreen");
+        MainFrameController controller = new MainFrameController(frame);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setSize(1000,500);

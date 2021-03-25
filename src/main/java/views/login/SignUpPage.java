@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class SignUpPage implements displayPage, ActionListener {
+public class SignUpPage implements displayPage {
 
     private JPanel panel;
     private JPanel SignUpPanel;
@@ -20,20 +20,22 @@ public class SignUpPage implements displayPage, ActionListener {
     private JTextField textField3;
     private JPasswordField passwordField1;
     private JPasswordField passwordField2;
-    private JButton signUpButton;
-    private JButton haveAnAccountButton;
     private JSpinner membershipSpinner;
     private JLabel membershipPolicy;
+    private JComboBox comboBox1;
 
-    EntryPage parent;
+    public JButton signUpButton;
+    public JButton haveAnAccountButton;
 
-    SignUpManager signUpManager = new SignUpManager();
     MembershipPolicyManager policyManager = new MembershipPolicyManager();
 
-    public SignUpPage(EntryPage parent) {
-        this.parent  = parent;
-        signUpButton.addActionListener(this);
-        haveAnAccountButton.addActionListener(this);
+    ActionListener guicontroller;
+
+    public SignUpPage(ActionListener guicontroller) {
+        this.guicontroller = guicontroller;
+
+        signUpButton.addActionListener(guicontroller);
+        haveAnAccountButton.addActionListener(guicontroller);
 //        populateSpinner();
     }
 
@@ -53,34 +55,17 @@ public class SignUpPage implements displayPage, ActionListener {
         }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==signUpButton){
-            performSignUp();
-        }
-        if (e.getSource()==haveAnAccountButton){
-            parent.changeToLoginPage();
-        }
-
-    }
-
-    private void performSignUp() {
-        if(true){
-            parent.signUpSuccessful();
-        }
-    }
-
-    private boolean trySigningUp() {
-        SignUpData signUpData = fetchSignUpData();
-        return true;
-    }
-
-    private SignUpData fetchSignUpData() {
+    public SignUpData fetchSignUpData() {
         return null;
     }
 
     public JPanel getPanel() {
         return panel;
+    }
+
+    @Override
+    public String getIdentifier() {
+        return "signUpPage";
     }
 
 

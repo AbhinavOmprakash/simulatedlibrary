@@ -47,6 +47,11 @@ public class LibraryItemPanel implements displayPage, ActionListener, DataObserv
     }
 
     @Override
+    public String getIdentifier() {
+        return "LibraryItemPanel";
+    }
+
+    @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==borrowButton){
             System.out.println("borrowed");

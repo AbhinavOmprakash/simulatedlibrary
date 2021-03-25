@@ -1,28 +1,27 @@
 package views;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class MainJFrame extends JFrame implements PropertyChangeListener, ActionListener {
-    JPanel mainPage =  new MainPage(this);
+public class MainJFrame extends JFrame {
+    JPanel cards = new JPanel(new CardLayout());
 
     public MainJFrame(String title) {
         super(title);
-        setContentPane(mainPage);
-
+        setContentPane(cards);
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        repaint();
-        revalidate();
+    public void addCard(String identifier, JPanel panel){
+        cards.add(identifier, panel);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
+    public void showCard(String identifier){
+        CardLayout layout = (CardLayout) cards.getLayout();
+        layout.show(cards, identifier);
     }
+
 }
