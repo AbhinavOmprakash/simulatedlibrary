@@ -17,6 +17,8 @@ public class UserAccountController extends GuiController implements ActionListen
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==userAccount.homeButton){
             parentController.switchToHomePage();
+        } else if (e.getSource()==userAccount.upgradeMembershipButton){
+            parentController.switchToUpgradeMembership();
         }
 
     }
