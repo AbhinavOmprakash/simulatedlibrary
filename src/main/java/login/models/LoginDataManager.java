@@ -1,4 +1,4 @@
-package login.controllers;
+package login.models;
 
 import common.models.DataManager;
 

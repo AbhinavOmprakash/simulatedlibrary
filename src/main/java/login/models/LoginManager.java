@@ -1,9 +1,8 @@
-package login.controllers;
+package login.models;
 
 import common.models.CurrentUser;
 import common.models.User;
 import member.controllers.UserDataManager;
-import login.models.LoginData;
 
 public class LoginManager {
     LoginDataManager loginData = new LoginDataManager();
