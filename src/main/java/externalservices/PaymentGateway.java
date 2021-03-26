@@ -1,12 +1,11 @@
 package externalservices;
 
 
-import controllers.financials.Accountant;
-import models.dataobjects.library.User;
+import controllers.useraccounts.PaymentObserver;
 
 public interface PaymentGateway{
-    void acceptPayment(User user, double targetAmount);
-    void registerAccountant(Accountant accountant);
-    void removeAccountant(Accountant accountant);
-    void notifyPaymentStatus(Accountant accountant, boolean status);
+    void acceptPayment(Long userID, double targetAmount);
+    void registerObservers(PaymentObserver o);
+    void removeObservers(PaymentObserver o);
+    void notifyPaymentStatus(Long userID, boolean status);
 }
