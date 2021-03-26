@@ -10,4 +10,8 @@ public class MembershipFactory {
         MembershipPolicy policy = (MembershipPolicy) allPolicies.search(policyName).get(0);
         return new MembershipLevel(policy);
     }
+
+    public static MembershipLevel createMembership(MembershipPolicy policy){
+        return new MembershipLevel(policy);
+    }
 }
