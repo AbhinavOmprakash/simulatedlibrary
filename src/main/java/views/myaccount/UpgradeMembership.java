@@ -20,6 +20,7 @@ public class UpgradeMembership implements displayPage {
     public JButton upgradeButton;
     private JPanel panel;
     public JLabel currentPolicy;
+    public JButton backButton;
 
     DataManager policyManager = new MembershipPolicyManager();
 
@@ -28,7 +29,8 @@ public class UpgradeMembership implements displayPage {
         setCurrentUserPolicy();
 
         upgradeButton.addActionListener(guicontroller);
-        membershipPolicies.addActionListener( guicontroller);
+        membershipPolicies.addActionListener(guicontroller);
+        backButton.addActionListener(guicontroller);
     }
 
     private void setCurrentUserPolicy() {
