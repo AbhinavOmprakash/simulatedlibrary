@@ -181,7 +181,12 @@ public class HibernateDB<V> implements DataStoreInterface<V>{
                 1.0 ,1,
                 0.0, 12);
 
+        MembershipPolicy goldPolicy = new MembershipPolicy("Gold",100.0,
+                0.005 ,3,
+                0.0, 12);
         addNewItem((V) basicPolicy);
+        addNewItem((V) goldPolicy);
+
         Member user = new Member("Abhinav", "Omprakash", "abhi", new MembershipLevel(basicPolicy));
         addNewItem((V) user);
     }
