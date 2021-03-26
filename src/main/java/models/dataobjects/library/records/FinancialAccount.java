@@ -6,18 +6,18 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Accounts{
+public class FinancialAccount {
     @Id
-    private int userID;
+    private long userID;
     private double penaltyDue = 0.0;
     private double totalMoneyPaid = 0.0;
 
-    Accounts(){
+    FinancialAccount(){
         // for hibernate
     }
 
-    public Accounts(User user){
-        this.userID = user.getID();
+    public FinancialAccount(long userID){
+        this.userID =userID;
     }
 
     public void addPenalty(double penalty){
@@ -33,11 +33,11 @@ public class Accounts{
         this.totalMoneyPaid += membershipFees;
     }
 
-    public int getUserID() {
+    public long getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(long userID) {
         this.userID = userID;
     }
 
