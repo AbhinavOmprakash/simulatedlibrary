@@ -1,7 +1,7 @@
 package login.views;
 
 import login.models.LoginData;
-import common.displayPage;
+import common.models.displayPage;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;

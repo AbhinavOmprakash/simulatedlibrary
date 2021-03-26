@@ -1,7 +1,7 @@
 package admin.controllers;
-import common.GuiController;
-import common.MainFrameController;
-import common.MainJFrame;
+import common.controllers.GuiController;
+import common.controllers.MainFrameController;
+import common.views.MainJFrame;
 import admin.views.NewLibraryItem;
 
 import java.awt.event.ActionEvent;

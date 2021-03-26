@@ -1,9 +1,9 @@
 package library.controllers;
 
-import common.DataManager;
-import common.GuiController;
-import common.MainFrameController;
-import common.MainJFrame;
+import common.models.DataManager;
+import common.controllers.GuiController;
+import common.controllers.MainFrameController;
+import common.views.MainJFrame;
 import library.models.LibraryItemManager;
 import library.views.HomeScreen;
 

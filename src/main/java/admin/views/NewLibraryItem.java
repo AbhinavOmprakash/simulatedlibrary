@@ -1,7 +1,7 @@
 package admin.views;
 
 import admin.models.NewLibraryItemData;
-import common.displayPage;
+import common.models.displayPage;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;

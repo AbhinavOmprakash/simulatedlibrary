@@ -1,6 +1,6 @@
 package member.controllers;
 
-import common.DataManager;
+import common.models.DataManager;
 
 public class MembershipPolicyManager extends DataManager {
     public MembershipPolicyManager() {

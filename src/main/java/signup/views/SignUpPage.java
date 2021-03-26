@@ -1,9 +1,9 @@
 package signup.views;
 
 import member.controllers.MembershipPolicyManager;
-import member.models.membershiplevels.MembershipPolicy;
+import common.models.MembershipPolicy;
 import signup.models.SignUpData;
-import common.displayPage;
+import common.models.displayPage;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;

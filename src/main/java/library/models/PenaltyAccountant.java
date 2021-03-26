@@ -1,7 +1,7 @@
 package library.models;
 
 
-import common.User;
+import common.models.User;
 import signup.models.AccountsDataManager;
 
 public class PenaltyAccountant extends Accountant {

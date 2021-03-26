@@ -1,4 +1,4 @@
-package common;
+package common.models;
 
 import javax.swing.*;
 

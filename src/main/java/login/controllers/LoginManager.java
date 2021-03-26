@@ -1,7 +1,7 @@
 package login.controllers;
 
-import common.CurrentUser;
-import common.User;
+import common.models.CurrentUser;
+import common.models.User;
 import member.controllers.UserDataManager;
 import login.models.LoginData;
 

@@ -1,6 +1,6 @@
 package signup.models;
 
-import common.DataManager;
+import common.models.DataManager;
 
 public class AccountsDataManager extends DataManager {
     public AccountsDataManager() {

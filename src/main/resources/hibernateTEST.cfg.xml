@@ -30,14 +30,14 @@
     <property name="hbm2ddl.auto">create</property>
 
         <!-- Names the annotated entity class -->
-    <mapping class="common.User"/>
-    <mapping class="member.models.Member"/>
+    <mapping class="common.models.User"/>
+    <mapping class="common.models.Member"/>
     <mapping class="admin.models.Admin"/>
     <mapping class="library.models.BorrowedItems"/>
     <mapping class="login.models.LoginData"/>
     <mapping class="signup.models.FinancialAccount"/>
-    <mapping class="member.models.membershiplevels.MembershipLevel"/>
-    <mapping class="member.models.membershiplevels.MembershipPolicy"/>
+    <mapping class="common.models.MembershipLevel"/>
+    <mapping class="common.models.MembershipPolicy"/>
 
     <mapping class="library.models.libraryitems.LibraryItem"/>
     <mapping class="library.models.libraryitems.Archive"/>

@@ -1,6 +1,6 @@
 package library.models;
 
-import common.DataManager;
+import common.models.DataManager;
 
 public class BorrowedItemsDataManager extends DataManager {
     private static BorrowedItemsDataManager instance;

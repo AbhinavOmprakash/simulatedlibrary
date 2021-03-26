@@ -1,11 +1,11 @@
 package member.views;
 
-import common.DataManager;
+import common.models.DataManager;
 import member.controllers.MembershipPolicyManager;
-import common.CurrentUser;
-import member.models.Member;
-import member.models.membershiplevels.MembershipPolicy;
-import common.displayPage;
+import common.models.CurrentUser;
+import common.models.Member;
+import common.models.MembershipPolicy;
+import common.models.displayPage;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;

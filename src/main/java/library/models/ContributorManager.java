@@ -1,6 +1,6 @@
 package library.models;
 
-import common.DataManager;
+import common.models.DataManager;
 
 @SuppressWarnings({"unchecked"})
 public class ContributorManager extends DataManager {

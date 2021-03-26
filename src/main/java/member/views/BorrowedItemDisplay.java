@@ -1,7 +1,7 @@
 package member.views;
 
 import library.models.libraryitems.LibraryItem;
-import common.displayPage;
+import common.models.displayPage;
 
 import javax.swing.*;
 import java.awt.*;

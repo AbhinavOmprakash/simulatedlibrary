@@ -1,6 +1,6 @@
 package library.models;
 
-import common.DataManager;
+import common.models.DataManager;
 import library.models.libraryitems.LibraryItem;
 
 import java.util.ArrayList;

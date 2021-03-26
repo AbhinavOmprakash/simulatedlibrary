@@ -1,10 +1,6 @@
-package member.models;
+package common.models;
 
-import common.User;
-import common.DataObservable;
-import member.models.membershiplevels.MembershipLevel;
 import library.models.libraryitems.LibraryItem;
-import common.DataObserver;
 
 import javax.persistence.*;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package common;
+package common.models;
 
 public interface DataObservable {
     void registerListener(DataObserver listener);

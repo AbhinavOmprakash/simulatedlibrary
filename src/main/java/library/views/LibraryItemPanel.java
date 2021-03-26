@@ -2,13 +2,13 @@ package library.views;
 
 import library.models.BorrowIncharge;
 import library.models.BorrowedItemsDataManager;
-import common.CurrentUser;
+import common.models.CurrentUser;
 import library.models.Librarian;
-import member.models.Member;
+import common.models.Member;
 import library.models.libraryitems.LibraryItem;
-import common.DataObserver;
+import common.models.DataObserver;
 import library.models.libraryitems.LibItemDataFormatter;
-import common.displayPage;
+import common.models.displayPage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

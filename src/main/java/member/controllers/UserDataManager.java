@@ -1,6 +1,6 @@
 package member.controllers;
 
-import common.DataManager;
+import common.models.DataManager;
 
 @SuppressWarnings({"unchecked"})
 public class UserDataManager extends DataManager {

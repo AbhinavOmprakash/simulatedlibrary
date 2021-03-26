@@ -1,8 +1,8 @@
 package library.models;
 
-import common.DataManager;
-import member.models.Member;
-import member.models.membershiplevels.MembershipLevel;
+import common.models.DataManager;
+import common.models.Member;
+import common.models.MembershipLevel;
 import library.models.libraryitems.LibraryItem;
 
 import java.util.ArrayList;

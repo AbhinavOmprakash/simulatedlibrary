@@ -1,11 +1,11 @@
 package member.views;
 
 import library.models.ReturnIncharge;
-import common.CurrentUser;
-import member.models.Member;
+import common.models.CurrentUser;
+import common.models.Member;
 import library.models.libraryitems.LibraryItem;
 import library.models.libraryitems.LibItemDataFormatter;
-import common.displayPage;
+import common.models.displayPage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

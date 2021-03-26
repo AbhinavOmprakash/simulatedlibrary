@@ -1,5 +1,7 @@
-package common;
+package common.controllers;
 
+import common.models.displayPage;
+import common.views.MainJFrame;
 import login.controllers.LoginManager;
 
 public abstract class GuiController {

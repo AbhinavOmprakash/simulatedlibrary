@@ -1,8 +1,8 @@
 package externalservices;
 
-import member.models.Member;
-import member.models.membershiplevels.MembershipLevel;
-import member.models.membershiplevels.MembershipPolicy;
+import common.models.Member;
+import common.models.MembershipLevel;
+import common.models.MembershipPolicy;
 import library.models.libraryitems.AudioBook;
 import library.models.libraryitems.Book;
 import library.models.libraryitems.LibraryItem;

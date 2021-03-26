@@ -1,6 +1,6 @@
 package login.views;
 
-import common.displayPage;
+import common.models.displayPage;
 
 import javax.swing.*;
 import java.awt.event.*;

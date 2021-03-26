@@ -1,9 +1,9 @@
 package login.controllers;
 
-import common.GuiController;
-import common.MainFrameController;
+import common.controllers.GuiController;
+import common.controllers.MainFrameController;
 import login.models.LoginData;
-import common.MainJFrame;
+import common.views.MainJFrame;
 import login.views.LoginPage;
 
 import java.awt.event.ActionEvent;

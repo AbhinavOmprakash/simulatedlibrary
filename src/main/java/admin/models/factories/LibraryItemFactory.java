@@ -1,7 +1,7 @@
 package admin.models.factories;
 
 import admin.models.NewLibraryItemData;
-import common.DataManager;
+import common.models.DataManager;
 import library.models.LibraryItemManager;
 import library.models.libraryitems.LibraryItem;
 import library.models.contributors.Contributor;

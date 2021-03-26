@@ -1,9 +1,9 @@
 package signup.models;
 
-import common.DataManager;
+import common.models.DataManager;
 import member.controllers.UserDataManager;
 import login.controllers.LoginDataManager;
-import member.models.Member;
+import common.models.Member;
 import admin.models.MembershipFactory;
 import login.models.LoginData;
 

@@ -1,9 +1,9 @@
 package signup.controllers;
 
-import common.GuiController;
-import common.MainFrameController;
+import common.controllers.GuiController;
+import common.controllers.MainFrameController;
 import signup.models.SignUpData;
-import common.MainJFrame;
+import common.views.MainJFrame;
 import signup.models.SignUpManager;
 import signup.views.SignUpPage;
 

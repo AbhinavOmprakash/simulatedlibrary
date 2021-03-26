@@ -1,6 +1,6 @@
 package login.controllers;
 
-import common.DataManager;
+import common.models.DataManager;
 
 public class LoginDataManager extends DataManager {
     public LoginDataManager() {

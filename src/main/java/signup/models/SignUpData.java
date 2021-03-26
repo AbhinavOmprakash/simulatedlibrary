@@ -1,6 +1,6 @@
 package signup.models;
 
-import member.models.membershiplevels.MembershipPolicy;
+import common.models.MembershipPolicy;
 
 public class SignUpData {
     public String firstName;

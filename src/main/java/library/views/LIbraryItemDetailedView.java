@@ -1,6 +1,6 @@
 package library.views;
 
-import common.displayPage;
+import common.models.displayPage;
 
 import javax.swing.*;
 

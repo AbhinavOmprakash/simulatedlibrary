@@ -1,6 +1,6 @@
 package admin.models.factories;
 
-import common.DataManager;
+import common.models.DataManager;
 import library.models.ContributorManager;
 import library.models.contributors.*;
 

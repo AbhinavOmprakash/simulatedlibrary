@@ -1,7 +1,7 @@
 package library.models;
 
 
-import common.DataManager;
+import common.models.DataManager;
 
 public class LibraryItemManager<V> extends DataManager {
     public LibraryItemManager() {

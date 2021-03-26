@@ -1,13 +1,15 @@
-package common;
+package common.controllers;
 
 import admin.controllers.AdminHomeController;
 import admin.controllers.NewLibraryItemController;
 import admin.controllers.NewMembershipPolicyController;
+import common.models.CurrentUser;
+import common.models.Member;
+import common.views.MainJFrame;
 import login.controllers.LoginController;
 import member.controllers.UpgradeMembershipController;
 import member.controllers.UserAccountController;
 import library.controllers.UserHomeController;
-import member.models.Member;
 import signup.controllers.SignUpController;
 
 public class MainFrameController{

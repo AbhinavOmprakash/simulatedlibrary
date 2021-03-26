@@ -1,4 +1,4 @@
-package common;
+package common.models;
 
 import org.hibernate.annotations.GenericGenerator;
 

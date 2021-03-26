@@ -1,9 +1,7 @@
-package common;
+package common.models;
 
 import externalservices.DataStoreInterface;
 import externalservices.HibernateDB;
-import common.DataObservable;
-import common.DataObserver;
 
 import java.util.ArrayList;
 

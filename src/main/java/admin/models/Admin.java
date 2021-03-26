@@ -1,6 +1,6 @@
 package admin.models;
 
-import common.User;
+import common.models.User;
 
 import javax.persistence.Entity;
 

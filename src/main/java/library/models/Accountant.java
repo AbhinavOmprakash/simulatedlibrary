@@ -1,6 +1,6 @@
 package library.models;
 
-import common.DataManager;
+import common.models.DataManager;
 
 public abstract class Accountant {
     protected DataManager accounts;

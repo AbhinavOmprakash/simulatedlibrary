@@ -1,8 +1,8 @@
 package member.controllers;
 
-import common.GuiController;
-import common.MainFrameController;
-import common.MainJFrame;
+import common.controllers.GuiController;
+import common.controllers.MainFrameController;
+import common.views.MainJFrame;
 import member.views.MyAccount;
 
 import java.awt.event.ActionEvent;

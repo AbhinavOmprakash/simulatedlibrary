@@ -1,4 +1,4 @@
-package member.models.membershiplevels;
+package common.models;
 
 import org.hibernate.annotations.GenericGenerator;
 

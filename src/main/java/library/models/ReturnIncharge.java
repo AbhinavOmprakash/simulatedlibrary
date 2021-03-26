@@ -1,7 +1,7 @@
 package library.models;
 
-import common.DataManager;
-import member.models.Member;
+import common.models.DataManager;
+import common.models.Member;
 import library.models.libraryitems.LibraryItem;
 
 @SuppressWarnings({"rawtypes", "unchecked"})

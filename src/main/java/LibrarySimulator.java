@@ -1,6 +1,6 @@
 import com.formdev.flatlaf.FlatDarkLaf;
-import common.MainFrameController;
-import common.MainJFrame;
+import common.controllers.MainFrameController;
+import common.views.MainJFrame;
 
 import javax.swing.*;
 

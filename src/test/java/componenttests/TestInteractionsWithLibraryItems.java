@@ -1,6 +1,6 @@
 package componenttests;
 
-import common.DataManager;
+import common.models.DataManager;
 import library.models.LibraryItemManager;
 import externalservices.DataStoreInterface;
 import externalservices.HibernateDB;

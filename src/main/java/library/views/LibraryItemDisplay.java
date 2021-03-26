@@ -1,11 +1,11 @@
 package library.views;
 
 import library.models.BorrowIncharge;
-import common.CurrentUser;
-import member.models.Member;
+import common.models.CurrentUser;
+import common.models.Member;
 import library.models.libraryitems.LibraryItem;
-import common.DataObserver;
-import common.displayPage;
+import common.models.DataObserver;
+import common.models.displayPage;
 
 import javax.swing.*;
 import java.awt.*;

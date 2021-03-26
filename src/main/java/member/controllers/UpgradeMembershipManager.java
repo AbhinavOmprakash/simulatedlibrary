@@ -1,11 +1,11 @@
 package member.controllers;
 
-import common.PaymentObserver;
+import common.models.PaymentObserver;
 import externalservices.DummyPayment;
 import externalservices.PaymentGateway;
-import member.models.Member;
+import common.models.Member;
 import admin.models.MembershipFactory;
-import member.models.membershiplevels.MembershipPolicy;
+import common.models.MembershipPolicy;
 
 import java.util.HashMap;
 import java.util.Map;

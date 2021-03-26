@@ -1,8 +1,8 @@
 package externalservices;
 
 import signup.models.AccountsDataManager;
-import common.DataManager;
-import common.PaymentObserver;
+import common.models.DataManager;
+import common.models.PaymentObserver;
 import signup.models.FinancialAccount;
 
 import java.util.ArrayList;
