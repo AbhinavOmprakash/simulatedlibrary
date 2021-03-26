@@ -1,7 +1,7 @@
 package externalservices;
 
 
-import controllers.useraccounts.PaymentObserver;
+import common.PaymentObserver;
 
 public interface PaymentGateway{
     void acceptPayment(Long userID, double targetAmount);

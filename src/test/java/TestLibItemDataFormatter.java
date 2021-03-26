@@ -1,9 +1,9 @@
-import models.dataobjects.libraryitems.Book;
-import models.dataobjects.libraryitems.LibraryItem;
-import models.dataobjects.libraryitems.contributors.Author;
-import models.dataobjects.libraryitems.contributors.Contributor;
+import library.models.libraryitems.Book;
+import library.models.libraryitems.LibraryItem;
+import library.models.contributors.Author;
+import library.models.contributors.Contributor;
 import org.junit.jupiter.api.Test;
-import views.LibItemDataFormatter;
+import library.models.libraryitems.LibItemDataFormatter;
 
 import java.util.ArrayList;
 import java.util.Arrays;

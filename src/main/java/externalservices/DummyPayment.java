@@ -1,9 +1,9 @@
 package externalservices;
 
-import controllers.financials.AccountsDataManager;
-import controllers.DataManager;
-import controllers.useraccounts.PaymentObserver;
-import models.dataobjects.library.records.FinancialAccount;
+import signup.models.AccountsDataManager;
+import common.DataManager;
+import common.PaymentObserver;
+import signup.models.FinancialAccount;
 
 import java.util.ArrayList;
 

@@ -1,13 +1,13 @@
 package externalservices;
 
-import models.dataobjects.library.Member;
-import models.dataobjects.library.membershiplevels.MembershipLevel;
-import models.dataobjects.library.membershiplevels.MembershipPolicy;
-import models.dataobjects.libraryitems.AudioBook;
-import models.dataobjects.libraryitems.Book;
-import models.dataobjects.libraryitems.LibraryItem;
-import models.dataobjects.libraryitems.contributors.Author;
-import models.dataobjects.libraryitems.contributors.Contributor;
+import member.models.Member;
+import member.models.membershiplevels.MembershipLevel;
+import member.models.membershiplevels.MembershipPolicy;
+import library.models.libraryitems.AudioBook;
+import library.models.libraryitems.Book;
+import library.models.libraryitems.LibraryItem;
+import library.models.contributors.Author;
+import library.models.contributors.Contributor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

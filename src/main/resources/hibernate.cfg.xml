@@ -23,28 +23,28 @@
     <property name="hbm2ddl.auto">create</property>
 
         <!-- Names the annotated entity class -->
-    <mapping class="models.dataobjects.library.User"/>
-    <mapping class="models.dataobjects.library.Member"/>
-    <mapping class="models.dataobjects.library.Admin"/>
-    <mapping class="models.dataobjects.library.records.BorrowedItems"/>
-    <mapping class="models.dataobjects.library.records.FinancialAccount"/>
-    <mapping class="models.dataobjects.library.records.LoginData"/>
-    <mapping class="models.dataobjects.library.membershiplevels.MembershipLevel"/>
-    <mapping class="models.dataobjects.library.membershiplevels.MembershipPolicy"/>
+    <mapping class="common.User"/>
+    <mapping class="member.models.Member"/>
+    <mapping class="admin.models.Admin"/>
+    <mapping class="library.models.BorrowedItems"/>
+    <mapping class="signup.models.FinancialAccount"/>
+    <mapping class="login.models.LoginData"/>
+    <mapping class="member.models.membershiplevels.MembershipLevel"/>
+    <mapping class="member.models.membershiplevels.MembershipPolicy"/>
 
-    <mapping class="models.dataobjects.libraryitems.LibraryItem"/>
-    <mapping class="models.dataobjects.libraryitems.Archive"/>
-    <mapping class="models.dataobjects.libraryitems.AudioBook"/>
-    <mapping class="models.dataobjects.libraryitems.Book"/>
-    <mapping class="models.dataobjects.libraryitems.DVD"/>
+    <mapping class="library.models.libraryitems.LibraryItem"/>
+    <mapping class="library.models.libraryitems.Archive"/>
+    <mapping class="library.models.libraryitems.AudioBook"/>
+    <mapping class="library.models.libraryitems.Book"/>
+    <mapping class="library.models.libraryitems.DVD"/>
 
-    <mapping class="models.dataobjects.libraryitems.contributors.Contributor"/>
-    <mapping class="models.dataobjects.libraryitems.contributors.Actor"/>
-    <mapping class="models.dataobjects.libraryitems.contributors.Author"/>
-    <mapping class="models.dataobjects.libraryitems.contributors.Director"/>
-    <mapping class="models.dataobjects.libraryitems.contributors.Poet"/>
-    <mapping class="models.dataobjects.libraryitems.contributors.ScreenWriter"/>
-    <mapping class="models.dataobjects.libraryitems.contributors.Singer"/>
+    <mapping class="library.models.contributors.Contributor"/>
+    <mapping class="library.models.contributors.Actor"/>
+    <mapping class="library.models.contributors.Author"/>
+    <mapping class="library.models.contributors.Director"/>
+    <mapping class="library.models.contributors.Poet"/>
+    <mapping class="library.models.contributors.ScreenWriter"/>
+    <mapping class="library.models.contributors.Singer"/>
 
     </session-factory>
 </hibernate-configuration>

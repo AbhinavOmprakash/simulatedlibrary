@@ -1,6 +1,6 @@
 import com.formdev.flatlaf.FlatDarkLaf;
-import controllers.ui.MainFrameController;
-import views.MainJFrame;
+import common.MainFrameController;
+import common.MainJFrame;
 
 import javax.swing.*;
 
@@ -8,6 +8,7 @@ import javax.swing.*;
 public class LibrarySimulator {
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
 
+        //todo move exception handling into mainJframe
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf() );
         } catch( Exception ex ) {
