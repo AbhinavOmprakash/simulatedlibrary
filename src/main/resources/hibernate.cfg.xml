@@ -27,7 +27,7 @@
     <mapping class="models.dataobjects.library.Member"/>
     <mapping class="models.dataobjects.library.Admin"/>
     <mapping class="models.dataobjects.library.records.BorrowedItems"/>
-    <mapping class="models.dataobjects.library.records.Accounts"/>
+    <mapping class="models.dataobjects.library.records.FinancialAccount"/>
     <mapping class="models.dataobjects.library.records.LoginData"/>
     <mapping class="models.dataobjects.library.membershiplevels.MembershipLevel"/>
     <mapping class="models.dataobjects.library.membershiplevels.MembershipPolicy"/>
