@@ -16,9 +16,9 @@ public class SignUpPage implements displayPage {
 
     private JPanel panel;
     private JPanel SignUpPanel;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
+    private JTextField firstName;
+    private JTextField lastName;
+    private JTextField userName;
     private JPasswordField passwordField1;
     private JPasswordField passwordField2;
     private JSpinner membershipSpinner;
@@ -30,11 +30,7 @@ public class SignUpPage implements displayPage {
 
     MembershipPolicyManager policyManager = new MembershipPolicyManager();
 
-    ActionListener guicontroller;
-
     public SignUpPage(ActionListener guicontroller) {
-        this.guicontroller = guicontroller;
-
         signUpButton.addActionListener(guicontroller);
         haveAnAccountButton.addActionListener(guicontroller);
         populateMembershipPolicies();
@@ -59,7 +55,9 @@ public class SignUpPage implements displayPage {
     }
 
     public SignUpData fetchSignUpData() {
-        return null;
+        return  new SignUpData(firstName.getText(), lastName.getText(),
+                userName.getText(), passwordField1.getPassword(),
+                (MembershipPolicy) membershipPolicies.getSelectedItem());
     }
 
     public JPanel getPanel() {
