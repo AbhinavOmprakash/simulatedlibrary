@@ -2,8 +2,8 @@ package componenttests;
 
 import common.models.DataManager;
 import library.models.LibraryItemManager;
-import externalservices.DataStoreInterface;
-import externalservices.HibernateDB;
+import common.models.DataStoreInterface;
+import common.models.HibernateDB;
 import library.models.libraryitems.Book;
 import library.models.libraryitems.LibraryItem;
 import library.models.contributors.Author;
