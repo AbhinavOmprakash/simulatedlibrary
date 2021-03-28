@@ -13,14 +13,15 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 @SuppressWarnings({"rawtypes, unchecked"})
-public class UpgradeMembershipController extends GuiController implements ActionListener{
-    UpgradeMembership upgradeMembership = new UpgradeMembership(this);
+public class UpgradeMembershipController implements ActionListener{
+
+    UpgradeMembership upgradeMembership;
     DataManager policyManager = new MembershipPolicyManager();
     UpgradeMembershipManager upgradeMembershipManager = new UpgradeMembershipManager();
 
-    public UpgradeMembershipController(MainFrameController parentController, MainJFrame mainFrame) {
-        super(parentController, mainFrame);
-        setCurrentPage(upgradeMembership);
+    // todo refactor, class seems to be doing too much.
+    public UpgradeMembershipController(UpgradeMembership page) {
+        upgradeMembership = page;
     }
 
     @Override
@@ -28,7 +29,6 @@ public class UpgradeMembershipController extends GuiController implements Action
         if(e.getSource()==upgradeMembership.upgradeButton){
             upgradeMembership();
             updateDisplayedPolicy();
-
         } else if(e.getSource()==upgradeMembership.membershipPolicies){
             changeDisplayedFees();
         }
@@ -38,7 +38,7 @@ public class UpgradeMembershipController extends GuiController implements Action
         Member member = (Member) CurrentUser.getCurrentUser();
         upgradeMembership.currentPolicy.setText(member.getMembershipLevel().getPolicy());
     }
-
+    //todo consider extracting the following 2 methods to another class.
     private void upgradeMembership() {
         Member member = (Member) CurrentUser.getCurrentUser();
         upgradeMembershipManager.upgradeMember(member, getSelectedPolicy());
