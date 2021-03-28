@@ -1,30 +1,50 @@
 package common;
 
-import common.controllers.GuiController;
+import common.customevents.EventListener;
+import common.models.DisplayPage;
 import common.views.MainJFrame;
 
 import javax.swing.*;
-import java.util.ArrayList;
+import java.awt.event.ActionListener;
 
-public abstract class Router {
-    private static final MainJFrame mainFrame = new MainJFrame();
+@SuppressWarnings({"unchecked","rawtypes"})
+public abstract class Router implements ActionListener{
+    // todo, design flaw?
+    private static MainJFrame mainFrame;
 
-    protected void registerController(GuiController controller){
-        addViews(controller.getViewIdentifier(), controller.getViewPage());
+    protected Router parentRouter;
+
+    public Router(){}
+
+    //to be used by mainRouter
+    public Router(MainJFrame mainFrame){
+        this.mainFrame = mainFrame;
+    }
+
+    public Router(Router router) {
+        this.parentRouter = router;
+    }
+
+    protected void registerView(DisplayPage page){
+        addViews(page.getIdentifier(), page.getPanel());
     }
 
     private void addViews(String id, JPanel panel){
         mainFrame.addCard(id, panel);
     }
+    public abstract void homeView();
 
-    public abstract void changeView(Page page);
-
-    protected abstract void passOnToParent(Page page);
-
-    protected void setView(GuiController controller){
-        mainFrame.showCard(controller.getViewIdentifier());
+    public void changeView(Views view){
+        // to be implemented by parent
     }
 
+    //todo improve design, hacky.
+    protected void refresh(){
+        mainFrame.refresh();
+    }
 
+    protected void setView(DisplayPage page){
+        mainFrame.showCard(page.getIdentifier());
+    }
 
 }
