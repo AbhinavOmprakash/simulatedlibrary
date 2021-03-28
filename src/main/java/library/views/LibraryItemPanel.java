@@ -65,16 +65,18 @@ public class LibraryItemPanel implements displayPage, ActionListener, DataObserv
     }
 
     @Override
-    public void performAction() {
-        refreshCheckedOutStatus();
+    public JPanel getPanel() {
+        return panel1;
     }
 
-    private void refreshCheckedOutStatus() {
-        this.checkedOut.setText(LibItemDataFormatter.constructCheckoutString(librarian.isBorrowed(item)));
+    @Override
+    public String getIdentifier() {
+        return "LibraryItemPanel";
     }
 
-    public void disableBorrowButton(){
-        borrowButton.setEnabled(false);
+    @Override
+    public void registerListener(ActionListener listener) {
+
     }
 
     public void enableBorrowButton(){
