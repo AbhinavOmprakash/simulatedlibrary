@@ -55,6 +55,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <enabled value="false"/>
           <text value="View all library items"/>
         </properties>
       </component>
@@ -64,6 +65,7 @@
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
         <properties>
+          <enabled value="false"/>
           <text value="view all policies"/>
         </properties>
       </component>

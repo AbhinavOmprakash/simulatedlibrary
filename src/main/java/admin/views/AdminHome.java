@@ -1,22 +1,32 @@
 package admin.views;
 
-import common.models.displayPage;
+import admin.controllers.AdminHomeController;
+import common.Router;
+import common.models.DisplayPage;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-public class AdminHome implements displayPage {
+public class AdminHome implements DisplayPage {
     private JPanel panel;
     public JButton addNewLibraryItemButton;
     public JButton addNewPolicyButton;
     public JButton viewAllLibraryItemsButton;
     public JButton viewAllPoliciesButton;
 
-    public AdminHome(ActionListener guicontroller) {
-        addNewLibraryItemButton.addActionListener(guicontroller);
-        addNewPolicyButton.addActionListener(guicontroller);
-        viewAllLibraryItemsButton.addActionListener(guicontroller);
-        viewAllPoliciesButton.addActionListener(guicontroller);
+    ActionListener controller;
+    public AdminHome(Router router) {
+        controller = new AdminHomeController(this);
+        registerListener(controller);
+        registerListener(router);
+    }
+
+    @Override
+    public void registerListener(ActionListener listener) {
+        addNewLibraryItemButton.addActionListener(listener);
+        addNewPolicyButton.addActionListener(listener);
+        viewAllLibraryItemsButton.addActionListener(listener);
+        viewAllPoliciesButton.addActionListener(listener);
     }
 
     @Override
@@ -26,6 +36,7 @@ public class AdminHome implements displayPage {
 
     @Override
     public String getIdentifier() {
-        return "adminHome";
+        return "AdminHome";
     }
+
 }
