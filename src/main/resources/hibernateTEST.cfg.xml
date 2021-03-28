@@ -35,7 +35,7 @@
     <mapping class="admin.models.Admin"/>
     <mapping class="library.models.BorrowedItems"/>
     <mapping class="login.models.LoginData"/>
-    <mapping class="signup.models.FinancialAccount"/>
+    <mapping class="common.models.FinancialAccount"/>
     <mapping class="common.models.MembershipLevel"/>
     <mapping class="common.models.MembershipPolicy"/>
 
