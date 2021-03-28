@@ -28,12 +28,9 @@ public class LoginData {
         this.hashedPassword = BCrypt.hashpw(String.valueOf(password), BCrypt.gensalt());
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LoginData loginData = (LoginData) o;
-        return username.equals(loginData.username) && hashedPassword.equals(loginData.hashedPassword);
+    public boolean verifyPasswd(rawLoginData enteredData) {
+        return  (enteredData.getUsername().equals(username) &&
+                BCrypt.checkpw(enteredData.getPasswd(), hashedPassword));
     }
 
     public String getUsername() {
