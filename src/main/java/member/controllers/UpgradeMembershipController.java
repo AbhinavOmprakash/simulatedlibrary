@@ -32,9 +32,6 @@ public class UpgradeMembershipController extends GuiController implements Action
 
         } else if(e.getSource()==upgradeMembership.membershipPolicies){
             changeDisplayedFees();
-
-        } else if(e.getSource()==upgradeMembership.backButton){
-            parentController.switchToMyAccount();
         }
     }
 
