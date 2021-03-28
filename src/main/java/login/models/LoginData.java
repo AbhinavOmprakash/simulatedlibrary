@@ -26,7 +26,6 @@ public class LoginData {
     public LoginData(String username, String password) {
         this.username = username;
         this.hashedPassword = BCrypt.hashpw(String.valueOf(password), BCrypt.gensalt());
-        this.userID = userID;
     }
 
     @Override
