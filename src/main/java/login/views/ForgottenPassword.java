@@ -1,19 +1,22 @@
 package login.views;
 
-import common.models.displayPage;
+import common.Router;
+import common.models.DisplayPage;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-public class ForgottenPassword extends JDialog implements displayPage {
+//todo clean up the class
+public class ForgottenPassword extends JDialog implements DisplayPage {
     private JPanel contentPane;
-    private JButton buttonOK;
-    private JButton buttonCancel;
+    public JButton buttonOK;
+    public JButton buttonCancel;
     private JTextArea textArea1;
     private JPanel textPanel;
 
 
-    public ForgottenPassword() {
+    public ForgottenPassword(ActionListener router) {
+
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -30,18 +33,8 @@ public class ForgottenPassword extends JDialog implements displayPage {
 
 
         textArea1.setText(displayText);
-
-        buttonOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOK();
-            }
-        });
-
-        buttonCancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        });
+        buttonOK.addActionListener(router);
+        buttonCancel.addActionListener(router);
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -79,5 +72,10 @@ public class ForgottenPassword extends JDialog implements displayPage {
     @Override
     public String getIdentifier() {
         return "ForgottenPassword";
+    }
+
+    @Override
+    public void registerListener(ActionListener listener) {
+
     }
 }
