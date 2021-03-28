@@ -11,7 +11,9 @@ public class LoginData {
     public String hashedPassword;
 
     @Id
-    public int userID;
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name="increment", strategy = "increment")
+    public int ID;
 
     public LoginData(){
         // for hibernate
@@ -51,11 +53,5 @@ public class LoginData {
         hashedPassword = BCrypt.hashpw(password,BCrypt.gensalt());
     }
 
-    public int getUserID() {
-        return userID;
-    }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
 }
