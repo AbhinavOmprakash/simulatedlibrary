@@ -1,18 +1,20 @@
 package member.views;
 
+import common.Router;
 import common.models.DataManager;
-import member.controllers.MembershipPolicyManager;
+import member.controllers.UpgradeMembershipController;
+import member.models.MembershipPolicyManager;
 import common.models.CurrentUser;
 import common.models.Member;
 import common.models.MembershipPolicy;
-import common.models.displayPage;
+import common.models.DisplayPage;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 @SuppressWarnings({"rawtypes","unchecked"})
-public class UpgradeMembership implements displayPage {
+public class UpgradeMembership implements DisplayPage {
     public JComboBox membershipPolicies;
     public JLabel fees;
     public JButton upgradeButton;
@@ -21,10 +23,15 @@ public class UpgradeMembership implements displayPage {
     public JButton backButton;
 
     DataManager policyManager = new MembershipPolicyManager();
+    ActionListener controller;
 
-    public UpgradeMembership(ActionListener guicontroller) {
+    public UpgradeMembership(Router router) {
+        controller = new UpgradeMembershipController(this);
         populateMembershipPolicies();
         setCurrentUserPolicy();
+        registerListener(controller);
+        registerListener(router);
+    }
 
     @Override
     public void registerListener(ActionListener listener) {
