@@ -26,9 +26,11 @@ public class UpgradeMembership implements displayPage {
         populateMembershipPolicies();
         setCurrentUserPolicy();
 
-        upgradeButton.addActionListener(guicontroller);
-        membershipPolicies.addActionListener(guicontroller);
-        backButton.addActionListener(guicontroller);
+    @Override
+    public void registerListener(ActionListener listener) {
+        upgradeButton.addActionListener(listener);
+        membershipPolicies.addActionListener(listener);
+        backButton.addActionListener(listener);
     }
 
     private void setCurrentUserPolicy() {
