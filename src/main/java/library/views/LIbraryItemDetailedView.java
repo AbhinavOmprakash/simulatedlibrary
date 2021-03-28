@@ -1,10 +1,11 @@
 package library.views;
 
-import common.models.displayPage;
+import common.models.DisplayPage;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
-public class LIbraryItemDetailedView implements displayPage {
+public class LIbraryItemDetailedView implements DisplayPage {
 
     public JPanel panel1;
 
@@ -21,5 +22,10 @@ public class LIbraryItemDetailedView implements displayPage {
     @Override
     public String getIdentifier() {
         return "LibraryItemDetailedView";
+    }
+
+    @Override
+    public void registerListener(ActionListener listener) {
+
     }
 }
