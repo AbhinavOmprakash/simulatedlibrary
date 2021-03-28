@@ -1,13 +1,12 @@
-package externalservices;
+package common.models;
 
-import common.models.Member;
-import common.models.MembershipLevel;
-import common.models.MembershipPolicy;
+import admin.models.Admin;
 import library.models.libraryitems.AudioBook;
 import library.models.libraryitems.Book;
 import library.models.libraryitems.LibraryItem;
 import library.models.contributors.Author;
 import library.models.contributors.Contributor;
+import login.models.LoginData;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
@@ -168,7 +167,7 @@ public class HibernateDB<V> implements DataStoreInterface<V>{
         // audio book 2
         ArrayList<Contributor> contributor2 = new ArrayList<>(Collections.singletonList(writer1));
         LibraryItem audioBook2 = new AudioBook("The fault in our stars",
-                "Yound Adult, Romance",
+                "Young Adult, Romance",
                 13427890,
                 contributor2,
                 true,
@@ -187,8 +186,15 @@ public class HibernateDB<V> implements DataStoreInterface<V>{
         addNewItem((V) basicPolicy);
         addNewItem((V) goldPolicy);
 
-        Member user = new Member("Abhinav", "Omprakash", "abhi", new MembershipLevel(basicPolicy));
+        Member user = new Member("Abhinav", "Omprakash", "ab", new MembershipLevel(basicPolicy));
+        Admin administrator = new Admin("Deepak", "Yadav", "admin");
+        LoginData adminLogin = new LoginData("admin","JavaSucks");
+        LoginData abhiLogin = new LoginData("ab","aww");
+
         addNewItem((V) user);
+        addNewItem((V) administrator);
+        addNewItem((V) adminLogin);
+        addNewItem((V) abhiLogin);
     }
 
 
