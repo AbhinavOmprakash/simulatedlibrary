@@ -1,4 +1,4 @@
-package signup.models;
+package library.models;
 
 import common.models.DataManager;
 
