@@ -14,7 +14,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LibraryItemPanel implements displayPage, ActionListener, DataObserver {
+public class LibraryItemPanel implements DisplayPage, ActionListener{
 
     private JPanel panel1;
     private JButton borrowButton;
@@ -35,7 +35,8 @@ public class LibraryItemPanel implements displayPage, ActionListener, DataObserv
         this.libItemType.setText(item.getType());
         this.checkedOut.setText(LibItemDataFormatter.constructCheckoutString(librarian.isBorrowed(item)));
         this.borrowButton.addActionListener(this);
-        BorrowedItemsDataManager.getInstanceOf().registerListener(this);
+
+        setBorrowButton();
     }
 
     public void unregisterSelf(){
