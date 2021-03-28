@@ -23,7 +23,7 @@ public class LoginData {
         this.hashedPassword = BCrypt.hashpw(String.valueOf(password), BCrypt.gensalt());
     }
 
-    public LoginData(String username, char[] password, int userID){
+    public LoginData(String username, String password) {
         this.username = username;
         this.hashedPassword = BCrypt.hashpw(String.valueOf(password), BCrypt.gensalt());
         this.userID = userID;
