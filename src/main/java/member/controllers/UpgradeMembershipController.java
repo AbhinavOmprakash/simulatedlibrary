@@ -1,12 +1,11 @@
 package member.controllers;
 
-import common.controllers.GuiController;
-import common.controllers.MainFrameController;
 import common.models.CurrentUser;
 import common.models.DataManager;
 import common.models.Member;
 import common.models.MembershipPolicy;
-import common.views.MainJFrame;
+import member.models.MembershipPolicyManager;
+import member.models.UpgradeMembershipManager;
 import member.views.UpgradeMembership;
 
 import java.awt.event.ActionEvent;
