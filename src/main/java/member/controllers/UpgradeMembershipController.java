@@ -48,6 +48,12 @@ public class UpgradeMembershipController extends GuiController implements Action
         upgradeMembershipManager.upgradeMember(member, getSelectedPolicy());
     }
 
+    private MembershipPolicy getSelectedPolicy() {
+        Object policyName = upgradeMembership.membershipPolicies.getSelectedItem();
+        List results = policyManager.search(String.valueOf(policyName));
+        return (MembershipPolicy) results.get(0);
+    }
+
     private void changeDisplayedFees() {
         Double fees = getFeesForMembership();
         upgradeMembership.fees.setText(String.valueOf(fees));
@@ -58,9 +64,4 @@ public class UpgradeMembershipController extends GuiController implements Action
         return policy.membershipFees;
     }
 
-    private MembershipPolicy getSelectedPolicy() {
-        Object policyName = upgradeMembership.membershipPolicies.getSelectedItem();
-        List results = policyManager.search(String.valueOf(policyName));
-        return (MembershipPolicy) results.get(0);
-    }
 }
