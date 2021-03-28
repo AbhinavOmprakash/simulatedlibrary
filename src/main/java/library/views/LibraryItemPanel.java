@@ -8,7 +8,7 @@ import common.models.Member;
 import library.models.libraryitems.LibraryItem;
 import common.models.DataObserver;
 import library.models.libraryitems.LibItemDataFormatter;
-import common.models.displayPage;
+import common.models.DisplayPage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -39,30 +39,41 @@ public class LibraryItemPanel implements DisplayPage, ActionListener{
         setBorrowButton();
     }
 
-    public void unregisterSelf(){
-        BorrowedItemsDataManager.getInstanceOf().removeListener(this);
-    }
-    @Override
-    public JPanel getPanel() {
-        return panel1;
+    private void setBorrowButton() {
+        System.out.println("setBorrowButton?");
+        if(librarian.isBorrowed(item)){
+            disableBorrowButton();
+        } else{
+            enableBorrowButton();
+        }
     }
 
-    @Override
-    public String getIdentifier() {
-        return "LibraryItemPanel";
+    public void disableBorrowButton(){
+        borrowButton.setEnabled(false);
+        System.out.println("disabling");
+    }
+
+    public void enableBorrowButton(){
+        borrowButton.setEnabled(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==borrowButton){
-            System.out.println("borrowed");
             initiateBorrow();
+            refreshStatus();
         }
     }
 
+    //todo move to a controller
     private void initiateBorrow() {
         Member currentUser = (Member) CurrentUser.getCurrentUser();
         borrowIncharge.letUserBorrow(currentUser, item);
+    }
+
+    private void refreshStatus() {
+        this.checkedOut.setText(LibItemDataFormatter.constructCheckoutString(librarian.isBorrowed(item)));
+        setBorrowButton();
     }
 
     @Override
@@ -80,7 +91,4 @@ public class LibraryItemPanel implements DisplayPage, ActionListener{
 
     }
 
-    public void enableBorrowButton(){
-        borrowButton.setEnabled(true);
-    }
 }
