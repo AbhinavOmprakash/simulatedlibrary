@@ -1,13 +1,15 @@
 package library.views;
 
-import common.models.displayPage;
+import common.Router;
+import common.models.DisplayPage;
+import library.controllers.UserHomeController;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 @SuppressWarnings({"rawtypes","unchecked"})
-public class HomeScreen implements displayPage {
+public class HomeScreen implements DisplayPage {
     private JPanel panel;
     private JTextField searchField;
     private JScrollPane searchResults;
@@ -19,17 +21,22 @@ public class HomeScreen implements displayPage {
 
     LibraryItemDisplay currentDisplay;
 
-    public HomeScreen(ActionListener guiController) {
-        searchButton.addActionListener(guiController);
-        logoutButton.addActionListener(guiController);
-        myAccountButton.addActionListener(guiController);
+    ActionListener controller;
+
+    public HomeScreen(Router router) {
+        controller = new UserHomeController(this);
+        registerListener(router);
+        registerListener(controller);
+    }
+
+    @Override
+    public void registerListener(ActionListener listener) {
+        searchButton.addActionListener(listener);
+        logoutButton.addActionListener(listener);
+        myAccountButton.addActionListener(listener);
     }
 
     public void displaySearchResults(ArrayList results){
-
-        for (Object result: results){
-            System.out.println(result.toString());
-        }
         currentDisplay = new LibraryItemDisplay(results);
         searchResults.setViewportView(currentDisplay.getPanel());
     }
