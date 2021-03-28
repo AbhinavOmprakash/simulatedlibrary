@@ -1,29 +1,35 @@
 package member.views;
 
-import library.models.ReturnIncharge;
-import common.models.CurrentUser;
-import common.models.Member;
+import common.Router;
+import common.models.DisplayPage;
 import library.models.libraryitems.LibraryItem;
-import library.models.libraryitems.LibItemDataFormatter;
-import common.models.displayPage;
+import member.controllers.BorrowedItemController;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BorrowedItemPanel implements ActionListener, displayPage{
-    private JTextArea titleArea;
-    private JButton moreInfoButton;
-    private JButton returnButton;
+public class BorrowedItemPanel implements DisplayPage {
     private JPanel panel;
+    public JButton moreInfo;
+    public JButton returnButton;
+    private JLabel title;
+    private JLabel itemType;
 
-    private ReturnIncharge returnIncharge = new ReturnIncharge();
-    private final LibraryItem item;
+    public final LibraryItem item; // todo consider moving to controller?
+    BorrowedItemController controller = new BorrowedItemController(this);
 
-    public BorrowedItemPanel(LibraryItem item) {
+    public BorrowedItemPanel(LibraryItem item){
         this.item = item;
-        titleArea.setText(LibItemDataFormatter.getFormattedTitle(item));
-        returnButton.addActionListener(this);
+
+        title.setText(item.getTitle());
+        itemType.setText(item.getType());
+        registerListener(controller);
+    }
+
+    @Override
+    public void registerListener(ActionListener listener) {
+        moreInfo.addActionListener(listener);
+        returnButton.addActionListener(listener);
     }
 
     @Override
@@ -35,13 +41,4 @@ public class BorrowedItemPanel implements ActionListener, displayPage{
     public String getIdentifier() {
         return "BorrowedItemPanel";
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==returnButton){
-            returnIncharge.letUserReturn((Member) CurrentUser.getCurrentUser(), item);
-            System.out.println("returned");
-        }
-    }
-
 }
