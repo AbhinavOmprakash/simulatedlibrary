@@ -1,16 +1,16 @@
 package member.views;
 
 import library.models.libraryitems.LibraryItem;
-import common.models.displayPage;
+import common.models.DisplayPage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BorrowedItemDisplay<V> implements displayPage {
+public class BorrowedItemDisplay<V> implements DisplayPage {
     private JPanel displayPanel;
-    private JPanel items;
     private ArrayList<BorrowedItemPanel> panels = new ArrayList<>(); // for cleanup()
 
     public BorrowedItemDisplay(List<V> borrowedItems) {
@@ -25,6 +25,12 @@ public class BorrowedItemDisplay<V> implements displayPage {
         }
     }
 
+
+    @Override
+    public void registerListener(ActionListener listener) {
+        // no action listeners
+    }
+
     @Override
     public JPanel getPanel() {
         return displayPanel;
@@ -34,5 +40,4 @@ public class BorrowedItemDisplay<V> implements displayPage {
     public String getIdentifier() {
         return "BorrowedItemDisplay";
     }
-
 }
