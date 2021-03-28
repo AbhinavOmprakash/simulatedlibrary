@@ -26,15 +26,8 @@ public class LoginController implements ActionListener {
     }
 
     private void performLogin(){
-        if (tryLoggingIn()) {
-            parentController.switchToHomePage();
-            System.out.println("logging in");
-        }
-    }
-
-    private boolean tryLoggingIn() {
-        LoginData enteredData = loginPage.fetchLoginDetails();
-        return loginManager.login(enteredData);
+        rawLoginData enteredData = loginPage.fetchLoginDetails();
+        loginManager.login(enteredData);
     }
 
 }
