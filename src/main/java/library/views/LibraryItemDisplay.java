@@ -5,13 +5,14 @@ import common.models.CurrentUser;
 import common.models.Member;
 import library.models.libraryitems.LibraryItem;
 import common.models.DataObserver;
-import common.models.displayPage;
+import common.models.DisplayPage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class LibraryItemDisplay<V> implements displayPage, DataObserver {
+public class LibraryItemDisplay<V> implements DisplayPage, DataObserver {
     private JPanel displayPanel;
     private JPanel items;
     ArrayList<LibraryItemPanel> panels = new ArrayList<>(); // required for cleanup()
