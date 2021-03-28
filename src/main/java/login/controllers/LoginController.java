@@ -20,8 +20,6 @@ public class LoginController implements ActionListener {
         Object source = e.getSource();
         if(source == loginPage.loginButton) {
             performLogin();
-        } else if(source == loginPage.signUpButton)  {
-            parentController.switchToSignUp();
         }
     }
 
