@@ -11,9 +11,8 @@ public class LoginController implements ActionListener {
     LoginManager loginManager = new LoginManager();
     LoginPage loginPage;
 
-    public LoginController(MainFrameController parentController, MainJFrame mainFrame) {
-        super(parentController, mainFrame);
-        setCurrentPage(loginPage);
+    public LoginController(LoginPage page) {
+        loginPage = page;
     }
 
     @Override
