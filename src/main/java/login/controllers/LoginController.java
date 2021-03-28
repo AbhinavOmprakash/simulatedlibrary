@@ -1,17 +1,15 @@
 package login.controllers;
 
-import common.controllers.GuiController;
-import common.controllers.MainFrameController;
-import login.models.LoginData;
-import common.views.MainJFrame;
+import login.models.LoginManager;
+import login.models.rawLoginData;
 import login.views.LoginPage;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginController extends GuiController implements ActionListener {
+public class LoginController implements ActionListener {
     LoginManager loginManager = new LoginManager();
-    LoginPage loginPage = new LoginPage(this);
+    LoginPage loginPage;
 
     public LoginController(MainFrameController parentController, MainJFrame mainFrame) {
         super(parentController, mainFrame);
