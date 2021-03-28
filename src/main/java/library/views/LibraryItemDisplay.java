@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class LibraryItemDisplay<V> implements DisplayPage, DataObserver {
     private JPanel displayPanel;
     private JPanel items;
-    ArrayList<LibraryItemPanel> panels = new ArrayList<>(); // required for cleanup()
+    ArrayList<LibraryItemPanel> panels = new ArrayList<>(); // required for disabling and enabling buttons
 
     public LibraryItemDisplay(ArrayList<V> libraryItems) {
         displayPanel = new JPanel();
@@ -30,14 +30,34 @@ public class LibraryItemDisplay<V> implements DisplayPage, DataObserver {
             displayPanel.add(item.getPanel());
             panels.add(item);
         }
+    }
 
+    @Override
+    public void performAction() {
+        // observes changes to Member
+        updateBorrowButtons();
     }
-    public void cleanup(){
-        for (LibraryItemPanel panel: panels){
-            panel.unregisterSelf();
+
+    private void updateBorrowButtons() {
+        if(BorrowIncharge.userCanBorrow((Member) CurrentUser.getCurrentUser())){
+            enableBorrow();
+        } else {
+            disableBorrow();
         }
-        panels = new ArrayList<>();
     }
+
+    private void enableBorrow() {
+        for(LibraryItemPanel panel: panels){
+            panel.enableBorrowButton();
+        }
+    }
+
+    private void disableBorrow() {
+        for(LibraryItemPanel panel: panels){
+            panel.disableBorrowButton();
+        }
+    }
+
 
     @Override
     public JPanel getPanel() {
@@ -50,33 +70,6 @@ public class LibraryItemDisplay<V> implements DisplayPage, DataObserver {
     }
 
     @Override
-    public void performAction() {
-        // observes changes to Member
-        updateBorrowButtons();
-    }
-
-    private void updateBorrowButtons() {
-        if(BorrowIncharge.userCanBorrow((Member) CurrentUser.getCurrentUser())){
-            enableBorrow();
-            System.out.println("enabling");
-        } else {
-            disableBorrow();
-            System.out.println("disabling");
-        }
-    }
-
-    private void enableBorrow() {
-        for(LibraryItemPanel panel: panels){
-
-            panel.enableBorrowButton();
-        }
-    }
-
-    private void disableBorrow() {
-        for(LibraryItemPanel panel: panels){
-            panel.disableBorrowButton();
-        }
-    }
-
+    public void registerListener(ActionListener listener) {}
 
 }
