@@ -1,33 +1,36 @@
 package login;
 
+import common.models.Session;
 import login.models.LoginData;
+import login.models.LoginDataManager;
 import login.models.LoginManager;
 import login.models.RawLoginData;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import setup.ObjectFactory;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class TestLogin {
 
-    @Test
-    void loginManagerShouldAcceptTheseCreds() {
-        LoginData memberLogin = ObjectFactory.getMemberlogin();
-        String userName = memberLogin.username;
-        char[] pass ="aww".toCharArray();
-        RawLoginData enteredCredentials = new RawLoginData(userName, pass );
-        assertTrue(LoginManager.verifyCredentials(memberLogin, enteredCredentials));
+    LoginManager manager;
+    LoginData memberLogin = ObjectFactory.getMemberlogin();
+    RawLoginData rawLoginData = ObjectFactory.getRawMemberlogin();
+
+    @BeforeEach
+    public void setUp() {
+        LoginDataManager mockDataManager = mock(LoginDataManager.class);
+        when(mockDataManager.search(rawLoginData.getUsername())).thenReturn(memberLogin);
+        manager = new LoginManager(mockDataManager);
     }
 
-    @Test
-    void loginManagerShouldDenyTheseCreds() {
-        LoginData memberLogin = ObjectFactory.getMemberlogin();
-        String userName = memberLogin.username;
-        char[] pass ="wrongPassword".toCharArray();
-        RawLoginData enteredCredentials = new RawLoginData(userName, pass);
-        assertFalse(LoginManager.verifyCredentials(memberLogin, enteredCredentials));
-    }
 
+    @Test
+    void ShouldForwardToSessionManager(){
+        manager.login(rawLoginData);
+        assertEquals(memberLogin.username, Session.getCurrentUser());
+    }
 }
