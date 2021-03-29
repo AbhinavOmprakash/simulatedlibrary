@@ -1,14 +1,16 @@
 package library.models;
 
-import common.models.DataManager;
+import common.models.Member;
 import library.models.libraryitems.LibraryItem;
 
-import java.util.ArrayList;
-
-// To Do find a better name for class
-@SuppressWarnings({"rawtypes", "unchecked"})
 public class Librarian {
-    DataManager borrowedItems = BorrowedItemsDataManager.getInstanceOf();
+    BorrowIncharge borrowIncharge;
+    ReturnIncharge returnIncharge;
+
+    public Librarian(BorrowIncharge borrowIncharge, ReturnIncharge returnIncharge) {
+        this.borrowIncharge = borrowIncharge;
+        this.returnIncharge = returnIncharge;
+    }
 
     public boolean isBorrowed(LibraryItem item){
         ArrayList results = borrowedItems.search(item.getId());
