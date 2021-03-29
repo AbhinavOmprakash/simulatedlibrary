@@ -1,7 +1,7 @@
 package login.controllers;
 
 import login.models.LoginManager;
-import login.models.rawLoginData;
+import login.models.RawLoginData;
 import login.views.LoginPage;
 
 import java.awt.event.ActionEvent;
@@ -24,7 +24,7 @@ public class LoginController implements ActionListener {
     }
 
     private void performLogin(){
-        rawLoginData enteredData = loginPage.fetchLoginDetails();
+        RawLoginData enteredData = loginPage.fetchLoginDetails();
         loginManager.login(enteredData);
     }
 

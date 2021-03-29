@@ -1,12 +1,14 @@
 package login.models;
 
-public class rawLoginData {
-    private final String username;
-    private final char[] passwd;
+import java.util.Arrays;
 
-    public rawLoginData(String username, char[] passwd) {
+public class RawLoginData {
+    private final String username;
+    private final String passwd;
+
+    public RawLoginData(String username, char[] passwd) {
         this.username = username;
-        this.passwd = passwd;
+        this.passwd = Arrays.toString(passwd);
     }
 
     public String getUsername() {
