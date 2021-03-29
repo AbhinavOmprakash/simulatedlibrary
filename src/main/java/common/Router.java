@@ -1,6 +1,5 @@
 package common;
 
-import common.customevents.EventListener;
 import common.models.DisplayPage;
 import common.views.MainJFrame;
 
@@ -36,11 +35,6 @@ public abstract class Router implements ActionListener{
 
     public void changeView(Views view){
         // to be implemented by parent
-    }
-
-    //todo improve design, hacky.
-    protected void refresh(){
-        mainFrame.refresh();
     }
 
     protected void setView(DisplayPage page){
