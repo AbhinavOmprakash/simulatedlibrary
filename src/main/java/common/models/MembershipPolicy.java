@@ -41,4 +41,12 @@ public class MembershipPolicy {
         return name;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MembershipPolicy)) return false;
+        MembershipPolicy that = (MembershipPolicy) o;
+        return getName().equals(that.getName());
+    }
+
 }
