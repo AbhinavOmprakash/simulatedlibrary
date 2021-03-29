@@ -1,4 +1,4 @@
-package member.controllers;
+package member.models;
 
 import common.models.DataManager;
 
