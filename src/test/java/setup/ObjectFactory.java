@@ -10,6 +10,7 @@ import library.models.libraryitems.AudioBook;
 import library.models.libraryitems.Book;
 import library.models.libraryitems.LibraryItem;
 import login.models.LoginData;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -83,7 +84,8 @@ public class ObjectFactory {
     }
 
     public static LoginData getMemberlogin() {
-        return new LoginData("ab", "aww");
+        String passwd = BCrypt.hashpw("aww", BCrypt.gensalt());
+        return new LoginData("ab", passwd);
     }
 
     public static Admin getAdmin(){
@@ -91,7 +93,8 @@ public class ObjectFactory {
     }
 
     public static LoginData getAdminLogin() {
-        return new LoginData("admin","JavaSucks");
+        String passwd = BCrypt.hashpw("JavaSucks", BCrypt.gensalt());
+        return new LoginData("admin", passwd);
     }
 
 }
