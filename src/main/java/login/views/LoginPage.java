@@ -3,7 +3,7 @@ package login.views;
 import common.Router;
 import login.controllers.LoginController;
 import common.models.DisplayPage;
-import login.models.rawLoginData;
+import login.models.RawLoginData;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -36,8 +36,8 @@ public class LoginPage implements DisplayPage {
         signUpButton.addActionListener(listener);
     }
 
-    public rawLoginData fetchLoginDetails(){
-        return new rawLoginData(usernameField.getText(), passwordField.getPassword());
+    public RawLoginData fetchLoginDetails(){
+        return new RawLoginData(usernameField.getText(), passwordField.getPassword());
     }
 
 
