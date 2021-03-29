@@ -12,8 +12,17 @@ public class Librarian {
         this.returnIncharge = returnIncharge;
     }
 
-    public boolean isBorrowed(LibraryItem item){
-        ArrayList results = borrowedItems.search(item.getId());
-        return !results.isEmpty();
+    public void borrowItem(Member member, LibraryItem item){
+        if (borrowIncharge.borrowPossible(member, item)){
+            borrowIncharge.borrowItem(member, item);
+        }
+    }
+
+    public void returnItem(Member member, LibraryItem item){
+        if(returnIncharge.isOverdue(item)){
+            // do stuff
+        } else{
+            returnIncharge.returnItem(member, item);
+        }
     }
 }
