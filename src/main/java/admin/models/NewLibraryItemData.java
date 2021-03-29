@@ -12,4 +12,17 @@ public class NewLibraryItemData {
     public int borrowPeriodInDays;
     public String type;
 
+    public NewLibraryItemData(String title, String subject,
+                              Map<String, String> contributorsWithType, int UPC,
+                              int ISBN, boolean isBorrowable,
+                              int borrowPeriodInDays, String type) {
+        this.title = title;
+        this.subject = subject;
+        this.contributorsWithType = contributorsWithType;
+        this.UPC = UPC;
+        this.ISBN = ISBN;
+        this.isBorrowable = isBorrowable;
+        this.borrowPeriodInDays = borrowPeriodInDays;
+        this.type = type;
+    }
 }
