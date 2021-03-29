@@ -5,11 +5,8 @@ import common.models.Member;
 import common.models.MembershipLevel;
 import library.models.libraryitems.LibraryItem;
 
-import java.util.ArrayList;
-
-@SuppressWarnings({"rawtypes", "unchecked"})
 public class BorrowIncharge {
-    DataManager borrowedItems = BorrowedItemsDataManager.getInstanceOf();
+    DataManager borrowedItemsRecord;
 
     public void letUserBorrow(Member user, LibraryItem item){
         if(isNotBorrowed(item) && userCanBorrow(user)){
