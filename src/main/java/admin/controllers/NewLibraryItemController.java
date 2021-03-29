@@ -1,18 +1,17 @@
 package admin.controllers;
-import common.controllers.GuiController;
-import common.controllers.MainFrameController;
-import common.views.MainJFrame;
+
+import admin.models.NewLibItemDataAdapter;
+import admin.models.factories.LibraryItemFactory;
 import admin.views.NewLibraryItem;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class NewLibraryItemController extends GuiController implements ActionListener {
-    NewLibraryItem newLibraryItem = new NewLibraryItem(this);
-    
-    public NewLibraryItemController(MainFrameController parentController, MainJFrame mainFrame) {
-        super(parentController, mainFrame);
-        setCurrentPage(newLibraryItem);
+public class NewLibraryItemController implements ActionListener {
+    NewLibraryItem newLibraryItem;
+
+    public NewLibraryItemController(NewLibraryItem page) {
+        newLibraryItem = page;
     }
 
     @Override
