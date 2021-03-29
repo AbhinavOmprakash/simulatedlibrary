@@ -1,5 +1,7 @@
 package common.models;
 
+import common.Transaction;
+
 public interface PaymentObserver {
-    void receivePaymentStatus(Long userID, boolean status);
+    void receivePaymentStatus(String username, boolean status, double targetAmount, Transaction transaction);
 }
