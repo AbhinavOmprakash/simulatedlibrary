@@ -1,16 +1,18 @@
 package signup.views;
 
-import member.controllers.MembershipPolicyManager;
+import common.Router;
+import member.models.MembershipPolicyManager;
 import common.models.MembershipPolicy;
-import signup.models.SignUpData;
-import common.models.displayPage;
+import signup.controllers.SignUpController;
+import signup.models.RawSignUpData;
+import common.models.DisplayPage;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class SignUpPage implements displayPage {
+public class SignUpPage implements DisplayPage {
 
     private JPanel panel;
     private JPanel SignUpPanel;
@@ -22,16 +24,23 @@ public class SignUpPage implements displayPage {
     private JSpinner membershipSpinner;
     private JLabel membershipPolicy;
     private JComboBox membershipPolicies;
-
     public JButton signUpButton;
     public JButton haveAnAccountButton;
 
-    MembershipPolicyManager policyManager = new MembershipPolicyManager();
+    SignUpController controller;
 
-    public SignUpPage(ActionListener guicontroller) {
-        signUpButton.addActionListener(guicontroller);
-        haveAnAccountButton.addActionListener(guicontroller);
+    public SignUpPage(Router router) {
+        controller = new SignUpController(this);
+
+        registerListener(router);
+        registerListener(controller);
         populateMembershipPolicies();
+    }
+
+    @Override
+    public void registerListener(ActionListener listener) {
+        signUpButton.addActionListener(listener);
+        haveAnAccountButton.addActionListener(listener);
     }
 
     private void populateMembershipPolicies() {
@@ -42,20 +51,10 @@ public class SignUpPage implements displayPage {
         }
     }
 
-    private Object[] getAllPolicies(){
-        ArrayList policies = policyManager.fetchAll();
-        // for dev
-        if (policies.isEmpty()) {
-            return new Object[]{"basic"};
-        }else {
-            return policies.toArray();
-        }
-    }
-
-    public SignUpData fetchSignUpData() {
-        return  new SignUpData(firstName.getText(), lastName.getText(),
+    public RawSignUpData fetchSignUpData() {
+        return  new RawSignUpData(firstName.getText(), lastName.getText(),
                 userName.getText(), passwordField1.getPassword(),
-                (MembershipPolicy) membershipPolicies.getSelectedItem());
+                (String) membershipPolicies.getSelectedItem());
     }
 
     public JPanel getPanel() {
@@ -66,6 +65,4 @@ public class SignUpPage implements displayPage {
     public String getIdentifier() {
         return "signUpPage";
     }
-
-
 }
