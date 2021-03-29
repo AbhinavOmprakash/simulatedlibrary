@@ -1,23 +1,45 @@
 package admin.views;
 
-import common.models.displayPage;
+import admin.controllers.NewMembershipPolicyController;
+import admin.models.PolicyDataAdapter;
+import common.Router;
+import common.models.DisplayPage;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-public class NewMembershipPolicy implements displayPage {
-    private JTextField textField1;
-    private JSpinner spinner1;
-    private JSpinner spinner2;
-    private JSpinner spinner3;
-    private JSpinner spinner4;
-    private JSpinner spinner5;
+public class NewMembershipPolicy implements DisplayPage {
+    private JTextField policyName;
+    private JSpinner fees;
+    private JSpinner overdueFees;
+    private JSpinner borrowLimit;
+    private JSpinner discounts;
+    private JSpinner membershipPeriod;
     public JButton createPolicyButton;
     private JPanel panel;
+    public JButton backButton;
 
-    public NewMembershipPolicy(ActionListener guicontroller){
-        createPolicyButton.addActionListener(guicontroller);
+    ActionListener controller;
+    public NewMembershipPolicy(Router router){
+        controller = new NewMembershipPolicyController(this);
 
+        registerListener(controller);
+        registerListener(router);
+    }
+
+    @Override
+    public void registerListener(ActionListener listener) {
+        createPolicyButton.addActionListener(listener);
+        backButton.addActionListener(listener);
+    }
+
+    public PolicyDataAdapter fetchRawData(){
+        return new PolicyDataAdapter(policyName.getText(),
+                fees.getValue(),
+                overdueFees.getValue(),
+                borrowLimit.getValue(),
+                discounts.getValue(),
+                membershipPeriod.getValue());
     }
 
     @Override
@@ -29,4 +51,6 @@ public class NewMembershipPolicy implements displayPage {
     public String getIdentifier() {
         return "newPolicy";
     }
+
+
 }
