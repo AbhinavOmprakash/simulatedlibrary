@@ -15,7 +15,18 @@ public class ReturnIncharge {
 
     public void returnItem(Member user, LibraryItem item){
         user.returnBorrowedItem(item);
-        removeFromBorrowedItems(item);
+        updateBorrowRecord(item);
+    }
+
+    private void updateBorrowRecord(LibraryItem item) {
+        BorrowedItem borrowed = new BorrowedItem(item);
+        borrowedItemsRecord.deleteItem(borrowed);
+    }
+
+    public boolean isOverdue(LibraryItem item){
+        LocalDateTime returnDeadline = getReturnDeadline(item);
+        LocalDateTime today = LocalDateTime.now();
+        return (today.isAfter(returnDeadline));
     }
 
     private static void removeFromBorrowedItems(LibraryItem item) {
