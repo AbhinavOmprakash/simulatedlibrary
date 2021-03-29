@@ -1,15 +1,10 @@
 package common.models;
 
-import common.customevents.CustomEvent;
-import common.customevents.EventListener;
-import member.models.UserDataManager;
+public class Session{
+    private static String currentUser;
+    private static Session instance = new Session();
 
-import java.util.ArrayList;
-
-@SuppressWarnings({"unchecked,rawtypes"})
-public class CurrentUser implements EventListener {
-    private static User currentUser;
-    private static CurrentUser instance = new CurrentUser();
+    private Session(){}
 
     private static ArrayList<DataObserver> observers = new ArrayList<>();
 
