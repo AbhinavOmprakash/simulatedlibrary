@@ -29,8 +29,15 @@ public class ReturnIncharge {
         return (today.isAfter(returnDeadline));
     }
 
-    private static void removeFromBorrowedItems(LibraryItem item) {
-        BorrowedItems borrowed = new BorrowedItems(item);
-        borrowedItems.deleteItem(borrowed);
+    private LocalDateTime getReturnDeadline(LibraryItem item) {
+        LocalDateTime borrowedOn = getBorrowedOnDate(item);
+        int borrowPeriod = item.getBorrowPeriodInDays();
+        return borrowedOn.plusDays(borrowPeriod);
     }
+
+    private LocalDateTime getBorrowedOnDate(LibraryItem item) {
+        BorrowedItem record = (BorrowedItem) borrowedItemsRecord.search(item.getId());
+        return record.getBorrowedOn();
+    }
+
 }
