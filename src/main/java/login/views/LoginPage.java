@@ -1,12 +1,14 @@
 package login.views;
 
-import login.models.LoginData;
-import common.models.displayPage;
+import common.Router;
+import login.controllers.LoginController;
+import common.models.DisplayPage;
+import login.models.rawLoginData;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-public class LoginPage implements displayPage {
+public class LoginPage implements DisplayPage {
 
     private JPanel panel1;
 
@@ -18,16 +20,26 @@ public class LoginPage implements displayPage {
     public JButton forgottenPassword;
     public JButton signUpButton;
 
-
-    ActionListener guiController;
-    public LoginPage(ActionListener guiController){
-        this.guiController = guiController;
+    ActionListener controller;
+    public LoginPage(Router router){
+        controller = new LoginController(this);
         forgottenPassword.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
 
-        forgottenPassword.addActionListener(guiController);
-        loginButton.addActionListener(guiController);
-        signUpButton.addActionListener(guiController);
+        registerListener(router);
+        registerListener(controller);
     }
+
+    @Override
+    public void registerListener(ActionListener listener) {
+        forgottenPassword.addActionListener(listener);
+        loginButton.addActionListener(listener);
+        signUpButton.addActionListener(listener);
+    }
+
+    public rawLoginData fetchLoginDetails(){
+        return new rawLoginData(usernameField.getText(), passwordField.getPassword());
+    }
+
 
     @Override
     public JPanel getPanel() {
@@ -36,18 +48,7 @@ public class LoginPage implements displayPage {
 
     @Override
     public String getIdentifier() {
-        return "loginPage";
-    }
-
-    public LoginData fetchLoginDetails(){
-        return new LoginData(usernameField.getText(), passwordField.getPassword());
-    }
-     public JTextField getUsernameField() {
-        return usernameField;
-    }
-
-    public JPasswordField getPasswordField() {
-        return passwordField;
+        return "LoginPage";
     }
 
 }
