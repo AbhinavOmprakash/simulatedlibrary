@@ -1,10 +1,11 @@
-package member.controllers;
+package member.models;
 
+import common.Transaction;
 import common.models.PaymentObserver;
-import externalservices.DummyPayment;
-import externalservices.PaymentGateway;
+import payment.models.DummyPayment;
+import common.models.PaymentGateway;
 import common.models.Member;
-import admin.models.MembershipFactory;
+import common.models.MembershipFactory;
 import common.models.MembershipPolicy;
 
 import java.util.HashMap;
@@ -12,7 +13,7 @@ import java.util.Map;
 
 @SuppressWarnings({"rawtypes","unchecked"})
 public class UpgradeMembershipManager implements PaymentObserver {
-    private PaymentGateway paymentGateway = new DummyPayment();
+    private final PaymentGateway paymentGateway = DummyPayment.getInstanceOf();
     private HashMap<Member, MembershipPolicy> upgradeQueue = new HashMap<>();
 
     public UpgradeMembershipManager() {
@@ -25,26 +26,28 @@ public class UpgradeMembershipManager implements PaymentObserver {
     }
 
     private void forwardToPaymentGateway(Member member, MembershipPolicy policy) {
-        paymentGateway.acceptPayment((long) member.getID(), policy.membershipFees);
+        paymentGateway.initializePayment(member.getUserName(), policy.membershipFees, Transaction.UPGRADE);
     }
 
     @Override
-    public void receivePaymentStatus(Long userID, boolean status) {
-        if (status){
-            updateMembership(userID);
+    public void receivePaymentStatus(String username, boolean status, double targetAmount, Transaction transaction) {
+        if(transaction.equals(Transaction.UPGRADE) && status) {
+            updateMembership(username);
         }
     }
-    //todo find a better name
-    private void updateMembership(Long userID) {
+
+    //todo find a better name.
+    private void updateMembership(String username) {
         for(Map.Entry<Member, MembershipPolicy> entry: upgradeQueue.entrySet()){
             Member member = entry.getKey();
             MembershipPolicy policy = entry.getValue();
-            if (member.getID()== userID){
+            if (member.getUserName()==username){
                 member.setMembershipLevel(MembershipFactory.createMembership(policy));
                 System.out.println("upgraded membership");
                 System.out.println(member.getMembershipLevel().getPolicy());
             }
         }
     }
+
 
 }
