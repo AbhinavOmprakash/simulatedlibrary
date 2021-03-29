@@ -1,24 +1,24 @@
 package member.views;
 
-import library.models.BorrowedItemsDataManager;
+import common.Router;
 import common.models.CurrentUser;
 import common.models.Member;
 import common.models.DataObserver;
-import common.models.displayPage;
+import common.models.DisplayPage;
+import member.controllers.UserAccountController;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
 @SuppressWarnings({"rawtypes","unchecked"})
-public class MyAccount implements displayPage, ActionListener, DataObserver {
+public class MyAccount implements DisplayPage, DataObserver {
 
-    private JPanel panel1;
-    private JPanel info;
-    private JScrollPane borrowedItemspane;
+    private JPanel panel;
     public JButton homeButton;
     public JButton upgradeMembershipButton;
+    private JPanel info;
+    private JScrollPane scrollpane;
 
     BorrowedItemDisplay currentDisplay;
     private Member user;
