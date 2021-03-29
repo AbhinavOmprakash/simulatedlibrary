@@ -1,9 +1,7 @@
 package library.controllers;
 
 import common.models.DataManager;
-import common.controllers.GuiController;
-import common.controllers.MainFrameController;
-import common.views.MainJFrame;
+import common.models.LogoutManager;
 import library.models.LibraryItemManager;
 import library.views.HomeScreen;
 
@@ -13,29 +11,23 @@ import java.util.ArrayList;
 
 
 @SuppressWarnings({"unchecked, rawtypes"})
-public class UserHomeController extends GuiController implements ActionListener {
-    HomeScreen userHome = new HomeScreen(this);
-    private DataManager libraryItemManager = new LibraryItemManager();
+public class UserHomeController implements ActionListener {
+    private final DataManager libraryItemManager = new LibraryItemManager();
 
-    public UserHomeController(MainFrameController parentController, MainJFrame mainFrame) {
-        super(parentController, mainFrame);
-        setCurrentPage(userHome);
+    HomeScreen userHome;
+    public UserHomeController(HomeScreen page) {
+        userHome = page;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Object source = e.getSource();
-
-        if(source == userHome.searchButton){
+        if(e.getSource() == userHome.searchButton){
             searchAndDisplayResults();
-
-        } else if (source == userHome.myAccountButton){
-            parentController.switchToMyAccount();
-
-        } else if(source == userHome.logoutButton){
-            parentController.switchToLogin();
+        } if (e.getSource() == userHome.logoutButton){
+            LogoutManager.logout();
         }
     }
+
     private void searchAndDisplayResults(){
         // TODO uncomment in production
 //        ArrayList<V> results = performSearch();
