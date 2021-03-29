@@ -6,11 +6,12 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Arrays;
 
 @Entity
 public class LoginData {
     public String username;
-    public String hashedPassword;
+    public String password;
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -22,12 +23,12 @@ public class LoginData {
     }
     public LoginData(String username, char[] password){
         this.username = username;
-        this.hashedPassword = BCrypt.hashpw(String.valueOf(password), BCrypt.gensalt());
+        this.password = Arrays.toString(password);
     }
 
     public LoginData(String username, String password) {
         this.username = username;
-        this.hashedPassword = BCrypt.hashpw(String.valueOf(password), BCrypt.gensalt());
+        this.password = password;
     }
 
     public boolean verifyPasswd(rawLoginData enteredData) {
@@ -43,11 +44,11 @@ public class LoginData {
         this.username = username;
     }
 
-    public String getHashedPassword() {
-        return hashedPassword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setHashedPassword(String password) {
-        hashedPassword = BCrypt.hashpw(password,BCrypt.gensalt());
+    public void setPassword(String password) {
+        this.password = BCrypt.hashpw(password,BCrypt.gensalt());
     }
 }
