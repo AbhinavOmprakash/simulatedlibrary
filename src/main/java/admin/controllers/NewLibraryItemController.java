@@ -22,5 +22,7 @@ public class NewLibraryItemController implements ActionListener {
     }
 
     private void createNewItem() {
+        NewLibItemDataAdapter rawData = newLibraryItem.fetchData();
+        LibraryItemFactory.createNewItem(rawData.getCompatibleData());
     }
 }
