@@ -1,19 +1,18 @@
 package admin.controllers;
 
-import common.controllers.GuiController;
-import common.controllers.MainFrameController;
-import common.views.MainJFrame;
+import admin.models.PolicyDataAdapter;
+import admin.models.factories.PolicyFactory;
+import common.Router;
 import admin.views.NewMembershipPolicy;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class NewMembershipPolicyController extends GuiController implements ActionListener {
-    NewMembershipPolicy policyPage = new NewMembershipPolicy(this);
+public class NewMembershipPolicyController implements ActionListener {
+    NewMembershipPolicy policyPage ;
 
-    public NewMembershipPolicyController(MainFrameController parentController, MainJFrame mainFrame) {
-        super(parentController, mainFrame);
-        setCurrentPage(policyPage);
+    public NewMembershipPolicyController(NewMembershipPolicy policyPage) {
+        this.policyPage = policyPage;
     }
 
     @Override
