@@ -1,9 +1,6 @@
-package admin.models;
+package common.models;
 
-import common.models.DataManager;
-import member.controllers.MembershipPolicyManager;
-import common.models.MembershipLevel;
-import common.models.MembershipPolicy;
+import member.models.MembershipPolicyManager;
 
 public class MembershipFactory {
     static DataManager allPolicies = new MembershipPolicyManager();
