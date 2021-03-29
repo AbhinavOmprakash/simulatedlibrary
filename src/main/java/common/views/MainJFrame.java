@@ -10,9 +10,12 @@ import java.beans.PropertyChangeListener;
 public class MainJFrame extends JFrame {
     JPanel cards = new JPanel(new CardLayout());
 
-    public MainJFrame(String title) {
-        super(title);
+    public MainJFrame() {
+        super("Library");
         setContentPane(cards);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+        setSize(1000,500);
     }
 
     public void addCard(String identifier, JPanel panel){
