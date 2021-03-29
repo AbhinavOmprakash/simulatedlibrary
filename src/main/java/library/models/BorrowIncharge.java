@@ -8,11 +8,18 @@ import library.models.libraryitems.LibraryItem;
 public class BorrowIncharge {
     DataManager borrowedItemsRecord;
 
-    public void letUserBorrow(Member user, LibraryItem item){
-        if(isNotBorrowed(item) && userCanBorrow(user)){
-            addToBorrowedItems(item);
-            user.addBorrowedItem(item);
-        }
+    public BorrowIncharge(DataManager borrowedItemsRecord) {
+        this.borrowedItemsRecord = borrowedItemsRecord;
+    }
+
+    public void borrowItem(Member user, LibraryItem item){
+        user.addBorrowedItem(item);
+        updateBorrowRecord(item);
+    }
+
+    private void updateBorrowRecord(LibraryItem item) {
+        BorrowedItem borrowed = new BorrowedItem(item);
+        borrowedItemsRecord.addItem(borrowed);
     }
 
     public static boolean userCanBorrow(Member user){
