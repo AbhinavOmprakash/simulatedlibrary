@@ -1,18 +1,21 @@
 package admin.views;
 
-import admin.models.NewLibraryItemData;
-import common.models.displayPage;
+import admin.controllers.NewLibraryItemController;
+import admin.models.NewLibItemDataAdapter;
+import common.Router;
+import common.models.DisplayPage;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class NewLibraryItem implements displayPage {
+public class NewLibraryItem implements DisplayPage {
     private JPanel panel;
     private JTextField titleField;
     private JTextField subjectField;
     private JTextField UPCfield;
-    private JComboBox contributorType;
     private JTextField ISBNField;
     private JComboBox isBorrowable;
     private JComboBox libItemType;
@@ -20,18 +23,35 @@ public class NewLibraryItem implements displayPage {
     public JButton addItemButton;
     private JPanel mainPanel;
     private JComboBox contributorTypes;
-    private JTextField textField1;
-    private JSpinner spinner1;
-    private JPanel contributors;
+    private JTextField contributorName;
+    private JSpinner borrowPeriod;
+    public JButton backButton;
 
+    ActionListener controller;
+    public NewLibraryItem(Router router) {
+        controller = new NewLibraryItemController(this);
 
-    public NewLibraryItem(ActionListener guiController) {
-        addItemButton.addActionListener(guiController);
+        registerListener(controller);
+        registerListener(router);
+
         populateItemTypes();
         populateContributors();
         populateBorrowable();
     }
 
+    @Override
+    public void registerListener(ActionListener listener) {
+        addItemButton.addActionListener(listener);
+        backButton.addActionListener(listener);
+    }
+
+    private void populateItemTypes() {
+        String[] allLibraryItemTypes = {"Book", "AudioBook",
+                "Archive","DVD"};
+        for(String type : allLibraryItemTypes){
+            libItemType.addItem(type);
+        }
+    }
     private void populateContributors() {
         // todo improve design. hardcoding values
         String[] allContributorTypes = {"Author", "Actor", "Director",
@@ -45,18 +65,20 @@ public class NewLibraryItem implements displayPage {
         isBorrowable.addItem("no");
     }
 
-    private void populateItemTypes() {
-        String[] allLibraryItemTypes = {"Book", "AudioBook",
-                                        "Archive","DVD"};
-        for(String l:allLibraryItemTypes){
-            libItemType.addItem(l);
-        }
+    public NewLibItemDataAdapter fetchData(){
+        return new NewLibItemDataAdapter(titleField.getText(),
+                    subjectField.getText(),
+                    getContributors(),
+                    UPCfield.getText(),
+                    ISBNField.getText(),
+                    isBorrowable.getSelectedItem(),
+                    borrowPeriod.getValue(),
+                    libItemType.getSelectedItem());
     }
 
-    public NewLibraryItemData fetchData(){
-        return null;
+    private Map<String, String> getContributors() {
+        return new HashMap<>(Map.of((String) contributorTypes.getSelectedItem(), contributorName.getText()));
     }
-
 
     @Override
     public JPanel getPanel() {
