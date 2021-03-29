@@ -29,18 +29,11 @@ public class BorrowIncharge {
     private boolean userCanBorrow(Member user){
         MembershipLevel membershipLevel =  user.getMembershipLevel();
         int borrowLimit = membershipLevel.getBorrowLimit();
-        System.out.println(borrowLimit);
-        System.out.println(user.getBorrowedItems().size());
         return user.getBorrowedItems().size() < borrowLimit;
     }
 
-    private void addToBorrowedItems(LibraryItem item) {
-        BorrowedItems borrowed = new BorrowedItems(item);
-        borrowedItems.addItem(borrowed);
-    }
-
-    private boolean isNotBorrowed(LibraryItem item) {
-        ArrayList results = borrowedItems.search(item.getId());
-        return results.isEmpty();
+    private boolean isNotBorrowed(LibraryItem item){
+        LibraryItem results = (LibraryItem) borrowedItemsRecord.search(item.getId());
+        return (results!=null);
     }
 }
