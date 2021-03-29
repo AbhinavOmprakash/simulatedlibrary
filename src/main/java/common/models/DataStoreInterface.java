@@ -1,4 +1,4 @@
-package externalservices;
+package common.models;
 import java.util.ArrayList;
 
 public interface DataStoreInterface<V> {
