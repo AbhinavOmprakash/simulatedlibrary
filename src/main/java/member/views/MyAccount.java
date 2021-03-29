@@ -23,14 +23,24 @@ public class MyAccount implements DisplayPage, DataObserver {
     BorrowedItemDisplay currentDisplay;
     private Member user;
 
-    public MyAccount(ActionListener guiController){
-        this.user = (Member) CurrentUser.getCurrentUser();
+    ActionListener controller;
 
-        homeButton.addActionListener(guiController);
-        upgradeMembershipButton.addActionListener(guiController);
+    public MyAccount(Router router){
+        controller = new UserAccountController(this);
 
-        BorrowedItemsDataManager.getInstanceOf().registerListener(this);
+        registerListener(controller);
+        registerListener(router);
+
+        user = (Member) CurrentUser.getCurrentUser();
+        user.registerListener(this);
+
         displayBorrowedItems();
+    }
+
+    @Override
+    public void registerListener(ActionListener listener) {
+        homeButton.addActionListener(listener);
+        upgradeMembershipButton.addActionListener(listener);
     }
 
     private void displayBorrowedItems() {
@@ -40,28 +50,33 @@ public class MyAccount implements DisplayPage, DataObserver {
             cleanDisplay();
         }
     }
+
     private boolean userHasBorrowedItems() {
         List items = user.getBorrowedItems();
         return !items.isEmpty();
     }
 
     private void populateDisplay() {
-        System.out.println("displaying items");
         currentDisplay = new BorrowedItemDisplay(user.getBorrowedItems());
-        borrowedItemspane.setViewportView(currentDisplay.getPanel());
+        scrollpane.setViewportView(currentDisplay.getPanel());
     }
 
     private void cleanDisplay() {
-        System.out.println("cleaning items");
-        borrowedItemspane.removeAll();
-        borrowedItemspane.repaint();
-        borrowedItemspane.revalidate();
+        if(currentDisplay!=null) {
+            System.out.println("cleaning display for no reason");
+            scrollpane.remove(currentDisplay.getPanel());
+            scrollpane.revalidate();
+        }
     }
 
+    @Override
+    public void performAction() {
+        displayBorrowedItems();
+    }
 
     @Override
     public JPanel getPanel() {
-        return panel1;
+        return panel;
     }
 
     @Override
@@ -69,13 +84,4 @@ public class MyAccount implements DisplayPage, DataObserver {
         return "MyAccount";
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-
-    @Override
-    public void performAction() {
-        displayBorrowedItems();
-    }
 }
