@@ -6,38 +6,18 @@ public class Session{
 
     private Session(){}
 
-    private static ArrayList<DataObserver> observers = new ArrayList<>();
-
-    private CurrentUser(){}
-
-    public static User getCurrentUser() throws UnsupportedOperationException{
+    public static String getCurrentUser() throws UnsupportedOperationException{
         if(currentUser==null){
             throw new UnsupportedOperationException("the current user has not been set");
         }
         return currentUser;
     }
 
-    @Override
-    public void receive(CustomEvent event) {
-        if(event.equals(CustomEvent.LOG_OUT)){
-            removeUser();
-        }
-    }
-
-    private static void removeUser(){
-        saveUserData();
-        currentUser = null;
-    }
-
-    public static void changeUser(User user){
-        saveUserData();
+    public static void setUser(String user){
         currentUser = user;
     }
-
-    public static void saveUserData(){
-        if(currentUser!=null){
-            UserDataManager.getInstanceOf().updateData(currentUser);
-        }
+    public static void removeUser(){
+        currentUser = null;
     }
 
 }
