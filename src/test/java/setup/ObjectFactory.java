@@ -10,6 +10,7 @@ import library.models.libraryitems.AudioBook;
 import library.models.libraryitems.Book;
 import library.models.libraryitems.LibraryItem;
 import login.models.LoginData;
+import login.models.RawLoginData;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.util.ArrayList;
@@ -88,6 +89,9 @@ public class ObjectFactory {
         return new LoginData("ab", passwd);
     }
 
+    public static RawLoginData getRawMemberlogin() {
+        return new RawLoginData("ab","aww");
+    }
     public static Admin getAdmin(){
         return new Admin("Deepak", "Yadav", "admin");
     }
@@ -97,4 +101,7 @@ public class ObjectFactory {
         return new LoginData("admin", passwd);
     }
 
+    public static RawLoginData getRawAdminLogin() {
+        return new RawLoginData("admin","JavSucks");
+    }
 }
