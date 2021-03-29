@@ -31,11 +31,6 @@ public class LoginData {
         this.password = password;
     }
 
-    public boolean verifyPasswd(rawLoginData enteredData) {
-        return  (enteredData.getUsername().equals(username) &&
-                BCrypt.checkpw(enteredData.getPasswd(), hashedPassword));
-    }
-
     public String getUsername() {
         return username;
     }
