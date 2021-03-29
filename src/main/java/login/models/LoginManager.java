@@ -20,8 +20,8 @@ public class LoginManager {
         dispatchSignal();
     }
 
-    public static boolean verifyCredentials(LoginData storedData, rawLoginData enteredData){
-        return BCrypt.checkpw(enteredData.getPasswd(), storedData.hashedPassword);
+    public static boolean verifyCredentials(LoginData storedData, RawLoginData enteredData){
+        return BCrypt.checkpw(enteredData.getPasswd(), storedData.password);
     }
 
     private void changeUser(rawLoginData data) {
