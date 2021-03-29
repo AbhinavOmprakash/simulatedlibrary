@@ -2,7 +2,7 @@ package login;
 
 import login.models.LoginData;
 import login.models.LoginManager;
-import login.models.rawLoginData;
+import login.models.RawLoginData;
 import org.junit.jupiter.api.Test;
 import setup.ObjectFactory;
 
@@ -17,7 +17,7 @@ public class TestLogin {
         LoginData memberLogin = ObjectFactory.getMemberlogin();
         String userName = memberLogin.username;
         char[] pass ="aww".toCharArray();
-        rawLoginData enteredCredentials = new rawLoginData(userName, pass );
+        RawLoginData enteredCredentials = new RawLoginData(userName, pass );
         assertTrue(LoginManager.verifyCredentials(memberLogin, enteredCredentials));
     }
 
@@ -26,7 +26,7 @@ public class TestLogin {
         LoginData memberLogin = ObjectFactory.getMemberlogin();
         String userName = memberLogin.username;
         char[] pass ="wrongPassword".toCharArray();
-        rawLoginData enteredCredentials = new rawLoginData(userName, pass);
+        RawLoginData enteredCredentials = new RawLoginData(userName, pass);
         assertFalse(LoginManager.verifyCredentials(memberLogin, enteredCredentials));
     }
 
