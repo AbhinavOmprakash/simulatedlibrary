@@ -17,6 +17,13 @@ public class NewMembershipPolicyController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==policyPage.createPolicyButton){
+            createNewPolicy();
+        }
+    }
 
+    private void createNewPolicy() {
+        PolicyDataAdapter rawData = policyPage.fetchRawData();
+        PolicyFactory.createNewPolicy(rawData.getCompatibleData());
     }
 }
