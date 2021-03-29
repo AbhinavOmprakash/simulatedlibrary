@@ -22,7 +22,11 @@ public class BorrowIncharge {
         borrowedItemsRecord.addItem(borrowed);
     }
 
-    public static boolean userCanBorrow(Member user){
+    public boolean borrowPossible(Member user, LibraryItem item){
+        return (userCanBorrow(user) && isNotBorrowed(item));
+    }
+
+    private boolean userCanBorrow(Member user){
         MembershipLevel membershipLevel =  user.getMembershipLevel();
         int borrowLimit = membershipLevel.getBorrowLimit();
         System.out.println(borrowLimit);
