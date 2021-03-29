@@ -5,6 +5,7 @@ import common.customevents.EventCotroller;
 import common.models.CurrentUser;
 import common.models.User;
 import member.models.UserDataManager;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class LoginManager {
     LoginDataManager loginData = new LoginDataManager();
@@ -17,6 +18,10 @@ public class LoginManager {
         }
         changeUser(enteredData);
         dispatchSignal();
+    }
+
+    public static boolean verifyCredentials(LoginData storedData, rawLoginData enteredData){
+        return BCrypt.checkpw(enteredData.getPasswd(), storedData.hashedPassword);
     }
 
     private void changeUser(rawLoginData data) {
