@@ -1,8 +1,5 @@
 package common.models;
 
-import externalservices.DataStoreInterface;
-import externalservices.HibernateDB;
-
 import java.util.ArrayList;
 
 /** responsible for querying the database and cache
