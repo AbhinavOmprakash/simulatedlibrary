@@ -11,6 +11,10 @@ public class RawLoginData {
         this.passwd = Arrays.toString(passwd);
     }
 
+    public RawLoginData(String username, String passwd) {
+        this.username = username;
+        this.passwd = passwd;
+    }
     public String getUsername() {
         return username;
     }
