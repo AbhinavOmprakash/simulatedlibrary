@@ -1,44 +1,40 @@
 package signup.controllers;
 
-import common.controllers.GuiController;
-import common.controllers.MainFrameController;
+import member.models.MembershipPolicyManager;
+import signup.models.RawSignUpData;
 import signup.models.SignUpData;
-import common.views.MainJFrame;
 import signup.models.SignUpManager;
 import signup.views.SignUpPage;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-public class SignUpController extends GuiController implements ActionListener {
-    SignUpPage signUpPage = new SignUpPage(this);
-
+@SuppressWarnings({"rawtypes","unchecked"})
+public class SignUpController implements ActionListener {
     SignUpManager signUpManager = new SignUpManager();
+    SignUpPage page;
+    MembershipPolicyManager policyManager = new MembershipPolicyManager();
 
-    public SignUpController(MainFrameController mainFrameController, MainJFrame mainFrame) {
-        super(mainFrameController, mainFrame);
-        setCurrentPage(signUpPage);
+    public SignUpController(SignUpPage page) {
+        this.page = page;
+    }
+
+    public Object[] getAllPolicies(){
+        ArrayList policies = policyManager.fetchAll();
+        return policies.toArray();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == signUpPage.signUpButton) {
+        if (e.getSource() == page.signUpButton) {
             performSignUp();
-        } else if (e.getSource() == signUpPage.haveAnAccountButton){
-            parentController.switchToLogin();
         }
     }
 
     private void performSignUp() {
-        if(true){
-            parentController.switchToHomePage();
-            System.out.println("signing up");
-        }
+        RawSignUpData rawSignUpData = page.fetchSignUpData();
+        signUpManager.signUp(new SignUpData(rawSignUpData));
     }
 
-    private boolean trySigningUp() {
-        SignUpData signUpData = signUpPage.fetchSignUpData();
-        signUpManager.signUp(signUpData);
-        return true;
-    }
 }
