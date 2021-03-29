@@ -35,7 +35,7 @@ public class SignUpPage implements displayPage {
     }
 
     private void populateMembershipPolicies() {
-        Object[] allPolicies = getAllPolicies();
+        Object[] allPolicies = controller.getAllPolicies();
         for (Object p : allPolicies){
             MembershipPolicy policy = (MembershipPolicy) p;
             membershipPolicies.addItem(policy.getName());
