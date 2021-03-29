@@ -6,15 +6,14 @@ import library.models.libraryitems.LibraryItem;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class ReturnIncharge {
-    DataManager borrowedItems = BorrowedItemsDataManager.getInstanceOf();
-    Accountant penaltyAccountant = new PenaltyAccountant();
+    private static DataManager borrowedItems = BorrowedItemsDataManager.getInstanceOf();
 
-    public void letUserReturn(Member user, LibraryItem item){
+    public static void letUserReturn(Member user, LibraryItem item){
         user.returnBorrowedItem(item);
         removeFromBorrowedItems(item);
     }
 
-    private void removeFromBorrowedItems(LibraryItem item) {
+    private static void removeFromBorrowedItems(LibraryItem item) {
         BorrowedItems borrowed = new BorrowedItems(item);
         borrowedItems.deleteItem(borrowed);
     }
