@@ -7,9 +7,10 @@ import library.models.contributors.Contributor;
 
 import java.util.ArrayList;
 
-public class ArchiveFactory {
+public class ArchiveFactory implements LibItemFactory{
 
-    public static LibraryItem createNew(NewLibraryItemData data, ArrayList<Contributor> contributors){
+    @Override
+    public LibraryItem create(NewLibraryItemData data, ArrayList<Contributor> contributors){
         return new Archive(data.title,
                 data.subject,
                 data.UPC,

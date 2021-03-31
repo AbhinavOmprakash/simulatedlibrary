@@ -7,12 +7,14 @@ import library.models.contributors.Contributor;
 
 import java.util.ArrayList;
 
-public class DvdFactory {
-    public static LibraryItem createNew(NewLibraryItemData data, ArrayList<Contributor> contributors) {
+public class DvdFactory implements LibItemFactory {
+
+    @Override
+    public LibraryItem create(NewLibraryItemData data, ArrayList<Contributor> contributors) {
         return new DVD(data.title,
                 data.subject,
                 data.UPC,
-                contributors,
+                 contributors,
                 data.isBorrowable,
                 data.borrowPeriodInDays);
     }

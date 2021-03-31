@@ -7,8 +7,9 @@ import library.models.contributors.Contributor;
 
 import java.util.ArrayList;
 
-public class AudioBookFactory {
-    public static LibraryItem createNew(NewLibraryItemData data, ArrayList<Contributor> contributors){
+public class AudioBookFactory implements LibItemFactory {
+    @Override
+    public LibraryItem create(NewLibraryItemData data, ArrayList<Contributor> contributors) {
         return new AudioBook(data.title,
                 data.subject,
                 data.UPC,
