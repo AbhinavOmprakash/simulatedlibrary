@@ -7,7 +7,7 @@ import signup.models.CredentialCreator;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class TestLoginCredentials {
+public class TestCredentialCreator {
     @Test
     void LoginCredentialsShouldStoreHashedPassword() {
         RawLoginData data = new RawLoginData("ab","pass");
