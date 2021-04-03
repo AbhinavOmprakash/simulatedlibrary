@@ -13,20 +13,22 @@ public class AdminHome implements DisplayPage {
     public JButton addNewPolicyButton;
     public JButton viewAllLibraryItemsButton;
     public JButton viewAllPoliciesButton;
+    public JButton logOutButton;
 
-    ActionListener controller;
-    public AdminHome(Router router) {
-        controller = new AdminHomeController(this);
-        registerListener(controller);
-        registerListener(router);
+    public AdminHome() {
     }
 
-    @Override
     public void registerListener(ActionListener listener) {
         addNewLibraryItemButton.addActionListener(listener);
         addNewPolicyButton.addActionListener(listener);
         viewAllLibraryItemsButton.addActionListener(listener);
         viewAllPoliciesButton.addActionListener(listener);
+        logOutButton.addActionListener(listener);
+    }
+
+    @Override
+    public void refresh() {
+
     }
 
     @Override
