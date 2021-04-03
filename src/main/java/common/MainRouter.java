@@ -1,44 +1,37 @@
 package common;
 
-import admin.AdminRouter;
 import common.customevents.CustomEvent;
 import common.customevents.EventCotroller;
-import common.customevents.EventListener;
-import common.models.CurrentUser;
+import common.customevents.CustomEventListener;
+import common.models.DisplayPage;
 import common.models.Member;
+import common.models.Session;
 import common.views.MainJFrame;
-import library.LibraryRouter;
-import login.LoginRouter;
-import member.MemberRouter;
-import payment.PaymentRouter;
-import signup.SignUpRouter;
 
-import java.awt.event.ActionEvent;
 import java.util.Stack;
 
-public class MainRouter extends Router implements EventListener {
-    // initializing only when needed
-    Router loginRouter = new LoginRouter(this);
-    Router signupRouter = new SignUpRouter(this);
+public class MainRouter implements CustomEventListener {
+    Router loginRouter;
+    Router signupRouter;
     Router adminRouter;
     Router libraryRouter;
     Router memberRouter;
-    Router paymentRouter = new PaymentRouter(this);
+    Router paymentRouter;
 
     Stack<Views> previousViews = new Stack<>(); // hacky, might cause problems.
     Views currentView;
 
+    MainJFrame frame;
+
     public MainRouter(MainJFrame mainframe) {
-        super(mainframe);
+        frame = mainframe;
         EventCotroller.getInstanceOf().registerListener(this);
     }
 
-    @Override
     public void homeView() {
         changeView(Views.LOGIN);
     }
 
-    @Override
     public void changeView(Views view){
         updateCurrentView(view);
         switch (view){
@@ -68,8 +61,11 @@ public class MainRouter extends Router implements EventListener {
         if(event.equals(CustomEvent.SIGNED_UP)){
             login();
         } else if(event.equals(CustomEvent.LOGGED_IN)){
+            System.out.println("trynna login");
             login();
-        } else if(event.equals(CustomEvent.PAYMENT_GATEWAY)){
+        } else if(event.equals(CustomEvent.PAYMENT_GATEWAY) ||
+                event.equals(CustomEvent.NEW_PAYMENT)){
+
             changeView(Views.PAYMENT);
         } else if(event.equals(CustomEvent.LOG_OUT)){
             changeView(Views.LOGIN);
@@ -78,20 +74,42 @@ public class MainRouter extends Router implements EventListener {
 
     public void login(){
         if(userIsMember()){
-            libraryRouter = new LibraryRouter(this);
-            memberRouter = new MemberRouter(this);
             changeView(Views.LIBRARY_HOME);
 
         } else {
-            adminRouter = new AdminRouter(this);
             changeView(Views.ADMIN_HOME);
         }
     }
 
     private boolean userIsMember() {
-        return (CurrentUser.getCurrentUser() instanceof Member);
+        return (Session.getAccessPrivilege().equals(Member.getAccessPrivilege()));
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {}
+    public void setView(DisplayPage page){
+        frame.showCard(page.getIdentifier());
+    }
+
+    public void setLoginRouter(Router loginRouter) {
+        this.loginRouter = loginRouter;
+    }
+
+    public void setSignupRouter(Router signupRouter) {
+        this.signupRouter = signupRouter;
+    }
+
+    public void setAdminRouter(Router adminRouter) {
+        this.adminRouter = adminRouter;
+    }
+
+    public void setLibraryRouter(Router libraryRouter) {
+        this.libraryRouter = libraryRouter;
+    }
+
+    public void setMemberRouter(Router memberRouter) {
+        this.memberRouter = memberRouter;
+    }
+
+    public void setPaymentRouter(Router paymentRouter) {
+        this.paymentRouter = paymentRouter;
+    }
 }

@@ -1,15 +1,22 @@
 package admin.models;
 
-public class PolicyDataAdapter {
-    String name;
-    Object rawFees;
-    Object rawOverdue;
-    Object rawBorrowLimit;
-    Object rawDiscount;
-    Object rawMembershipPeriod;
+import common.factory.CleanData;
+import common.factory.RawData;
 
-    public PolicyDataAdapter(String name, Object rawFees, Object rawOverdue,
-                             Object rawBorrowLimit,Object rawDiscount, Object rawMembershipPeriod) {
+public class PolicyDataAdapter implements RawData {
+    String name;
+    String rawFees;
+    String rawOverdue;
+    String rawBorrowLimit;
+    String rawDiscount;
+    String rawMembershipPeriod;
+
+    public PolicyDataAdapter(String name,
+                             String rawFees,
+                             String rawOverdue,
+                             String rawBorrowLimit,
+                             String rawDiscount,
+                             String rawMembershipPeriod) {
         this.name = name;
         this.rawFees = rawFees;
         this.rawOverdue = rawOverdue;
@@ -18,12 +25,12 @@ public class PolicyDataAdapter {
         this.rawMembershipPeriod = rawMembershipPeriod;
     }
 
-    public NewPolicyData getCompatibleData(){
+    public CleanData getCompatibleData(){
         return new NewPolicyData(name,
-                Double.parseDouble((String) rawFees),
-                Double.parseDouble((String) rawOverdue),
-                Integer.parseInt((String) rawDiscount),
-                Double.parseDouble((String) rawDiscount),
-                Integer.parseInt((String) rawMembershipPeriod));
+                Double.parseDouble(rawFees),
+                Double.parseDouble(rawOverdue),
+                Integer.parseInt(rawBorrowLimit),
+                Double.parseDouble(rawDiscount),
+                Integer.parseInt(rawMembershipPeriod));
     }
 }

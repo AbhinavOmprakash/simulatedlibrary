@@ -1,5 +1,6 @@
 package member;
 
+import common.MainRouter;
 import common.Views;
 import common.customevents.CustomEvent;
 import common.Router;
@@ -12,13 +13,17 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings({"unchecked","rawtypes"})
 public class MemberRouter extends Router{
 
-    MyAccount myAccountPage = new MyAccount(this);
-    UpgradeMembership upgradePage = new UpgradeMembership(this);
+    MyAccount myAccountPage;
+    UpgradeMembership upgradePage;
 
-    public MemberRouter(Router router) {
+    public MemberRouter(MainRouter router,
+                        MyAccount myAccountPage, UpgradeMembership upgradePage) {
         super(router);
-        registerView(myAccountPage);
-        registerView(upgradePage);
+        this.myAccountPage = myAccountPage;
+        this.upgradePage = upgradePage;
+
+        myAccountPage.registerListener(this);
+        upgradePage.registerListener(this);
     }
 
     @Override

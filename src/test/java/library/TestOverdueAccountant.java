@@ -4,7 +4,6 @@ import common.models.DataManager;
 import common.models.FinancialAccount;
 import common.models.Member;
 import common.models.PaymentGateway;
-import library.models.BorrowedItemsDataManager;
 import library.models.OverdueAccountant;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -14,7 +13,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 public class TestOverdueAccountant {
-    DataManager dataManager = mock(BorrowedItemsDataManager.class);
+    DataManager dataManager = mock(DataManager.class);
     PaymentGateway paymentGateway = mock(PaymentGateway.class);
     Member member = mock(Member.class);
     OverdueAccountant accountant = new OverdueAccountant(dataManager, paymentGateway);

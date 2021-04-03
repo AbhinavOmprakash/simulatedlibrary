@@ -1,8 +1,9 @@
 package library.views;
 
-import library.models.BorrowIncharge;
-import common.models.CurrentUser;
-import common.models.Member;
+import common.models.Session;
+import library.models.LibraryUtils;
+import library.models.MemberUtils;
+import library.models.Utils;
 import library.models.libraryitems.LibraryItem;
 import common.models.DataObserver;
 import common.models.DisplayPage;
@@ -12,52 +13,42 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class LibraryItemDisplay<V> implements DisplayPage, DataObserver {
+public class LibraryItemDisplay implements DisplayPage{
     private JPanel displayPanel;
     private JPanel items;
     ArrayList<LibraryItemPanel> panels = new ArrayList<>(); // required for disabling and enabling buttons
+    Utils utils;
+    HomeScreen parent;
 
-    public LibraryItemDisplay(ArrayList<V> libraryItems) {
+    public LibraryItemDisplay(HomeScreen parent, ArrayList<Object> libraryItems, Utils utils) {
         displayPanel = new JPanel();
         displayPanel.setLayout(new BoxLayout(displayPanel, BoxLayout.PAGE_AXIS));
         displayPanel.add(Box.createRigidArea(new Dimension(0, 5)));
 
-        Member currentMember = (Member) CurrentUser.getCurrentUser();
-        currentMember.registerListener(this);
+        this.parent = parent;
+        this.utils = utils;
 
-        for (V libItem : libraryItems) {
-            LibraryItemPanel item = new LibraryItemPanel((LibraryItem) libItem);
+        populateChildren(libraryItems);
+    }
+
+    private void populateChildren(ArrayList<Object> libraryItems){
+        for (Object libItem : libraryItems) {
+            LibraryItemPanel item = new LibraryItemPanel(this, (LibraryItem) libItem, utils);
             displayPanel.add(item.getPanel());
             panels.add(item);
         }
     }
 
     @Override
-    public void performAction() {
-        // observes changes to Member
-        updateBorrowButtons();
-    }
-
-    private void updateBorrowButtons() {
-        if(BorrowIncharge.userCanBorrow((Member) CurrentUser.getCurrentUser())){
-            enableBorrow();
-        } else {
-            disableBorrow();
-        }
-    }
-
-    private void enableBorrow() {
+    public void refresh() {
         for(LibraryItemPanel panel: panels){
-            panel.enableBorrowButton();
+            panel.refresh();
         }
     }
 
-    private void disableBorrow() {
-        for(LibraryItemPanel panel: panels){
-            panel.disableBorrowButton();
-        }
+    public void borrow(LibraryItem item){
+        parent.borrow(item);
     }
-
 
     @Override
     public JPanel getPanel() {

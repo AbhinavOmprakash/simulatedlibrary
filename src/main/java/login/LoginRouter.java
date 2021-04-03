@@ -1,37 +1,42 @@
 package login;
 
+import common.MainRouter;
 import common.Router;
 import common.Views;
-import common.models.DisplayPage;
 import login.views.ForgottenPassword;
 import login.views.LoginPage;
 
 import java.awt.event.ActionEvent;
 
-@SuppressWarnings("rawtypes")
 public class LoginRouter extends Router {
-    LoginPage loginPage = new LoginPage(this);
-    ForgottenPassword forgottenPasswordPage = new ForgottenPassword(this);
+    LoginPage loginPage;
+    ForgottenPassword forgottenPasswordPage;
 
-    public LoginRouter(Router router) {
+    public LoginRouter(MainRouter router,
+                       LoginPage loginPage,
+                       ForgottenPassword forgottenPasswordPage) {
         super(router);
-        registerView(loginPage);
-        registerView(forgottenPasswordPage);
+        this.loginPage = loginPage;
+        this.forgottenPasswordPage = forgottenPasswordPage;
+        loginPage.registerListener(this);
+        forgottenPasswordPage.registerListener(this);
     }
 
     @Override
     public void homeView() {
         setView(loginPage);
+        System.out.println("setting login page");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()== loginPage.signUpButton){
             parentRouter.changeView(Views.SIGN_UP);
+
         } else if (e.getSource()==loginPage.forgottenPassword){
             setView(forgottenPasswordPage);
-        } else if (e.getSource()==forgottenPasswordPage.buttonCancel||
-                    e.getSource()==forgottenPasswordPage.buttonOK){
+
+        } else if (e.getSource()==forgottenPasswordPage.backButton){
             setView(loginPage);
         }
     }

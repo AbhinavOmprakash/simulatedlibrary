@@ -20,18 +20,16 @@ public class Payment implements DisplayPage {
     public JButton backButton;
     private JLabel grandTotal;
 
-    PaymentController controller;
-
-    public Payment(Router router) {
-        controller = new PaymentController(this);
-        registerListener(controller);
-        registerListener(router);
-    }
+    public Payment() {}
 
     @Override
     public void registerListener(ActionListener listener) {
         payButton.addActionListener(listener);
         backButton.addActionListener(listener);
+    }
+
+    @Override
+    public void refresh() {
     }
 
     public void populateData(PaymentFormDetails details) {

@@ -1,18 +1,18 @@
 package signup.views;
 
-import common.Router;
-import member.models.MembershipPolicyManager;
+import common.factory.FactoryGui;
+import common.factory.RawData;
+import common.models.DataManager;
 import common.models.MembershipPolicy;
-import signup.controllers.SignUpController;
+import signup.controllers.SignUpGuiController;
 import signup.models.RawSignUpData;
 import common.models.DisplayPage;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class SignUpPage implements DisplayPage {
+public class SignUpPage implements DisplayPage, FactoryGui {
 
     private JPanel panel;
     private JPanel SignUpPanel;
@@ -27,13 +27,11 @@ public class SignUpPage implements DisplayPage {
     public JButton signUpButton;
     public JButton haveAnAccountButton;
 
-    SignUpController controller;
+    SignUpGuiController guiController;
+    DataManager policyData;
 
-    public SignUpPage(Router router) {
-        controller = new SignUpController(this);
-
-        registerListener(router);
-        registerListener(controller);
+    public SignUpPage(DataManager policyData) {
+        this.policyData = policyData;
         populateMembershipPolicies();
     }
 
@@ -43,18 +41,35 @@ public class SignUpPage implements DisplayPage {
         haveAnAccountButton.addActionListener(listener);
     }
 
+    @Override
+    public void refresh() {
+        firstName.setText("");
+        lastName.setText("");
+        userName.setText("");
+        passwordField1.setText("");
+        passwordField2.setText("");
+    }
+
+    @Override
+    public JButton getCreateButton() {
+        return signUpButton;
+    }
+
+    @Override
+    public RawData getRawData() {
+        return new RawSignUpData(
+                firstName.getText(), lastName.getText(),
+                userName.getText(), passwordField1.getPassword(),
+                (String) membershipPolicies.getSelectedItem()
+        );
+    }
+
     private void populateMembershipPolicies() {
-        Object[] allPolicies = controller.getAllPolicies();
+        Object[] allPolicies = policyData.fetchAll().toArray();
         for (Object p : allPolicies){
             MembershipPolicy policy = (MembershipPolicy) p;
             membershipPolicies.addItem(policy.getName());
         }
-    }
-
-    public RawSignUpData fetchSignUpData() {
-        return  new RawSignUpData(firstName.getText(), lastName.getText(),
-                userName.getText(), passwordField1.getPassword(),
-                (String) membershipPolicies.getSelectedItem());
     }
 
     public JPanel getPanel() {

@@ -8,11 +8,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginController implements ActionListener {
-    LoginManager loginManager = new LoginManager();
+    LoginManager manager;
     LoginPage loginPage;
 
-    public LoginController(LoginPage page) {
-        loginPage = page;
+    public LoginController(LoginManager manager, LoginPage loginPage) {
+        this.manager = manager;
+        this.loginPage = loginPage;
+        loginPage.registerListener(this);
     }
 
     @Override
@@ -25,7 +27,10 @@ public class LoginController implements ActionListener {
 
     private void performLogin(){
         RawLoginData enteredData = loginPage.fetchLoginDetails();
-        loginManager.login(enteredData);
+        System.out.println(" \n performing login \n");
+        System.out.println(" \n username \n"+enteredData.getUsername());
+        System.out.println(" \n pass \n"+enteredData.getPasswd());
+        manager.login(enteredData);
     }
 
 }

@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class MembershipPolicy {
+public class MembershipPolicy implements Searchable {
 
     public String name;
     public Double membershipFees;
@@ -49,4 +49,13 @@ public class MembershipPolicy {
         return getName().equals(that.getName());
     }
 
+    @Override
+    public String getTableName() {
+        return "MembershipPolicy";
+    }
+
+    @Override
+    public String getSearchableAttribute() {
+        return "name";
+    }
 }

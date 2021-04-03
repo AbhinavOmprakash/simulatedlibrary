@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table( name = "User")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class User{
+public abstract class User implements Searchable{
     private String firstName;
     private String lastName;
     private String userName;
@@ -37,6 +37,15 @@ public abstract class User{
         }
         User givenUser = (User) o;
         return this.getUserName().equals(givenUser.getUserName());
+    }
+    @Override
+    public String getTableName(){
+        return "User";
+    }
+
+    @Override
+    public String getSearchableAttribute(){
+        return "userName";
     }
 
     // getters and setters

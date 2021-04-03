@@ -1,27 +1,17 @@
 package login.views;
 
-import common.Router;
 import common.models.DisplayPage;
 
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionListener;
 
-//todo clean up the class
-public class ForgottenPassword extends JDialog implements DisplayPage {
-    private JPanel contentPane;
-    public JButton buttonOK;
-    public JButton buttonCancel;
-    private JTextArea textArea1;
-    private JPanel textPanel;
+public class ForgottenPassword implements DisplayPage {
+    private JPanel panel;
+    private JTextPane textPane1;
+    public JButton backButton;
 
-
-    public ForgottenPassword(ActionListener router) {
-
-        setContentPane(contentPane);
-        setModal(true);
-        getRootPane().setDefaultButton(buttonOK);
-
-        String displayText = "you forgot your password? \n" +
+    public ForgottenPassword() {
+        String text = "you forgot your password? \n" +
                 "how could you do this to me? \n" +
                 "I trusted you, you know I am doing a lot of things right now.\n" +
                 "and this is how you treat me? \n" +
@@ -31,51 +21,26 @@ public class ForgottenPassword extends JDialog implements DisplayPage {
                 "\nSincerely, \n"+
                 "This program.";
 
-
-        textArea1.setText(displayText);
-        buttonOK.addActionListener(router);
-        buttonCancel.addActionListener(router);
-
-        // call onCancel() when cross is clicked
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                onCancel();
-            }
-        });
-
-        // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-    }
-
-    private void onOK() {
-        // add your code here
-        dispose();
-//        parent.changeToLoginPage();
-    }
-
-    private void onCancel() {
-        // add your code here if necessary
-        dispose();
-//        parent.changeToLoginPage();
+        textPane1.setText(text);
     }
 
     @Override
     public JPanel getPanel() {
-        return contentPane;
+        return panel;
     }
 
     @Override
     public String getIdentifier() {
-        return "ForgottenPassword";
+        return "forgotten password";
     }
 
     @Override
     public void registerListener(ActionListener listener) {
+        backButton.addActionListener(listener);
+    }
+
+    @Override
+    public void refresh() {
 
     }
 }

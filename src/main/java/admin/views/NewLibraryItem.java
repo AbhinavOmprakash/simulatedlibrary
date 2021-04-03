@@ -1,8 +1,9 @@
 package admin.views;
 
-import admin.controllers.NewLibraryItemController;
-import admin.models.NewLibItemDataAdapter;
+import admin.models.RawLibItemData;
 import common.Router;
+import common.factory.FactoryGui;
+import common.factory.RawData;
 import common.models.DisplayPage;
 
 import javax.swing.*;
@@ -10,8 +11,9 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
+//todo reorganize methods.
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class NewLibraryItem implements DisplayPage {
+public class NewLibraryItem implements DisplayPage, FactoryGui {
     private JPanel panel;
     private JTextField titleField;
     private JTextField subjectField;
@@ -27,13 +29,7 @@ public class NewLibraryItem implements DisplayPage {
     private JSpinner borrowPeriod;
     public JButton backButton;
 
-    ActionListener controller;
-    public NewLibraryItem(Router router) {
-        controller = new NewLibraryItemController(this);
-
-        registerListener(controller);
-        registerListener(router);
-
+    public NewLibraryItem() {
         populateItemTypes();
         populateContributors();
         populateBorrowable();
@@ -43,6 +39,16 @@ public class NewLibraryItem implements DisplayPage {
     public void registerListener(ActionListener listener) {
         addItemButton.addActionListener(listener);
         backButton.addActionListener(listener);
+    }
+
+    @Override
+    public void refresh() {
+
+    }
+
+    @Override
+    public JButton getCreateButton() {
+        return addItemButton;
     }
 
     private void populateItemTypes() {
@@ -65,15 +71,16 @@ public class NewLibraryItem implements DisplayPage {
         isBorrowable.addItem("no");
     }
 
-    public NewLibItemDataAdapter fetchData(){
-        return new NewLibItemDataAdapter(titleField.getText(),
-                    subjectField.getText(),
-                    getContributors(),
-                    UPCfield.getText(),
-                    ISBNField.getText(),
-                    isBorrowable.getSelectedItem(),
-                    borrowPeriod.getValue(),
-                    libItemType.getSelectedItem());
+    @Override
+    public RawData getRawData() {
+        return new RawLibItemData(titleField.getText(),
+                subjectField.getText(),
+                getContributors(),
+                UPCfield.getText(),
+                ISBNField.getText(),
+                isBorrowable.getSelectedItem(),
+                borrowPeriod.getValue(),
+                libItemType.getSelectedItem());
     }
 
     private Map<String, String> getContributors() {

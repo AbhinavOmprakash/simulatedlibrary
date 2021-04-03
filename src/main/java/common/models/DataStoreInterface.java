@@ -1,11 +1,12 @@
 package common.models;
 import java.util.ArrayList;
 
-public interface DataStoreInterface<V> {
+public interface DataStoreInterface {
 
-    ArrayList<V> search(Object query, String table, String attribute);
-    void updateItem(V item);
-    void addNewItem(V item);
-    void deleteItem(V item);
-    ArrayList<V> fetchAll(String table);
+    Object search(Object query, Object itemType, String attribute);
+    ArrayList<Object> fuzzySearch(Object query, Object itemType, String attribute);
+    void updateItem(Object item, Object itemType);
+    void addNewItem(Object item, Object itemType);
+    void deleteItem(Object item, Object itemType);
+    ArrayList<Object> fetchAll(Object itemType);
 }

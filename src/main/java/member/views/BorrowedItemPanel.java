@@ -1,14 +1,14 @@
 package member.views;
 
-import common.Router;
 import common.models.DisplayPage;
 import library.models.libraryitems.LibraryItem;
-import member.controllers.BorrowedItemController;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BorrowedItemPanel implements DisplayPage {
+@SuppressWarnings("rawtypes")
+public class BorrowedItemPanel implements DisplayPage, ActionListener {
     private JPanel panel;
     public JButton moreInfo;
     public JButton returnButton;
@@ -16,20 +16,37 @@ public class BorrowedItemPanel implements DisplayPage {
     private JLabel itemType;
 
     public final LibraryItem item; // todo consider moving to controller?
-    BorrowedItemController controller = new BorrowedItemController(this);
+    private BorrowedItemDisplay parent;
 
-    public BorrowedItemPanel(LibraryItem item){
+    public BorrowedItemPanel(BorrowedItemDisplay parent, LibraryItem item){
         this.item = item;
-
+        this.parent = parent;
         title.setText(item.getTitle());
         itemType.setText(item.getType());
-        registerListener(controller);
+        registerListener(this);
     }
 
     @Override
     public void registerListener(ActionListener listener) {
         moreInfo.addActionListener(listener);
         returnButton.addActionListener(listener);
+    }
+
+    @Override
+    public void refresh() {
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==returnButton){
+            returnItem(item);
+            System.out.println("button pressed");
+        }
+    }
+
+    public void returnItem(LibraryItem item){
+        parent.returnItem(item);
     }
 
     @Override
@@ -41,4 +58,6 @@ public class BorrowedItemPanel implements DisplayPage {
     public String getIdentifier() {
         return "BorrowedItemPanel";
     }
+
+
 }

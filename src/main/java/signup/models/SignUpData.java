@@ -1,31 +1,25 @@
 package signup.models;
 
-import common.models.MembershipPolicy;
-import member.models.MembershipPolicyManager;
+import common.factory.CleanData;
 
-import java.util.List;
+public class SignUpData implements CleanData {
 
-@SuppressWarnings("rawtypes,unchecked")
-public class SignUpData {
-    private static final MembershipPolicyManager policyManager = new MembershipPolicyManager();
+    public String firstName;
+    public String lastName;
+    public String userName;
+    public String password;
+    public String policy;
 
-    protected String firstName;
-    protected String lastName;
-    protected String userName;
-    protected char[] password;
-    protected MembershipPolicy policy;
-
-    public SignUpData(RawSignUpData data) {
-        this.firstName = data.firstName;
-        this.lastName = data.lastName;
-        this.userName = data.userName;
-        this.password = data.password;
-        this.policy = getPolicy(data.policy);
-    }
-    // todo- refactor class is doing too much
-    private MembershipPolicy getPolicy(String policyName) {
-        List results = policyManager.search(String.valueOf(policyName));
-        return (MembershipPolicy) results.get(0);
+    public SignUpData(String firstName,
+                      String lastName,
+                      String userName,
+                      String password,
+                      String policy) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+        this.policy = policy;
     }
 
 }

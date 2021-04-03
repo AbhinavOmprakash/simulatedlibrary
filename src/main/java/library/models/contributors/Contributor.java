@@ -1,12 +1,13 @@
 package library.models.contributors;
 
+import common.models.Searchable;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Contributor{
+public abstract class Contributor implements Searchable {
     private String name;
     private String contributorType;
 
@@ -55,5 +56,14 @@ public abstract class Contributor{
 
     public void setContributorType(String contributorType) {
         this.contributorType = contributorType;
+    }
+
+    public String getTableName() {
+        return "Contributor";
+    }
+
+    @Override
+    public String getSearchableAttribute() {
+        return "name";
     }
 }

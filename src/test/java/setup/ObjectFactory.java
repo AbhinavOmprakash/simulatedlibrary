@@ -4,6 +4,7 @@ import admin.models.Admin;
 import common.models.Member;
 import common.models.MembershipLevel;
 import common.models.MembershipPolicy;
+import jdk.dynalink.beans.StaticClass;
 import library.models.contributors.Author;
 import library.models.contributors.Contributor;
 import library.models.libraryitems.AudioBook;
@@ -12,6 +13,7 @@ import library.models.libraryitems.LibraryItem;
 import login.models.LoginData;
 import login.models.RawLoginData;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import signup.models.SignUpData;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,10 +43,10 @@ public class ObjectFactory {
         LibraryItem willGreyson = new Book("Will Greyson,Will Greyson",
                 "YA",
                 123456789,
-                getContributorsForWillGreyson(),
                 true,
                 999999999);
 
+        willGreyson.setContributors(getContributorsForWillGreyson());
         return willGreyson;
     }
 
@@ -52,19 +54,20 @@ public class ObjectFactory {
         LibraryItem audioWillGreyson = new AudioBook("Will Greyson,Will Greyson",
                 "YA",
                 123456789,
-                getContributorsForWillGreyson(),
                 true,
                 999999999);
+        audioWillGreyson.setContributors(getContributorsForWillGreyson());
         return audioWillGreyson;
     }
 
     public static LibraryItem getTheFaultInOurStars() {
-        return new AudioBook("The fault in our stars",
+        LibraryItem ab = new AudioBook("The fault in our stars",
                 "Young Adult, Romance",
                 13427890,
-                getContributorsTFIOS(),
                 true,
                 91234821);
+        ab.setContributors(getContributorsTFIOS());
+        return ab;
     }
 
     public static MembershipPolicy getBasicPolicy(){
@@ -92,6 +95,7 @@ public class ObjectFactory {
     public static RawLoginData getRawMemberlogin() {
         return new RawLoginData("ab","aww");
     }
+
     public static Admin getAdmin(){
         return new Admin("Deepak", "Yadav", "admin");
     }
@@ -103,5 +107,21 @@ public class ObjectFactory {
 
     public static RawLoginData getRawAdminLogin() {
         return new RawLoginData("admin","JavSucks");
+    }
+
+    public static SignUpData getBasicSignUpData(){
+        return new SignUpData("John",
+                "Doe",
+                "jdoe",
+                "pass",
+                "Basic");
+    }
+
+    public static SignUpData getGoldSignUpData(){
+        return new SignUpData("John",
+                "Doe",
+                "jdoe",
+                "pass",
+                "Gold");
     }
 }

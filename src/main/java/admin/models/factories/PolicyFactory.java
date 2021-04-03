@@ -1,20 +1,22 @@
 package admin.models.factories;
 
 import admin.models.NewPolicyData;
+import common.factory.CleanData;
+import common.factory.Factory;
 import common.models.MembershipPolicy;
-import member.models.MembershipPolicyManager;
 
-@SuppressWarnings({"rawtypes, unchecked"})
-public class PolicyFactory {
-    static MembershipPolicyManager policyManager = new MembershipPolicyManager();
+import java.util.List;
 
-    public static void createNewPolicy(NewPolicyData data){
-        MembershipPolicy policy = new MembershipPolicy(data.name,
+public class PolicyFactory implements Factory<MembershipPolicy> {
+
+    @Override
+    public MembershipPolicy create(CleanData cleanData) {
+        NewPolicyData data = (NewPolicyData) cleanData;
+        return new MembershipPolicy(data.name,
                 data.membershipFees,
                 data.overdueFeesPerDay,
                 data.borrowLimit,
                 data.discountPercentage,
                 data.membershipPeriodInMonths);
-        policyManager.addItem(policy);
     }
 }

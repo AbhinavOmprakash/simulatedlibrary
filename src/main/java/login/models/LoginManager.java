@@ -1,45 +1,41 @@
 package login.models;
 
-import common.customevents.CustomEvent;
-import common.customevents.EventCotroller;
-import common.models.CurrentUser;
-import common.models.User;
-import member.models.UserDataManager;
+import common.models.DataManager;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class LoginManager {
-    LoginDataManager loginData = new LoginDataManager();
-    UserDataManager userdata = UserDataManager.getInstanceOf();
 
-    public void login(rawLoginData enteredData){
-        if(verifyLoginData(enteredData)){
-            changeUser(enteredData);
-            dispatchSignal();
-        }
-        changeUser(enteredData);
-        dispatchSignal();
+    private DataManager loginDataManager;
+    private SessionManager sessionManager;
+
+    public LoginManager(DataManager loginDataManager, SessionManager sessionManager) {
+        this.loginDataManager = loginDataManager;
+        this.sessionManager = sessionManager;
     }
 
-    public static boolean verifyCredentials(LoginData storedData, RawLoginData enteredData){
+    public void login(RawLoginData enteredData) {
+        LoginData storedData = getLoginData(enteredData);
+
+        if(verifyCredentials(storedData, enteredData)){
+            System.out.println("creds verified");
+            forwardToSessionManager(storedData.getUserName());
+        } else {
+            System.out.println("creds not  verified :(");
+        }
+    }
+
+    private LoginData getLoginData(RawLoginData enteredData) {
+        return (LoginData)loginDataManager.search(enteredData.getUsername());
+    }
+
+    private boolean verifyCredentials(LoginData storedData, RawLoginData enteredData){
+        System.out.println("\n expected pass \n"+storedData.password);
+        System.out.println("\n got pass \n"+ enteredData.getPasswd());
+        System.out.println(BCrypt.checkpw(enteredData.getPasswd(), storedData.password));
         return BCrypt.checkpw(enteredData.getPasswd(), storedData.password);
     }
 
-    private void changeUser(rawLoginData data) {
-        User user = getUserFromDB(data);
-        CurrentUser.changeUser(user);
+    private void forwardToSessionManager(String username){
+        sessionManager.start(username);
     }
-
-    private void dispatchSignal() {
-        EventCotroller.getInstanceOf().dispatch(CustomEvent.LOGGED_IN);
-    }
-
-    private User getUserFromDB(rawLoginData data) {
-        return (User) userdata.search(data.getUsername()).get(0);
-    }
-
-    private boolean verifyLoginData(rawLoginData enteredData) {
-        LoginData storedData = (LoginData) this.loginData.search(enteredData.getUsername()).get(0);
-        return storedData.verifyPasswd(enteredData);
-    }
-
 }

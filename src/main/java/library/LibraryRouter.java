@@ -1,5 +1,6 @@
 package library;
 
+import common.MainRouter;
 import common.Router;
 import common.Views;
 import library.views.HomeScreen;
@@ -8,11 +9,12 @@ import java.awt.event.ActionEvent;
 
 
 public class LibraryRouter extends Router {
-    HomeScreen home = new HomeScreen(this);
+    HomeScreen home;
 
-    public LibraryRouter(Router router){
+    public LibraryRouter(MainRouter router, HomeScreen home) {
         super(router);
-        registerView(home);
+        this.home = home;
+        home.registerListener(this);
     }
 
     @Override
@@ -25,6 +27,5 @@ public class LibraryRouter extends Router {
         if(e.getSource() == home.myAccountButton){
             parentRouter.changeView(Views.MEMBER_HOME);
         }
-
     }
 }

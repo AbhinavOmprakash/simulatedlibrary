@@ -3,7 +3,6 @@ package library;
 import common.models.DataManager;
 import common.models.Member;
 import library.models.BorrowedItem;
-import library.models.BorrowedItemsDataManager;
 import library.models.LibraryUtils;
 import library.models.libraryitems.LibraryItem;
 import org.junit.jupiter.api.Test;
@@ -18,7 +17,7 @@ import static org.mockito.Mockito.when;
 
 public class TestLibraryUtils {
     LibraryItem book1 = ObjectFactory.getTheFaultInOurStars();
-    DataManager dataManager = mock(BorrowedItemsDataManager.class);
+    DataManager dataManager = mock(DataManager.class);
     LibraryUtils libraryUtils = new LibraryUtils(dataManager);
 
     @Test
@@ -41,12 +40,4 @@ public class TestLibraryUtils {
         assertFalse(libraryUtils.isOverdue(book1));
     }
 
-    @Test
-    void borrowNotPossibleWhenUserLimitIsReached() {
-        when(dataManager.search(book1.getId())).thenReturn(null);
-        Member member = ObjectFactory.getMember();
-        // artificially setting limit to zero
-        member.getMembershipLevel().setBorrowLimit(0);
-        assertFalse(libraryUtils.userCanBorrow(member));
-    }
 }

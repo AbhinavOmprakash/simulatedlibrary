@@ -1,6 +1,8 @@
 package admin.models;
 
-public class NewPolicyData {
+import common.factory.CleanData;
+
+public class NewPolicyData implements CleanData {
     public String name;
     public Double membershipFees;
     public Double overdueFeesPerDay;

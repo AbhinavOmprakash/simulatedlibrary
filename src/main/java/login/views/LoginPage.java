@@ -20,13 +20,8 @@ public class LoginPage implements DisplayPage {
     public JButton forgottenPassword;
     public JButton signUpButton;
 
-    ActionListener controller;
-    public LoginPage(Router router){
-        controller = new LoginController(this);
-        forgottenPassword.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
-
-        registerListener(router);
-        registerListener(controller);
+    public LoginPage(){
+//        forgottenPassword.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
     }
 
     @Override
@@ -34,6 +29,12 @@ public class LoginPage implements DisplayPage {
         forgottenPassword.addActionListener(listener);
         loginButton.addActionListener(listener);
         signUpButton.addActionListener(listener);
+    }
+
+    @Override
+    public void refresh() {
+        usernameField.setText("");
+        passwordField.setText("");
     }
 
     public RawLoginData fetchLoginDetails(){

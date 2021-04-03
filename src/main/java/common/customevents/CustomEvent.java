@@ -7,4 +7,5 @@ public enum CustomEvent {
     PAYMENT_GATEWAY,
     NEW_PAYMENT,
     LOG_OUT,
+    BORROWED,
 }

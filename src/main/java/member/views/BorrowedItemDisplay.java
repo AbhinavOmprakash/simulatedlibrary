@@ -13,22 +13,38 @@ public class BorrowedItemDisplay<V> implements DisplayPage {
     private JPanel displayPanel;
     private ArrayList<BorrowedItemPanel> panels = new ArrayList<>(); // for cleanup()
 
-    public BorrowedItemDisplay(List<V> borrowedItems) {
+    MyAccount parent;
+
+    public BorrowedItemDisplay(MyAccount parent, List<Object> borrowedItems) {
+        this.parent = parent;
+
         displayPanel = new JPanel();
         displayPanel.setLayout(new BoxLayout(displayPanel, BoxLayout.PAGE_AXIS));
         displayPanel.add(Box.createRigidArea(new Dimension(0,5)));
 
-        for ( V libItem: borrowedItems){
-            BorrowedItemPanel item = new BorrowedItemPanel((LibraryItem) libItem);
+        displayBorrowedItems(borrowedItems);
+    }
+
+    private void displayBorrowedItems(List<Object> borrowedItems){
+        for ( Object libItem: borrowedItems){
+            BorrowedItemPanel item = new BorrowedItemPanel(this, (LibraryItem) libItem);
             displayPanel.add(item.getPanel());
             panels.add(item);
         }
     }
 
+    public void returnItem(LibraryItem item){
+        parent.returnItem(item);
+    }
 
     @Override
     public void registerListener(ActionListener listener) {
         // no action listeners
+    }
+
+    @Override
+    public void refresh() {
+
     }
 
     @Override

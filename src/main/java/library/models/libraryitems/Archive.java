@@ -18,4 +18,10 @@ public class Archive extends LibraryItem{
         super(title, subject, UPC, contributors, false, 0, "Archive");
 
     }
+    public Archive(String title,
+                   String subject,
+                   int UPC) {
+        super(title, subject, UPC, false, 0, "Archive");
+
+    }
 }

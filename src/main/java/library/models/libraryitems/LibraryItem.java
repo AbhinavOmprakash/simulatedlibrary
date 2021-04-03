@@ -1,5 +1,6 @@
 package library.models.libraryitems;
 
+import common.models.Searchable;
 import library.models.contributors.Contributor;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -10,7 +11,7 @@ import java.util.Objects;
 @Entity
 @Table( name = "LibraryItem")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class LibraryItem {
+public abstract class LibraryItem implements Searchable {
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -39,6 +40,17 @@ public abstract class LibraryItem {
         this.subject = subject;
         this.UPC = UPC;
         this.contributors = contributors;
+        this.isBorrowable = isBorrowable;
+        this.borrowPeriodInDays = borrowPeriodInDays;
+        this.type = type;
+    }
+
+    public LibraryItem(String title, String subject, int UPC,
+                       boolean isBorrowable,
+                       int borrowPeriodInDays, String type) {
+        this.title = title;
+        this.subject = subject;
+        this.UPC = UPC;
         this.isBorrowable = isBorrowable;
         this.borrowPeriodInDays = borrowPeriodInDays;
         this.type = type;
@@ -121,8 +133,13 @@ public abstract class LibraryItem {
         return getId() == that.getId();
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
+    public String getTableName() {
+        return "LibraryItem";
     }
+
+    @Override
+    public String getSearchableAttribute() {
+        return "title";
+    }
+
 }

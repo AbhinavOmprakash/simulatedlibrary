@@ -1,5 +1,6 @@
 package signup;
 
+import common.MainRouter;
 import common.Views;
 import common.customevents.CustomEvent;
 import common.Router;
@@ -8,14 +9,14 @@ import signup.views.SignUpPage;
 
 import java.awt.event.ActionEvent;
 
-@SuppressWarnings({"rawtypes","unchecked"})
 public class SignUpRouter extends Router {
+    SignUpPage signUpPage;
 
-    SignUpPage signUpPage = new SignUpPage(this);
-
-    public SignUpRouter(Router router) {
+    public SignUpRouter(MainRouter router, SignUpPage page) {
         super(router);
-        registerView(signUpPage);
+        signUpPage = page;
+
+        signUpPage.registerListener(this);
     }
 
     @Override

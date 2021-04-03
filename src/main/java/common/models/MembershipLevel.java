@@ -9,7 +9,6 @@ import java.util.Calendar;
 @Access(AccessType.FIELD)
 public class MembershipLevel {
 
-    // subclasses must initialize these values
     String policy;
     @Column(name = "membershipFees")
     Double membershipFees;
@@ -97,5 +96,4 @@ public class MembershipLevel {
     public void setExpiringOn(Calendar expiringOn) {
         this.expiringOn = expiringOn;
     }
-
 }

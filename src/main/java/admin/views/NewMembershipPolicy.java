@@ -1,30 +1,26 @@
 package admin.views;
 
-import admin.controllers.NewMembershipPolicyController;
 import admin.models.PolicyDataAdapter;
 import common.Router;
+import common.factory.FactoryGui;
+import common.factory.RawData;
 import common.models.DisplayPage;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-public class NewMembershipPolicy implements DisplayPage {
+public class NewMembershipPolicy implements DisplayPage, FactoryGui {
     private JTextField policyName;
-    private JSpinner fees;
-    private JSpinner overdueFees;
-    private JSpinner borrowLimit;
-    private JSpinner discounts;
-    private JSpinner membershipPeriod;
     public JButton createPolicyButton;
     private JPanel panel;
     public JButton backButton;
+    private JTextField fees;
+    private JTextField overdue;
+    private JTextField borrowLimit;
+    private JTextField discounts;
+    private JTextField membershipPeriod;
 
-    ActionListener controller;
-    public NewMembershipPolicy(Router router){
-        controller = new NewMembershipPolicyController(this);
-
-        registerListener(controller);
-        registerListener(router);
+    public NewMembershipPolicy(){
     }
 
     @Override
@@ -33,13 +29,24 @@ public class NewMembershipPolicy implements DisplayPage {
         backButton.addActionListener(listener);
     }
 
-    public PolicyDataAdapter fetchRawData(){
+    @Override
+    public void refresh() {
+
+    }
+
+    @Override
+    public JButton getCreateButton() {
+        return createPolicyButton;
+    }
+
+    @Override
+    public RawData getRawData() {
         return new PolicyDataAdapter(policyName.getText(),
-                fees.getValue(),
-                overdueFees.getValue(),
-                borrowLimit.getValue(),
-                discounts.getValue(),
-                membershipPeriod.getValue());
+                fees.getText(),
+                overdue.getText(),
+                borrowLimit.getText(),
+                discounts.getText(),
+                membershipPeriod.getText());
     }
 
     @Override

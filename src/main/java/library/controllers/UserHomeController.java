@@ -2,7 +2,8 @@ package library.controllers;
 
 import common.models.DataManager;
 import common.models.LogoutManager;
-import library.models.LibraryItemManager;
+import library.models.LibraryUtils;
+import library.models.Utils;
 import library.views.HomeScreen;
 
 import java.awt.event.ActionEvent;
@@ -12,14 +13,21 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"unchecked, rawtypes"})
 public class UserHomeController implements ActionListener {
-    private final DataManager libraryItemManager = new LibraryItemManager();
+    private final DataManager libraryItemManager;
 
     HomeScreen userHome;
-    public UserHomeController(HomeScreen page) {
-        userHome = page;
+    LibraryUtils libraryUtils;
+
+    public UserHomeController(DataManager libraryItemManager,
+                              HomeScreen userHome,
+                              Utils utils) {
+        this.libraryItemManager = libraryItemManager;
+        this.userHome = userHome;
+        this.libraryUtils = utils.libUtils;
+
+        userHome.registerListener(this);
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == userHome.searchButton){
             searchAndDisplayResults();
@@ -30,14 +38,17 @@ public class UserHomeController implements ActionListener {
 
     private void searchAndDisplayResults(){
         // TODO uncomment in production
-//        ArrayList<V> results = performSearch();
-        ArrayList results = libraryItemManager.fetchAll();
+        ArrayList<Object> results = performSearch();
         userHome.displaySearchResults(results);
     }
 
     private ArrayList performSearch(){
         String query = userHome.getSearchField().getText();
-        return libraryItemManager.search(query);
+        if(query.equals("")){
+            return libraryItemManager.fetchAll();
+        } else {
+            return libraryItemManager.fuzzySearch(query);
+        }
     }
 
 }

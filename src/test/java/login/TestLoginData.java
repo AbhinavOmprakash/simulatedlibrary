@@ -11,7 +11,7 @@ public class TestLoginData {
         String username = "username";
         String password = "password";
         LoginData data = new LoginData(username, password);
-        assertEquals(username, data.username);
+        assertEquals(username, data.userName);
         assertEquals(password, data.password);
     }
 

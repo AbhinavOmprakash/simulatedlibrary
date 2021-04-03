@@ -17,7 +17,7 @@ public class TestNewMember {
     DataManager mockDataManager = mock(DataManager.class);
     MembershipLevelFactory membershipLevelFactory = mock(MembershipLevelFactory.class);
 
-    NewMember newMember = new NewMember(mockDataManager, membershipLevelFactory);
+    NewMember newMember = new NewMember();
     ArgumentCaptor<Member> memberCaptor = ArgumentCaptor.forClass(Member.class);
 
     @Test

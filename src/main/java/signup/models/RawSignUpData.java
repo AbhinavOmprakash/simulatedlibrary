@@ -1,8 +1,12 @@
 package signup.models;
 
+import common.factory.CleanData;
+import common.factory.RawData;
 import common.models.MembershipPolicy;
 
-public class RawSignUpData {
+import java.util.Arrays;
+
+public class RawSignUpData implements RawData {
     public String firstName;
     public String lastName;
     public String userName;
@@ -15,5 +19,14 @@ public class RawSignUpData {
         this.userName = userName;
         this.password = password;
         this.policy = policy;
+    }
+
+    @Override
+    public CleanData getCompatibleData() {
+        return new SignUpData(firstName,
+                lastName,
+                userName,
+                Arrays.toString(password),
+                policy);
     }
 }

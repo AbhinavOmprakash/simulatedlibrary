@@ -8,7 +8,7 @@ public class RawLoginData {
 
     public RawLoginData(String username, char[] passwd) {
         this.username = username;
-        this.passwd = Arrays.toString(passwd);
+        this.passwd = String.valueOf(passwd);
     }
 
     public RawLoginData(String username, String passwd) {
@@ -20,6 +20,6 @@ public class RawLoginData {
     }
 
     public String getPasswd() {
-        return String.valueOf(passwd);
+        return passwd;
     }
 }

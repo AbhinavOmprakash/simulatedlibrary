@@ -22,7 +22,7 @@
 
 <!--        delete in production-->
     <!-- Echo all executed SQL to stdout -->
-    <property name="show_sql">true</property>
+<!--    <property name="show_sql">true</property>-->
 
 
 <!--        delete in prod-->
@@ -33,7 +33,7 @@
     <mapping class="common.models.User"/>
     <mapping class="common.models.Member"/>
     <mapping class="admin.models.Admin"/>
-    <mapping class="library.models.BorrowedItems"/>
+    <mapping class="library.models.BorrowedItem"/>
     <mapping class="login.models.LoginData"/>
     <mapping class="common.models.FinancialAccount"/>
     <mapping class="common.models.MembershipLevel"/>

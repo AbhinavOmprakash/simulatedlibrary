@@ -13,24 +13,10 @@ import java.util.Map;
 public class DummyPayment implements PaymentGateway {
     ArrayList<PaymentObserver> observers = new ArrayList<>();
     Map<String, PaymentDetails> transactionQueue = new HashMap<>();
-
     // hacky
     PaymentDetails latestPayment;
 
-    private static DummyPayment uniqueInstance;
-
-    private DummyPayment(){}
-
-    public static DummyPayment getInstanceOf(){
-        if(uniqueInstance==null){
-            synchronized (DummyPayment.class){
-                if(uniqueInstance==null){
-                    uniqueInstance= new DummyPayment();
-                }
-            }
-        }
-        return uniqueInstance;
-    }
+   public DummyPayment(){}
 
     @Override
     public void initializePayment(String username, double targetAmount, Transaction transaction) {
@@ -43,13 +29,11 @@ public class DummyPayment implements PaymentGateway {
     public void completePayment(PaymentDetails details){
         // true for dummy purposes.
         notifyPaymentStatus(details.userName, true, details.targetAmount, details.transaction);
-
         transactionQueue.remove(details.userName);
     }
     public PaymentDetails getLatestPayment() {
         return latestPayment;
     }
-
 
     @Override
     public void registerObservers(PaymentObserver o) {

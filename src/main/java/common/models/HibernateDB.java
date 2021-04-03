@@ -1,47 +1,37 @@
 package common.models;
 
 import admin.models.Admin;
+import library.models.BorrowedItem;
+import library.models.contributors.Author;
+import library.models.contributors.Contributor;
 import library.models.libraryitems.AudioBook;
 import library.models.libraryitems.Book;
 import library.models.libraryitems.LibraryItem;
-import library.models.contributors.Author;
-import library.models.contributors.Contributor;
 import login.models.LoginData;
+import login.models.RawLoginData;
+import signup.models.CredentialCreator;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings({"rawtypes","unchecked"})
-public class HibernateDB<V> implements DataStoreInterface<V>{
+public class HibernateDB implements DataStoreInterface{
     SessionFactory sessionFactory;
-    private static HibernateDB uniqueInstance;
-    private static HibernateDB testUniqueInstance;
-
-    public static HibernateDB getInstance(){
-        if (uniqueInstance==null){
-            uniqueInstance = new HibernateDB();
-        }
-        return uniqueInstance;
-    }
-    public static HibernateDB getTestInstance(){
-        if (testUniqueInstance==null){
-            testUniqueInstance = new HibernateDB(true);
-        }
-        return testUniqueInstance;
+    public HibernateDB() {
+        this.sessionFactory = setUpFactory();
     }
 
-    private HibernateDB() {
-        this.sessionFactory=setUpFactory();
-
-    }
-    private HibernateDB(boolean test) {
+    public HibernateDB(boolean test) {
         if (test) {
             this.sessionFactory = setUpTestFactory();
             createTestObjects();
@@ -98,83 +88,98 @@ public class HibernateDB<V> implements DataStoreInterface<V>{
         openSession.close();
     }
 
-    public ArrayList search(Object query, String table, String attribute ){
+    @Override
+    public Object search(Object query, Object itemType, String attribute) {
         Session session = getSession();
 
-        String hqlQuery = "from "+table+ " where "+attribute+" =:query";
+        String hqlQuery = "from "+itemType+ " where "+attribute+" =:query";
+        Object result = session.createQuery(hqlQuery)
+                .setParameter("query",query).uniqueResult();
+        stopSession(session);
+
+        return result;
+    }
+
+    @Override
+    public ArrayList<Object> fuzzySearch(Object query, Object itemType, String attribute) {
+        Session session = getSession();
+
+        String hqlQuery = "from "+itemType+ " where "+attribute+" =:query";
         List result = session.createQuery(hqlQuery)
                 .setParameter("query",query).list();
-
         stopSession(session);
 
         return new ArrayList<>(result);
     }
 
-    public ArrayList fetchAll(String table){
-        Session session = getSession();
-
-        String hqlQuery = "from "+table;
-        List result = session.createQuery(hqlQuery).list();
-
-        stopSession(session);
-        return new ArrayList<>(result);
-    }
-
-    public void addNewItem(V item){
-        Session session = getSession();
-        session.save(item);
-        stopSession(session);
-    }
-
-    public void updateItem(V item){
+    @Override
+    public void updateItem(Object item, Object itemType) {
         Session session = getSession();
         session.update(item);
         stopSession(session);
     }
 
-    public void deleteItem(V item){
+    @Override
+    public void addNewItem(Object item, Object itemType) {
+        Session session = getSession();
+        session.save(item);
+        stopSession(session);
+    }
+
+    @Override
+    public void deleteItem(Object item, Object itemType) {
         Session session = getSession();
         session.remove(item);
         stopSession(session);
     }
 
+    @Override
+    public ArrayList<Object> fetchAll(Object itemType) {
+        Session session = getSession();
+        String hqlQuery = "from "+ itemType;
+        List result = session.createQuery(hqlQuery).list();
+
+        stopSession(session);
+        return new ArrayList<>(result);
+    }
     private void createTestObjects(){
         // objects created for trial runs and testing etc.
 
         // book 1
-        Contributor writer1 = new Author("John Green");
-        Contributor writer2 = new Author("David Levithan");
-        ArrayList<Contributor> contributors1 = new ArrayList<>(Arrays.asList(writer1, writer2));
+        Contributor JohnGreen = new Author("John Green");
+        Contributor DavidLevithan = new Author("David Levithan");
+        ArrayList<Contributor> willGreysonContribs = new ArrayList<>(Arrays.asList(JohnGreen, DavidLevithan));
         LibraryItem book1 = new Book("Will Greyson,Will Greyson",
                 "YA",
                 123456789,
-                contributors1,
                 true,
                 999999999);
 
-        addNewItem((V) writer1);
-        addNewItem((V) writer2);
-        addNewItem((V) book1);
+        book1.setContributors(willGreysonContribs);
+
+        addNewItem(JohnGreen, Author.class);
+        addNewItem(DavidLevithan, Author.class);
+        addNewItem(book1, LibraryItem.class);
 
         // audio book 1
         LibraryItem audioBook1 = new AudioBook("Will Greyson,Will Greyson",
                 "YA",
                 123456789,
-                contributors1,
                 true,
                 999999999);
+        audioBook1.setContributors(willGreysonContribs);
 
         // audio book 2
-        ArrayList<Contributor> contributor2 = new ArrayList<>(Collections.singletonList(writer1));
+        ArrayList<Contributor> tfiosContribs = new ArrayList<>(Collections.singletonList(JohnGreen));
         LibraryItem audioBook2 = new AudioBook("The fault in our stars",
                 "Young Adult, Romance",
                 13427890,
-                contributor2,
                 true,
                 91234821);
+        audioBook2.setContributors(tfiosContribs);
 
-        addNewItem((V) audioBook1);
-        addNewItem((V) audioBook2);
+        addNewItem(audioBook1, LibraryItem.class);
+        addNewItem(audioBook2, LibraryItem.class);
 
         MembershipPolicy basicPolicy = new MembershipPolicy("Basic",10.0,
                 1.0 ,1,
@@ -183,20 +188,62 @@ public class HibernateDB<V> implements DataStoreInterface<V>{
         MembershipPolicy goldPolicy = new MembershipPolicy("Gold",100.0,
                 0.005 ,3,
                 0.0, 12);
-        addNewItem((V) basicPolicy);
-        addNewItem((V) goldPolicy);
+        addNewItem(basicPolicy, MembershipPolicy.class);
+        addNewItem(goldPolicy, MembershipPolicy.class);
 
-        Member user = new Member("Abhinav", "Omprakash", "ab", new MembershipLevel(basicPolicy));
+        Member abhinav = new Member("Abhinav", "Omprakash", "ab", new MembershipLevel(basicPolicy));
+        RawLoginData rawAbhiLogin = new RawLoginData("ab","aww");
+        LoginData abhiLogin=CredentialCreator.createNewCredential(rawAbhiLogin);
+        FinancialAccount abhinavAccount = new FinancialAccount(abhinav.getUserName());
+
+        Member goldUser = new Member("goldie", "glitters", "au", new MembershipLevel(goldPolicy));
+        RawLoginData rawGoldLogin = new RawLoginData("au","aww");
+        LoginData goldLogin=CredentialCreator.createNewCredential(rawGoldLogin);
+        FinancialAccount goldAccount = new FinancialAccount(goldUser.getUserName());
+
+        Member delayedUser = new Member("lazy", "larry", "la", new MembershipLevel(basicPolicy));
+        RawLoginData rawDelayedLogin = new RawLoginData("la","aww");
+        LoginData delayedLogin =CredentialCreator.createNewCredential(rawDelayedLogin);
+        FinancialAccount delayedUserAccount = new FinancialAccount(delayedUser.getUserName());
+
         Admin administrator = new Admin("Deepak", "Yadav", "admin");
-        LoginData adminLogin = new LoginData("admin","JavaSucks");
-        LoginData abhiLogin = new LoginData("ab","aww");
+        RawLoginData rawAdminLogin = new RawLoginData("admin","JavaSucks");
+        LoginData adminLogin = CredentialCreator.createNewCredential(rawAdminLogin);
 
-        addNewItem((V) user);
-        addNewItem((V) administrator);
-        addNewItem((V) adminLogin);
-        addNewItem((V) abhiLogin);
+        addNewItem(abhinav, User.class);
+        addNewItem(abhiLogin, LoginData.class);
+        addNewItem(abhinavAccount, FinancialAccount.class);
+
+        addNewItem(goldUser, User.class);
+        addNewItem(goldLogin, LoginData.class );
+        addNewItem(goldAccount, FinancialAccount.class);
+
+        addNewItem(delayedUser, User.class);
+        addNewItem(delayedLogin, LoginData.class );
+        addNewItem(delayedUserAccount, FinancialAccount.class);
+
+        addNewItem(administrator, User.class);
+        addNewItem(adminLogin, LoginData.class);
+
+        //creating overdue item for testing.
+        LibraryItem lookingForAlaska = new Book("looking for alaska",
+                                        "YA",
+                                        123456789,
+                                        true,
+                                        999999999);
+
+        lookingForAlaska.setContributors(willGreysonContribs);
+
+        addNewItem(lookingForAlaska, LibraryItem.class);
+
+        delayedUser.borrowItem(lookingForAlaska);
+        updateItem(delayedUser, User.class);
+
+        BorrowedItem overdueBook = new BorrowedItem(lookingForAlaska);
+        LocalDateTime overdue = LocalDateTime.of(1985, 10, 25, 16, 1);
+        overdueBook.setBorrowedOn(overdue);
+
+        addNewItem(overdueBook, BorrowedItem.class);
     }
-
-
 
 }

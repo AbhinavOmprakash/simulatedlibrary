@@ -28,4 +28,9 @@ public class LIbraryItemDetailedView implements DisplayPage {
     public void registerListener(ActionListener listener) {
 
     }
+
+    @Override
+    public void refresh() {
+
+    }
 }

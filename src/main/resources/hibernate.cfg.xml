@@ -26,7 +26,7 @@
     <mapping class="common.models.User"/>
     <mapping class="common.models.Member"/>
     <mapping class="admin.models.Admin"/>
-    <mapping class="library.models.BorrowedItems"/>
+    <mapping class="library.models.BorrowedItem"/>
     <mapping class="common.models.FinancialAccount"/>
     <mapping class="login.models.LoginData"/>
     <mapping class="common.models.MembershipLevel"/>

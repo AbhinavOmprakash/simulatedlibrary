@@ -1,16 +1,10 @@
 package member.views;
 
-import common.Router;
-import common.models.DataManager;
-import member.controllers.UpgradeMembershipController;
-import member.models.MembershipPolicyManager;
-import common.models.CurrentUser;
-import common.models.Member;
-import common.models.MembershipPolicy;
-import common.models.DisplayPage;
+import common.models.*;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 @SuppressWarnings({"rawtypes","unchecked"})
@@ -22,27 +16,40 @@ public class UpgradeMembership implements DisplayPage {
     public JLabel currentPolicy;
     public JButton backButton;
 
-    DataManager policyManager = new MembershipPolicyManager();
-    ActionListener controller;
+    DataManager allPolicies;
+    DataManager users;
 
-    public UpgradeMembership(Router router) {
-        controller = new UpgradeMembershipController(this);
+    public UpgradeMembership(DataManager policies, DataManager users) {
+        this.allPolicies = policies;
+        this.users = users;
         populateMembershipPolicies();
-        setCurrentUserPolicy();
-        registerListener(controller);
-        registerListener(router);
     }
 
     @Override
     public void registerListener(ActionListener listener) {
         upgradeButton.addActionListener(listener);
-        membershipPolicies.addActionListener(listener);
         backButton.addActionListener(listener);
     }
 
-    private void setCurrentUserPolicy() {
-        Member user = (Member) CurrentUser.getCurrentUser();
-        currentPolicy.setText(user.getMembershipLevel().getPolicy());
+    public void registerItemEventListenere(ItemListener listener){
+        membershipPolicies.addItemListener(listener);
+    }
+
+    @Override
+    public void refresh() {
+        updateDisplayedPolicy();
+        membershipPolicies.removeAllItems();
+        populateMembershipPolicies();
+    }
+
+    private void updateDisplayedPolicy() {
+        // todo duplicated in controller.
+        Member member = getMember();
+        currentPolicy.setText(member.getMembershipLevel().getPolicy());
+    }
+
+    private Member getMember(){
+        return (Member) users.search(Session.getCurrentUser());
     }
 
     private void populateMembershipPolicies() {
@@ -54,7 +61,7 @@ public class UpgradeMembership implements DisplayPage {
     }
 
     private Object[] getAllPolicies(){
-        ArrayList policies = policyManager.fetchAll();
+        ArrayList policies = allPolicies.fetchAll();
         // for dev
         if (policies.isEmpty()) {
             return new Object[]{"basic"};

@@ -7,14 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Member extends User implements DataObservable {
+public class Member extends User {
     @Embedded
     private MembershipLevel membershipLevel;
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<LibraryItem> borrowedItems = new ArrayList<>();
 
-    @Transient
-    ArrayList<DataObserver> observers = new ArrayList<>();
+    @ElementCollection(fetch = FetchType.EAGER)
+    List<LibraryItem> borrowedItems = new ArrayList<>();
 
     public Member(){
         // for hibernate
@@ -25,33 +23,41 @@ public class Member extends User implements DataObservable {
         this.membershipLevel = membershipLevel;
     }
 
-    public void addBorrowedItem(LibraryItem item){
+    public Member(String firstName, String lastName, String userName) {
+        super(firstName, lastName, userName);
+    }
+
+    public void borrowItem(LibraryItem item){
         borrowedItems.add(item);
-        notifyObservers();
     }
 
-    public void returnBorrowedItem(LibraryItem item){
+    public void returnItem(LibraryItem item){
         borrowedItems.remove(item);
-        notifyObservers();
     }
 
-    public void registerListener(DataObserver listener){
-        observers.add(listener);
-
+    public int totalBorrowedItems(){
+        return borrowedItems.size();
     }
-    public void removeListener(DataObserver listener){
-        observers.remove(listener);
 
+    public boolean hasBorrowed(LibraryItem item){
+        return borrowedItems.contains(item);
     }
-    public void notifyObservers(){
-        for(DataObserver o:observers){
-            o.performAction();
-        }
+
+    public boolean hasBorrowedItems(){
+        return !borrowedItems.isEmpty();
+    }
+
+    public int getBorrowLimit(){
+        return membershipLevel.getBorrowLimit();
+    }
+    public Double getOverduePerDay(){
+        return membershipLevel.getOverdueFeesPerDay();
+    }
 
     public static String getAccessPrivilege(){
         return "member";
     }
-
+    // getters and setters
     public MembershipLevel getMembershipLevel() {
         return membershipLevel;
     }
@@ -64,7 +70,7 @@ public class Member extends User implements DataObservable {
         return borrowedItems;
     }
 
-    public void setBorrowedItems(List<LibraryItem> borrowedItems) {
+    public void setBorrowedItems(ArrayList<LibraryItem> borrowedItems) {
         this.borrowedItems = borrowedItems;
     }
 }

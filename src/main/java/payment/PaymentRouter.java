@@ -1,5 +1,6 @@
 package payment;
 
+import common.MainRouter;
 import common.Router;
 import common.Views;
 import payment.views.Payment;
@@ -7,11 +8,12 @@ import payment.views.Payment;
 import java.awt.event.ActionEvent;
 
 public class PaymentRouter extends Router {
-    Payment page = new Payment(this);
+    Payment page;
 
-    public PaymentRouter(Router router) {
+    public PaymentRouter(MainRouter router, Payment page) {
         super(router);
-        registerView(page);
+        this.page = page;
+        page.registerListener(this);
     }
 
     @Override
@@ -23,6 +25,7 @@ public class PaymentRouter extends Router {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==page.backButton){
             parentRouter.changeView(Views.BACK);
+
         } else if(e.getSource()==page.payButton){
             parentRouter.changeView(Views.LIBRARY_HOME);
         }

@@ -4,7 +4,6 @@ import common.models.BorrowedItems;
 import common.models.DataManager;
 import common.models.Member;
 import library.models.NormalBorrow;
-import library.models.BorrowedItemsDataManager;
 import library.models.libraryitems.LibraryItem;
 import org.junit.jupiter.api.Test;
 import setup.ObjectFactory;
@@ -18,8 +17,8 @@ import static org.mockito.Mockito.when;
 public class TestBorrow {
     LibraryItem book1 = ObjectFactory.getTheFaultInOurStars();
 
-    DataManager dataManager = mock(BorrowedItemsDataManager.class);
-    NormalBorrow normalBorrow = new NormalBorrow(dataManager);
+    DataManager dataManager = mock(DataManager.class);
+    NormalBorrow normalBorrow = new NormalBorrow(dataManager, dataManager);
 
     @Test
     void BorrowShouldAddItemToUserBorrowedItems() {

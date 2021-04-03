@@ -2,8 +2,7 @@ package library;
 
 import common.models.DataManager;
 import common.models.Member;
-import library.models.BorrowLibrarian;
-import library.models.BorrowedItemsDataManager;
+import library.models.*;
 import library.models.libraryitems.LibraryItem;
 import org.junit.jupiter.api.Test;
 import setup.ObjectFactory;
@@ -17,8 +16,13 @@ public class TestBorrowLibrarian {
     LibraryItem book1 = ObjectFactory.getTheFaultInOurStars();
     LibraryItem book2 = ObjectFactory.getBookWillGreyson();
 
-    DataManager dataManager = mock(BorrowedItemsDataManager.class);
-    BorrowLibrarian borrowLibrarian = new BorrowLibrarian(dataManager);
+    DataManager dataManager = mock(DataManager.class);
+    LibraryUtils libraryUtils = new LibraryUtils(dataManager);
+    MemberUtils memberUtils = new MemberUtils(dataManager);
+    Utils utils = new Utils(libraryUtils, memberUtils);
+    NormalBorrow normalBorrow = new NormalBorrow(dataManager, dataManager);
+
+    BorrowLibrarian borrowLibrarian = new BorrowLibrarian(normalBorrow, utils);
 
     @Test
     void UserCannotBorrowMoreThanLimit() {

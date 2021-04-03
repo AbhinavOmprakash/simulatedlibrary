@@ -1,6 +1,7 @@
 package login;
 
-import common.models.User;
+import common.models.DataManager;
+import common.models.Session;
 import login.models.*;
 import org.junit.jupiter.api.Test;
 import setup.ObjectFactory;
@@ -12,15 +13,15 @@ import static org.mockito.Mockito.when;
 public class TestLogin {
     LoginData memberLogin = ObjectFactory.getMemberlogin();
     RawLoginData rawLoginData = ObjectFactory.getRawMemberlogin();
-    SessionManager sessionManager = new SessionManager();
-    LoginDataManager mockDataManager = mock(LoginDataManager.class);
+    DataManager mockDataManager = mock(DataManager.class);
+    SessionManager sessionManager = new SessionManager(mockDataManager);
     LoginManager manager= new LoginManager(mockDataManager, sessionManager);
 
     @Test
     void ShouldForwardToSessionManager(){
         when(mockDataManager.search(rawLoginData.getUsername())).thenReturn(memberLogin);
         manager.login(rawLoginData);
-        String user = sessionManager.getCurrentSession().getCurrentUser();
-        assertEquals(memberLogin.username,user);
+        String user = Session.getCurrentUser();
+        assertEquals(memberLogin.userName,user);
     }
 }

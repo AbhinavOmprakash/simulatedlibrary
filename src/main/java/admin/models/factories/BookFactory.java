@@ -1,20 +1,22 @@
 package admin.models.factories;
 
-import admin.models.NewLibraryItemData;
+import admin.models.LibItemData;
+import common.factory.CleanData;
+import common.factory.Factory;
 import library.models.libraryitems.Book;
 import library.models.libraryitems.LibraryItem;
-import library.models.contributors.Contributor;
 
-import java.util.ArrayList;
+public class BookFactory implements Factory<LibraryItem> {
 
-public class BookFactory{
-    public static LibraryItem createNew(NewLibraryItemData data, ArrayList<Contributor> contributors){
+    @Override
+    public LibraryItem create(CleanData cleanData) {
+        LibItemData data = (LibItemData) cleanData;
         return new Book(data.title,
                 data.subject,
                 data.UPC,
-                contributors,
                 data.isBorrowable,
                 data.ISBN,
                 data.borrowPeriodInDays);
     }
+
 }

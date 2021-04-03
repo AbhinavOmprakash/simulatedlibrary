@@ -7,29 +7,29 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class FinancialAccount {
+public class FinancialAccount implements Searchable{
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name="increment", strategy = "increment")
     private long id;
-    private String username;
-    private double penaltyDue = 0.0;
+    private String userName;
+    private double feesDue = 0.0;
     private double totalMoneyPaid = 0.0;
 
-    FinancialAccount(){
+    public FinancialAccount(){
         // for hibernate
     }
 
-    public FinancialAccount(String username){
-        this.username = username;
+    public FinancialAccount(String userName){
+        this.userName = userName;
     }
 
     public void addPenalty(double penalty){
-        this.penaltyDue = penalty;
+        this.feesDue = penalty;
     }
 
     public void penaltyPaid(double penaltyPaid){
-        this.penaltyDue -= penaltyPaid;
+        this.feesDue -= penaltyPaid;
         this.totalMoneyPaid += penaltyPaid;
     }
 
@@ -37,4 +37,21 @@ public class FinancialAccount {
         this.totalMoneyPaid += membershipFees;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public double getFeesDue() {
+        return feesDue;
+    }
+
+    @Override
+    public String getTableName() {
+        return "FinancialAccount";
+    }
+
+    @Override
+    public String getSearchableAttribute() {
+        return "userName";
+    }
 }
