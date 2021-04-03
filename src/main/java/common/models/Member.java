@@ -48,6 +48,8 @@ public class Member extends User implements DataObservable {
             o.performAction();
         }
 
+    public static String getAccessPrivilege(){
+        return "member";
     }
 
     public MembershipLevel getMembershipLevel() {
