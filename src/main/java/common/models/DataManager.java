@@ -2,46 +2,43 @@ package common.models;
 
 import java.util.ArrayList;
 
-/** responsible for querying the database and cache
- * updating the db and cache 
- * @param <V>
- */
-
-@SuppressWarnings({"unchecked","rawtypes"})
-public abstract class DataManager<V> implements DataObservable {
-    public DataStoreInterface dataStore = HibernateDB.getTestInstance();
-    private final String inchargeOfTable;
+public class DataManager implements DataObservable {
+    protected DataStoreInterface dataStore;
+    private final Object table;
     private final String searchableAttribute;
 
     ArrayList<DataObserver> observers = new ArrayList<>();
 
-    public DataManager(String inchargeOfTable, String searchableAttribute) {
-        this.inchargeOfTable = inchargeOfTable;
-        this.searchableAttribute = searchableAttribute;
+    public DataManager(DataStoreInterface database, Searchable entity) {
+        this.dataStore = database;
+        this.table = entity.getTableName();
+        this.searchableAttribute = entity.getSearchableAttribute();
     }
 
-    public ArrayList<V> search(Object query) {
-       return dataStore.search(query, inchargeOfTable,searchableAttribute);
+    public ArrayList<Object> fuzzySearch(Object query) {
+       return  dataStore.fuzzySearch(query, table, searchableAttribute);
     }
 
-    public void addItem(V item){
-        dataStore.addNewItem(item);
+    public Object search(Object query) {
+        return dataStore.search(query, table, searchableAttribute);
+    }
+    public void addItem(Object item){
+        dataStore.addNewItem(item, table);
         notifyObservers();
     }
 
-    public void updateData(V item) {
-        dataStore.updateItem(item);
+    public void updateData(Object item) {
+        dataStore.updateItem(item, table);
         notifyObservers();
     }
 
-
-    public void deleteItem(V item){
-        dataStore.deleteItem(item);
+    public void deleteItem(Object item){
+        dataStore.deleteItem(item, table);
         notifyObservers();
     }
 
-    public ArrayList<V> fetchAll(){
-        return dataStore.fetchAll(inchargeOfTable);
+    public ArrayList<Object> fetchAll(){
+        return dataStore.fetchAll(table);
     }
 
     @Override
