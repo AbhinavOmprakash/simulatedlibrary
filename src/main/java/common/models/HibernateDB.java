@@ -142,6 +142,7 @@ public class HibernateDB implements DataStoreInterface{
         stopSession(session);
         return new ArrayList<>(result);
     }
+
     private void createTestObjects(){
         // objects created for trial runs and testing etc.
 
@@ -191,23 +192,23 @@ public class HibernateDB implements DataStoreInterface{
         addNewItem(basicPolicy, MembershipPolicy.class);
         addNewItem(goldPolicy, MembershipPolicy.class);
 
-        Member abhinav = new Member("Abhinav", "Omprakash", "ab", new MembershipLevel(basicPolicy));
-        RawLoginData rawAbhiLogin = new RawLoginData("ab","aww");
+        Member abhinav = new Member("Abhinav", "Omprakash", "abhi", new MembershipLevel(basicPolicy));
+        RawLoginData rawAbhiLogin = new RawLoginData("abhi","abhiPassword");
         LoginData abhiLogin=CredentialCreator.createNewCredential(rawAbhiLogin);
         FinancialAccount abhinavAccount = new FinancialAccount(abhinav.getUserName());
 
-        Member goldUser = new Member("goldie", "glitters", "au", new MembershipLevel(goldPolicy));
-        RawLoginData rawGoldLogin = new RawLoginData("au","aww");
+        Member goldUser = new Member("goldie", "glitters", "gold", new MembershipLevel(goldPolicy));
+        RawLoginData rawGoldLogin = new RawLoginData("gold","goldPassword");
         LoginData goldLogin=CredentialCreator.createNewCredential(rawGoldLogin);
         FinancialAccount goldAccount = new FinancialAccount(goldUser.getUserName());
 
-        Member delayedUser = new Member("lazy", "larry", "la", new MembershipLevel(basicPolicy));
-        RawLoginData rawDelayedLogin = new RawLoginData("la","aww");
+        Member delayedUser = new Member("lazy", "larry", "lazy", new MembershipLevel(basicPolicy));
+        RawLoginData rawDelayedLogin = new RawLoginData("lazy","lazyPassword");
         LoginData delayedLogin =CredentialCreator.createNewCredential(rawDelayedLogin);
         FinancialAccount delayedUserAccount = new FinancialAccount(delayedUser.getUserName());
 
         Admin administrator = new Admin("Deepak", "Yadav", "admin");
-        RawLoginData rawAdminLogin = new RawLoginData("admin","JavaSucks");
+        RawLoginData rawAdminLogin = new RawLoginData("admin","admin");
         LoginData adminLogin = CredentialCreator.createNewCredential(rawAdminLogin);
 
         addNewItem(abhinav, User.class);

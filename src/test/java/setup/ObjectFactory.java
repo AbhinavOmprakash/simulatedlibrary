@@ -41,7 +41,7 @@ public class ObjectFactory {
 
     public static LibraryItem getBookWillGreyson() {
         LibraryItem willGreyson = new Book("Will Greyson,Will Greyson",
-                "YA",
+                "Young Adult",
                 123456789,
                 true,
                 999999999);

@@ -8,8 +8,6 @@ import library.models.libraryitems.LibraryItem;
 import org.junit.jupiter.api.Test;
 import setup.ObjectFactory;
 
-import javax.xml.crypto.Data;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.mock;
@@ -26,7 +24,7 @@ public class TestMemberUtils {
         Member member = ObjectFactory.getMember();
         // artificially setting limit to zero
         member.getMembershipLevel().setBorrowLimit(0);
-        assertFalse(memberUtils.userCanBorrow(member));
+        assertFalse(memberUtils.canUserBorrow(member));
     }
 
     @Test

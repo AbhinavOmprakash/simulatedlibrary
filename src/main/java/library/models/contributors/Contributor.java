@@ -33,6 +33,10 @@ public abstract class Contributor implements Searchable {
         return getName().equals(that.getName()) && getContributorType().equals(that.getContributorType());
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 
     public String getName() {
         return name;

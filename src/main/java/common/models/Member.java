@@ -57,6 +57,7 @@ public class Member extends User {
     public static String getAccessPrivilege(){
         return "member";
     }
+
     // getters and setters
     public MembershipLevel getMembershipLevel() {
         return membershipLevel;

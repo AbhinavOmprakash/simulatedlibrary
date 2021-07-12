@@ -10,7 +10,8 @@ import signup.models.RawSignUpData;
 
 public class SignUpGuiController extends FactoryGuiController<Member> {
     FactoryController<LoginData> loginFactory;
-    public SignUpGuiController(FactoryGui page, MemberAssembler memberAssembler,
+    public SignUpGuiController(FactoryGui page,
+                               MemberAssembler memberAssembler,
                                FactoryController<LoginData> loginFactory) {
         super(page, memberAssembler);
         this.loginFactory = loginFactory;

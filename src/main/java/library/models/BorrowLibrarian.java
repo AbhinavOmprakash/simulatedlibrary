@@ -1,6 +1,5 @@
 package library.models;
 
-import common.models.DataManager;
 import common.models.Member;
 import library.models.libraryitems.LibraryItem;
 
@@ -17,14 +16,14 @@ public class BorrowLibrarian implements BorrowIncharge {
 
     public void borrowItem(String username, LibraryItem item){
         Member member = memberUtils.getMember(username);
-        if (libraryUtils.isNotBorrowed(item) && memberUtils.userCanBorrow(member)){
+        if (libraryUtils.isNotBorrowed(item) && memberUtils.canUserBorrow(member)){
             normalBorrow.borrowItem(member, item);
         }
     }
 
     @Override
     public void borrowItem(Member member, LibraryItem item) {
-        if (libraryUtils.isNotBorrowed(item) && memberUtils.userCanBorrow(member)){
+        if (libraryUtils.isNotBorrowed(item) && memberUtils.canUserBorrow(member)){
             normalBorrow.borrowItem(member, item);
         }
     }

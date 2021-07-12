@@ -47,7 +47,7 @@ public class LibraryItemPanel implements DisplayPage, ActionListener{
         //if the item is not borrowed don't allow
         //if the use can't borrow don't allow
         if(libraryUtils.isBorrowed(item) ||
-            !memberUtils.userCanBorrow(Session.getCurrentUser())){
+            !memberUtils.canUserBorrow(Session.getCurrentUser())){
             disableBorrowButton();
         } else{
             enableBorrowButton();

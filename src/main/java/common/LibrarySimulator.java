@@ -37,7 +37,5 @@ public class LibrarySimulator {
                 dependency.router.homeView();
             }});
 
-
         }
-
     }

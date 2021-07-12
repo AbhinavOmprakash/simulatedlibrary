@@ -5,8 +5,7 @@ import library.models.contributors.Contributor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table( name = "LibraryItem")
@@ -15,7 +14,7 @@ public abstract class LibraryItem implements Searchable {
 
     @Id
     @GeneratedValue(generator = "increment")
-    @GenericGenerator(name="increment", strategy = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     protected long id;
     protected String title;
     protected String subject;
@@ -26,6 +25,7 @@ public abstract class LibraryItem implements Searchable {
     protected int borrowPeriodInDays;
     protected boolean isBorrowable;
 
+    private String searchableString;
 
     protected String type;
 
@@ -54,6 +54,23 @@ public abstract class LibraryItem implements Searchable {
         this.isBorrowable = isBorrowable;
         this.borrowPeriodInDays = borrowPeriodInDays;
         this.type = type;
+    }
+
+    private String[] constructSearchable(){
+        searchableString = String.format("%s %s %s", title,
+                subject,
+                contributors.toString()).toLowerCase();
+        searchableString = searchableString.replaceAll("[^a-z ]","");
+        return searchableString.split(" ");
+    }
+
+    public String[] getSearchableString() {
+        return constructSearchable();
+    }
+
+    @Override
+    public String getSearchableAttribute() {
+        return "title";
     }
     //getters and setters
 
@@ -135,11 +152,6 @@ public abstract class LibraryItem implements Searchable {
 
     public String getTableName() {
         return "LibraryItem";
-    }
-
-    @Override
-    public String getSearchableAttribute() {
-        return "title";
     }
 
 }

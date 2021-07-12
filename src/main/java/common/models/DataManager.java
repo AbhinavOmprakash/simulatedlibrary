@@ -1,12 +1,16 @@
 package common.models;
 
+
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class DataManager implements DataObservable {
     protected DataStoreInterface dataStore;
     private final Object table;
     private final String searchableAttribute;
-
+    Has
     ArrayList<DataObserver> observers = new ArrayList<>();
 
     public DataManager(DataStoreInterface database, Searchable entity) {
@@ -15,13 +19,30 @@ public class DataManager implements DataObservable {
         this.searchableAttribute = entity.getSearchableAttribute();
     }
 
+    private void indexObjects(){
+        List<Object> allObjects = fetchAll();
+        for (Object o: allObjects){
+            addToIndex(o);
+        }
+    }
+
+    private void addToIndex(Object o) {
+
+    }
+
     public ArrayList<Object> fuzzySearch(Object query) {
        return  dataStore.fuzzySearch(query, table, searchableAttribute);
     }
 
     public Object search(Object query) {
+        String someQuery = constructQuery(query);
         return dataStore.search(query, table, searchableAttribute);
     }
+
+    private String constructQuery(Object query) {
+        return null;
+    }
+
     public void addItem(Object item){
         dataStore.addNewItem(item, table);
         notifyObservers();

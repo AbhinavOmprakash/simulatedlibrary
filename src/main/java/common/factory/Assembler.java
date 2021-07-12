@@ -4,7 +4,6 @@ Some objects might be composed of one or more objects.
 in that case an assembler should be used.
  */
 
-import org.springframework.security.core.parameters.P;
 
 public abstract class Assembler<T> implements Factory<T> {
     private final FactoryController<T> mainFactory;

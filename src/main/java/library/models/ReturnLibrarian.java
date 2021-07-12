@@ -43,7 +43,10 @@ public class ReturnLibrarian implements PaymentObserver {
     }
 
     @Override
-    public void receivePaymentStatus(String username, boolean status, double targetAmount, Transaction transaction) {
+    public void receivePaymentStatus(String username,
+                                     boolean status,
+                                     double targetAmount,
+                                     Transaction transaction) {
         if (status && transaction.equals(Transaction.OVERDUE_FEES)) {
             completeReturn(username);
         }
@@ -53,5 +56,4 @@ public class ReturnLibrarian implements PaymentObserver {
         ReturnTransaction returnTransaction = returnQueue.get(username);
         normalReturn.returnItem(returnTransaction.member, returnTransaction.item);
     }
-
 }
