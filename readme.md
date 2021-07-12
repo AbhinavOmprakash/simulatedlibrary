@@ -1,5 +1,8 @@
 # digital library
 
+The goal of this project was to learn object-oriented design and system architecture. 
+I've used the MVC architecture, taking inspiration from Django. You can also find other design patterns like Observer and Singleton used a few times in the project.
+
 ## Running the app
 
 The entry point to the app is at
@@ -37,4 +40,7 @@ You can also sign up for a new account.
 
 ## areas that could be improved
 * The GUI is quite ugly, but a pretty front-end was not the goal of this project. I completely understand that a beautiful UI is a key part of an app.
+* The search is not perfect and is quite rigid, the exact name of the item is not Entered, the search won't match. 
+* All the dependencies are manually "hooked up" Instead a dependency Injection framework could have been used
+* Documentation, while I think the Code Base is quite readable, The documentation is sparse.
 
